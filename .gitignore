@@ -1,0 +1,8 @@
+*
+!.gitignore
+!init.el
+!dotfiles/
+!dotfiles/*.el
+dotfiles/sql-config.el
+dotfiles/proxy-config.el
+dotfiles/personal-details.el
