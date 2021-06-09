@@ -1,6 +1,7 @@
 *
 !.gitignore
 !README.md
+!early-init.el
 !init.el
 !dotfiles/
 !dotfiles/*.el
