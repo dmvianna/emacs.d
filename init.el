@@ -59,6 +59,14 @@
     (geiser-mode . paredit-mode)
     (racket-mode . paredit-mode)))
 
+;; Gherkin
+(use-package
+  pickle
+  :ensure t
+  :straight t
+  :mode "\\.feature\\'"
+  :interpreter "pickle-mode")
+
 ;; rainbow
 ;; rainbow-delimiters for elisp
 (use-package
