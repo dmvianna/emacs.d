@@ -67,6 +67,16 @@
   :mode "\\.feature\\'"
   :interpreter "pickle-mode")
 
+(use-package sh-script
+  :ensure nil
+  :mode (("\\.zsh\\'" . sh-mode)
+         ("\\.sh\\'" . sh-mode)
+         ("zshrc\\'" . sh-mode)
+         ("zshenv\\'" . sh-mode))
+  :bind (:map sh-mode-map
+              ("C-c C-e" . sh-execute-region))
+  )
+
 ;; rainbow
 ;; rainbow-delimiters for elisp
 (use-package
