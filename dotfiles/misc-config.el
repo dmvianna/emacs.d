@@ -63,8 +63,7 @@
 ;;; auto-byte-compile
 (setq load-prefer-newer t)
 (package-initialize)
-(use-package
-    auto-compile
+(use-package auto-compile
   :ensure t
   :straight t
   :config
@@ -72,8 +71,7 @@
     (auto-compile-on-save-mode)))
 
 ;; exec path from shell
-(use-package
-    exec-path-from-shell
+(use-package exec-path-from-shell
   :ensure t
   :straight t
   :config
@@ -85,10 +83,7 @@
 ;; open file in browser
 (global-set-key "\C-c\C-zv" 'browse-url-of-file)
 
-(provide 'misc-config)
-
 ;; mouse wheel in iterm2 terminal
-
 (require 'mwheel)
 (require 'mouse)
 (xterm-mouse-mode t)
@@ -101,8 +96,7 @@
 (global-set-key [(meta up)] 'elpy-nav-move-line-or-region-up)
 
 ;; theme
-(use-package
-    solarized-theme
+(use-package solarized-theme
   :straight t
   :ensure t
   :config
@@ -112,8 +106,7 @@
 (setq default-directory (getenv "HOME"))
 
 ;; directory tree view
-(use-package
-    neotree
+(use-package neotree
   :straight t
   :ensure t
   :config
@@ -140,4 +133,14 @@
   :straight t
   :ensure t)
 
-;;; misc-config.el ends here
+(use-package drag-stuff
+  :straight t
+  :ensure t
+  :init (setq drag-stuff-modifier 'ctrl)
+  :config (drag-stuff-global-mode t)
+  (bind-keys :map drag-stuff-mode-map
+             ("<M-S-up>" . drag-stuff-up)
+             ("<M-S-down>" . drag-stuff-down)))
+
+(provide 'misc-config)
+;;; misc-config ends here
