@@ -6,19 +6,8 @@
 (require 'misc-config)
 ;; (use-package proxy-config)
 
-;; Markdown
-(use-package
-  markdown-mode
-  :ensure t
-  :straight t
-  :config
-  :mode "\\.md$"
-  :interpreter "markdown-mode"
-  )
-
 ;; Flycheck -- global syntax check (needed for hlint)
-(use-package
-  flycheck
+(use-package flycheck
   :ensure t
   :straight t
   :init (global-flycheck-mode)
@@ -32,24 +21,22 @@
   :straight t)
 
 ;; JSON
-(use-package
-  json-mode
+(use-package json-mode
   :ensure t
   :straight t
   :mode "\\.json\\'\\|\\.jshintrc\\'"
   :interpreter "json-mode"
   )
 
-(use-package
-  racket-mode
+;; Gherkin
+(use-package pickle
   :ensure t
   :straight t
-  :mode "\\.rkt\\'"
-  :interpreter "racket-mode")
+  :mode "\\.feature\\'"
+  :interpreter "pickle-mode")
 
 ;; Lisp
-(use-package
-  paredit
+(use-package paredit
   :ensure t
   :straight t
   :hook
@@ -59,13 +46,29 @@
     (geiser-mode . paredit-mode)
     (racket-mode . paredit-mode)))
 
-;; Gherkin
-(use-package
-  pickle
+;; Markdown
+(use-package markdown-mode
   :ensure t
   :straight t
-  :mode "\\.feature\\'"
-  :interpreter "pickle-mode")
+  :config
+  :mode "\\.md$"
+  :interpreter "markdown-mode"
+  )
+
+(use-package racket-mode
+  :ensure t
+  :straight t
+  :mode "\\.rkt\\'"
+  :interpreter "racket-mode")
+
+;; rainbow
+;; rainbow-delimiters for elisp
+(use-package rainbow-delimiters
+  :ensure t
+  :straight t
+  :hook
+  ((emacs-lisp-mode . rainbow-delimiters-mode)
+   (geiser-mode . rainbow-delimiters-mode)))
 
 (use-package sh-script
   :ensure nil
@@ -76,16 +79,6 @@
   :bind (:map sh-mode-map
               ("C-c C-e" . sh-execute-region))
   )
-
-;; rainbow
-;; rainbow-delimiters for elisp
-(use-package
-  rainbow-delimiters
-  :ensure t
-  :straight t
-  :hook
-  ((emacs-lisp-mode . rainbow-delimiters-mode)
-   (geiser-mode . rainbow-delimiters-mode)))
 
 
 (provide 'init)
