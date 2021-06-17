@@ -13,7 +13,12 @@
   :init (global-flycheck-mode)
   :config
   (setq-default flycheck-temp-prefix ".flycheck")
+  :hook (flycheck-pycheckers-setup)
   )
+
+(use-package flycheck-pycheckers
+  :ensure t
+  :straight t)
 
 ;; Company -- text completion
 (use-package company
