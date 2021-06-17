@@ -39,29 +39,29 @@
   :ensure t
   :straight t
   :commands lsp-ui-mode
-  :hook ('haskell-lsp-ui-mode-hook
-         'python-lsp-ui-mode-hook)
+  :hook (haskell-lsp-ui
+         python-lsp-ui)
   :config
   (custom-set-variables
-   '(lsp-ui-sideline-show-diagnostics t)
-   '(lsp-ui-sideline-show-hover t)
-   '(lsp-ui-sideline-show-code-actions t)
-   '(lsp-ui-sideline-update-mode t)
-   '(lsp-ui-peek-enable t)
-   '(lsp-ui-peek-show-directory t)
-   '(lsp-ui-doc-enable t)
-   '(lsp-ui-doc-position 'bottom)
-   '(lsp-ui-doc-show-with-cursor t)
-   '(lsp-ui-doc-show-with-mouse t)
-   '(lsp-ui-imenu-auto-refresh t)
-   '(lsp-ui-imenu-window-width 40)
+   (lsp-ui-sideline-show-diagnostics t)
+   (lsp-ui-sideline-show-hover t)
+   (lsp-ui-sideline-show-code-actions t)
+   (lsp-ui-sideline-update-mode t)
+   (lsp-ui-peek-enable t)
+   (lsp-ui-peek-show-directory t)
+   (lsp-ui-doc-enable t)
+   (lsp-ui-doc-position 'bottom)
+   (lsp-ui-doc-show-with-cursor t)
+   (lsp-ui-doc-show-with-mouse t)
+   (lsp-ui-imenu-auto-refresh t)
+   (lsp-ui-imenu-window-width 40)
    ))
 
 (use-package lsp-haskell
   :ensure t
-  :straight t)
-(use-package haskell-config)
-(add-hook 'haskell-mode-hook 'haskell-config-mode-hook)
+  :straight t
+  :hook (haskell-mode haskell-config)
+  )
 
 (use-package lsp-python-ms
   :ensure t
