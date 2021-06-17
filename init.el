@@ -20,6 +20,57 @@
   :ensure t
   :straight t)
 
+;; Language Server Protocol
+(use-package lsp-mode
+  :ensure t
+  :straight t
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (python-mode . lsp)
+         (haskell-mode . lsp)
+         (haskell-literate-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui
+  :ensure t
+  :straight t
+  :commands lsp-ui-mode
+  :hook ('haskell-lsp-ui-mode-hook
+         'python-lsp-ui-mode-hook)
+  :config
+  (custom-set-variables
+   '(lsp-ui-sideline-show-diagnostics t)
+   '(lsp-ui-sideline-show-hover t)
+   '(lsp-ui-sideline-show-code-actions t)
+   '(lsp-ui-sideline-update-mode t)
+   '(lsp-ui-peek-enable t)
+   '(lsp-ui-peek-show-directory t)
+   '(lsp-ui-doc-enable t)
+   '(lsp-ui-doc-position 'bottom)
+   '(lsp-ui-doc-show-with-cursor t)
+   '(lsp-ui-doc-show-with-mouse t)
+   '(lsp-ui-imenu-auto-refresh t)
+   '(lsp-ui-imenu-window-width 40)
+   ))
+
+(use-package lsp-haskell
+  :ensure t
+  :straight t)
+(use-package haskell-config)
+(add-hook 'haskell-mode-hook 'haskell-config-mode-hook)
+
+(use-package lsp-python-ms
+  :ensure t
+  :straight t
+  :init (setq lsp-python-ms-auto-install-server t)
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-python-ms)
+                          (lsp))))  ; or lsp-deferred
+
 ;; JSON
 (use-package json-mode
   :ensure t
