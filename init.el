@@ -40,6 +40,45 @@
   :mode "\\.feature\\'"
   :interpreter "pickle-mode")
 
+;; Haskell
+
+(use-package haskell-mode
+  :ensure t
+  :straight t
+  :mode "\\.hs\\'\\|\\.lhs\\'"
+  :config
+  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
+  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
+  (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+  (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
+  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+  (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+  (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
+  (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
+  ;; (define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
+  ;; (define-key interactive-haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+  :custom
+  (haskell-process-suggest-remove-import-lines t)
+  (haskell-process-auto-import-loaded-modules t)
+  (haskell-process-log t)
+  (haskell-enable-hindent-style fundamental)
+  (haskell-indent-spaces 2)
+  (haskell-process-args-ghci "ghci")
+  (haskell-process-type 'stack-ghci)
+  (haskell-stylish-on-save 't))
+
+(use-package ormolu
+  :ensure t
+  :straight t
+  :hook (haskell-mode . ormolu-format-on-save-mode)
+  :bind (:map haskell-mode-map
+              ("C-c r" . ormolu-format-buffer)))
+
+(use-package dhall-mode
+  :ensure t
+  :straight t
+  :mode "\\.dhall\\'")
+
 ;; Lisp
 (use-package paredit
   :ensure t
