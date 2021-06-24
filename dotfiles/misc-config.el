@@ -92,8 +92,8 @@
 (global-set-key [mouse-5] 'previous-line)
 
 ;; move lines and regions
-(global-set-key [(meta down)] 'elpy-nav-move-line-or-region-down)
-(global-set-key [(meta up)] 'elpy-nav-move-line-or-region-up)
+;; (global-set-key [(meta down)] 'elpy-nav-move-line-or-region-down)
+;; (global-set-key [(meta up)] 'elpy-nav-move-line-or-region-up)
 
 ;; theme
 (use-package solarized-theme
