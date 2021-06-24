@@ -16,70 +16,15 @@
   :hook (flycheck-pycheckers-setup)
   )
 
-(use-package flycheck-pycheckers
-  :ensure t
-  :straight t)
-
 ;; Company -- text completion
 (use-package company
   :ensure t
   :straight t)
 
-;; Language Server Protocol
-(use-package lsp-mode
+;; LSP
+(use-package eglot
   :ensure t
-  :straight t
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (python-mode . lsp-deferred)
-         (haskell-mode . lsp-deferred)
-         (haskell-literate-mode . lsp-deferred)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-
-(use-package lsp-ui
-  :ensure t
-  :straight t
-  :commands lsp-ui-mode
-  :hook (haskell-lsp-ui
-         python-lsp-ui)
-  :custom
-  (lsp-ui-sideline-show-diagnostics t)
-  (lsp-ui-sideline-show-hover t)
-  (lsp-ui-sideline-show-code-actions t)
-  (lsp-ui-sideline-update-mode t)
-  (lsp-ui-peek-enable t)
-  (lsp-ui-peek-show-directory t)
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-position 'bottom)
-  (lsp-ui-doc-show-with-cursor t)
-  (lsp-ui-doc-show-with-mouse t)
-  (lsp-ui-imenu-auto-refresh t)
-  (lsp-ui-imenu-window-width 40)
-  )
-
-(use-package lsp-haskell
-  :ensure t
-  :straight t
-  :hook haskell-mode)
-
-(use-package lsp-python-ms
-  :ensure t
-  :straight t
-  :init (setq lsp-python-ms-auto-install-server t)
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-python-ms)
-                          (lsp-deferred))))  ; or lsp-deferred
-
-(use-package lsp-pyright
-  :ensure t
-  :straight t
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-pyright)
-                         (lsp-deferred))))  ; or lsp-deferred
+  :straight t)
 
 ;; JSON
 (use-package json-mode
@@ -116,6 +61,22 @@
   :interpreter "markdown-mode"
   )
 
+;; Python
+(use-package flycheck-pycheckers
+  :ensure t
+  :straight t)
+
+(use-package flycheck-mypy
+  :ensure t
+  :straight t
+  :after python)
+
+(use-package python-black
+  :ensure t
+  :straight t
+  :after python)
+
+;; Racket
 (use-package racket-mode
   :ensure t
   :straight t
