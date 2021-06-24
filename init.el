@@ -13,7 +13,6 @@
   :init (global-flycheck-mode)
   :config
   (setq-default flycheck-temp-prefix ".flycheck")
-  :hook (flycheck-pycheckers-setup)
   )
 
 ;; Company -- text completion
@@ -62,19 +61,16 @@
   )
 
 ;; Python
+
 (use-package flycheck-pycheckers
   :ensure t
-  :straight t)
-
-(use-package flycheck-mypy
-  :ensure t
   :straight t
-  :after python)
+  :hook (flycheck-mode . flycheck-pycheckers-setup))
 
 (use-package python-black
   :ensure t
   :straight t
-  :after python)
+  :hook (python-mode . python-black))
 
 ;; Racket
 (use-package racket-mode
