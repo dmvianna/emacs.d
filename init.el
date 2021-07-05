@@ -20,10 +20,23 @@
   :ensure t
   :straight t)
 
-;; LSP
-(use-package eglot
+(use-package yasnippet
   :ensure t
   :straight t)
+
+;; LSP
+(use-package lsp-mode
+  :ensure t
+  :straight t
+  :init (setq lsp-keymap-prefix "C-c l")
+  :commands (lsp lsp-deferred))
+
+(use-package lsp-ui
+  :ensure t
+  :straight t
+  :hook (lsp-mode . lsp-ui-mode)
+  :custom (lsp-ui-doc-position 'bottom)
+  :commands lsp-ui-mode)
 
 ;; JSON
 (use-package json-mode
@@ -45,7 +58,6 @@
 (use-package haskell-mode
   :ensure t
   :straight t
-  :mode "\\.hs\\'\\|\\.lhs\\'"
   :config
   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
   (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
@@ -56,16 +68,28 @@
   (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
   (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
   ;; (define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
-  ;; (define-key interactive-haskell-mode-map (kbd "C-c C-t") 'haskell-mode-show-type-at)
+  ;; (define-key interactive-haskell-mode-map (kbd "C-c C-t")
+)
+
+(use-package haskell-interactive-mode
+  :hook
+  (haskell-mode-hook . interactive-haskell-mode))
+
+(use-package haskell-process
   :custom
-  (haskell-process-suggest-remove-import-lines t)
-  (haskell-process-auto-import-loaded-modules t)
-  (haskell-process-log t)
-  (haskell-enable-hindent-style fundamental)
-  (haskell-indent-spaces 2)
-  (haskell-process-args-ghci "ghci")
   (haskell-process-type 'stack-ghci)
-  (haskell-stylish-on-save 't))
+  (haskell-indent-spaces 2))
+
+(use-package lsp-haskell
+  :ensure t
+  :straight t
+  :custom
+  (lsp-haskell-server-path "haskell-language-server-wrapper")
+  :hook
+  (haskell-mode . lsp)
+  (haskell-literate-mode . lsp)
+  :config
+  (add-to-list 'lsp-enabled-clients 'lsp-haskell))
 
 (use-package ormolu
   :ensure t
@@ -74,6 +98,7 @@
   :bind (:map haskell-mode-map
               ("C-c r" . ormolu-format-buffer)))
 
+;; Dhall
 (use-package dhall-mode
   :ensure t
   :straight t
