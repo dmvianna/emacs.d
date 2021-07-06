@@ -10,11 +10,9 @@
 ;; we need to upgrade the inbuilt flymake version so
 ;; that packages that require it don't fail
 (use-package flymake
-  :ensure t
   :straight t)
 
 (use-package flycheck
-  :ensure t
   :straight t
   :init (global-flycheck-mode)
   :config
@@ -23,41 +21,34 @@
 
 ;; Company -- text completion
 (use-package company
-  :ensure t
   :straight t)
 
 (use-package yasnippet
-  :ensure t
   :straight t)
 
 (use-package which-key
-  :ensure t
   :straight t
   :config
   (which-key-mode))
 
 ;; LSP
 (use-package lsp-mode
-  :ensure t
   :straight t
   :init (setq lsp-keymap-prefix "C-c l")
   :commands (lsp lsp-deferred))
 
 (use-package lsp-ui
-  :ensure t
   :straight t
   :hook (lsp-mode . lsp-ui-mode)
   :custom (lsp-ui-doc-position 'bottom)
   :commands lsp-ui-mode)
 
 (use-package company-lsp
-  :ensure t
   :straight t
   :after lsp-ui)
 
 ;; JSON
 (use-package json-mode
-  :ensure t
   :straight t
   :mode "\\.json\\'\\|\\.jshintrc\\'"
   :interpreter "json-mode"
@@ -65,7 +56,6 @@
 
 ;; Gherkin
 (use-package pickle
-  :ensure t
   :straight t
   :mode "\\.feature\\'"
   :interpreter "pickle-mode")
@@ -73,7 +63,6 @@
 ;; Haskell
 
 (use-package haskell-mode
-  :ensure t
   :straight t
   :config
   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
@@ -96,7 +85,6 @@
   (haskell-indent-spaces 2))
 
 (use-package lsp-haskell
-  :ensure t
   :straight t
   :custom
   (lsp-haskell-server-path "haskell-language-server-wrapper")
@@ -107,7 +95,6 @@
   (add-to-list 'lsp-enabled-clients 'lsp-haskell))
 
 (use-package ormolu
-  :ensure t
   :straight t
   :hook (haskell-mode . ormolu-format-on-save-mode)
   :bind (:map haskell-mode-map
@@ -115,13 +102,11 @@
 
 ;; Dhall
 (use-package dhall-mode
-  :ensure t
   :straight t
   :mode "\\.dhall\\'")
 
 ;; Lisp
 (use-package paredit
-  :ensure t
   :straight t
   :hook
   ((emacs-lisp-mode . paredit-mode)
@@ -132,7 +117,6 @@
 
 ;; Markdown
 (use-package markdown-mode
-  :ensure t
   :straight t
   :config
   :mode "\\.md$"
@@ -198,11 +182,9 @@
 ;;   )
 
 ;; (use-package flycheck-pyre
-;;   :ensure t
 ;;   :straight t)
 
 ;; (use-package lsp-pyre
-;;   :ensure t
 ;;   :straight t
 ;;   :config
 ;;   (add-to-list 'lsp-enabled-clients 'lsp-pyre)
@@ -210,7 +192,6 @@
 
 
 ;; (use-package lsp-pyright
-;;   :ensure t
 ;;   :straight t
 ;;   :hook (python-mode . (lambda ()
 ;;                          (require 'lsp-pyright)
@@ -218,7 +199,6 @@
 
 ;; Racket
 (use-package racket-mode
-  :ensure t
   :straight t
   :mode "\\.rkt\\'"
   :interpreter "racket-mode")
@@ -226,7 +206,6 @@
 ;; rainbow
 ;; rainbow-delimiters for elisp
 (use-package rainbow-delimiters
-  :ensure t
   :straight t
   :hook
   ((emacs-lisp-mode . rainbow-delimiters-mode)
