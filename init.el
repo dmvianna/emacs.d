@@ -77,8 +77,9 @@
 
 (use-package haskell-interactive-mode
   :config
-  (define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
-  (define-key interactive-haskell-mode-map (kbd "C-c C-t")
+  (define-key interactive-haskell-mode-map (kbd "M-.")
+    'haskell-mode-goto-loc)
+  (define-key interactive-haskell-mode-map (kbd "C-c C-t"))
   :hook
   (haskell-mode-hook . interactive-haskell-mode))
 
