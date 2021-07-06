@@ -73,11 +73,12 @@
   (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
   (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
   (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
-  ;; (define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
-  ;; (define-key interactive-haskell-mode-map (kbd "C-c C-t")
 )
 
 (use-package haskell-interactive-mode
+  :config
+  (define-key interactive-haskell-mode-map (kbd "M-.") 'haskell-mode-goto-loc)
+  (define-key interactive-haskell-mode-map (kbd "C-c C-t")
   :hook
   (haskell-mode-hook . interactive-haskell-mode))
 
