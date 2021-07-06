@@ -141,15 +141,76 @@
 
 ;; Python
 
-(use-package flycheck-pycheckers
+(use-package elpy
   :ensure t
   :straight t
-  :hook (flycheck-mode . flycheck-pycheckers-setup))
+  :bind
+  (:map elpy-mode-map
+        ("C-M-n" . elpy-nav-forward-block)
+        ("C-M-p" . elpy-nav-backward-block))
+  :hook ((elpy-mode . flycheck-mode)
+         (elpy-mode . (lambda ()
+                        (set (make-local-variable 'company-backends)
+                             '((elpy-company-backend :with company-yasnippet))))))
+  :init
+  (elpy-enable)
+  :config
+  (setq elpy-rpc-virtualenv-path 'system)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (setq elpy-shell-echo-output nil)
+  (setq elpy-rpc-python-command "python3")
+  (setq elpy-rpc-timeout 2))
+
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :straight t
+;;   :config
+;;   (add-to-list 'lsp-enabled-clients 'lsp-pyright)
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-pyright)
+;;                          (lsp))))
+
+;; (use-package python-mode
+;;   :interpreter ("python" . python-mode))
+
+(use-package py-isort
+  :ensure t
+  :straight t
+  :after python
+  :hook (before-save . py-isort-before-save))
 
 (use-package python-black
   :ensure t
   :straight t
   :hook (python-mode . python-black))
+
+;; (use-package flycheck-pycheckers
+;;   :ensure t
+;;   :straight t
+;;   :custom
+;;   (flycheck-pycheckers-checkers '(mypy3 pyflakes))
+;;   ;; :config (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
+;;   ;; :hook (flycheck-mode . flycheck-pycheckers-setup)
+;;   )
+
+;; (use-package flycheck-pyre
+;;   :ensure t
+;;   :straight t)
+
+;; (use-package lsp-pyre
+;;   :ensure t
+;;   :straight t
+;;   :config
+;;   (add-to-list 'lsp-enabled-clients 'lsp-pyre)
+;;   :hook (python-mode . lsp))
+
+
+;; (use-package lsp-pyright
+;;   :ensure t
+;;   :straight t
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-pyright)
+;;                          ((lsp)))))
 
 ;; Racket
 (use-package racket-mode
