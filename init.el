@@ -44,6 +44,11 @@
   :custom (lsp-ui-doc-position 'bottom)
   :commands lsp-ui-mode)
 
+(use-package company-lsp
+  :ensure t
+  :straight t
+  :after lsp-ui)
+
 ;; JSON
 (use-package json-mode
   :ensure t
