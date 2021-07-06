@@ -24,6 +24,12 @@
   :ensure t
   :straight t)
 
+(use-package which-key
+  :ensure t
+  :straight t
+  :config
+  (which-key-mode))
+
 ;; LSP
 (use-package lsp-mode
   :ensure t
