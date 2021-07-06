@@ -141,6 +141,10 @@
 
 ;; Python
 
+(use-package flycheck-mypy
+  :ensure t
+  :straight t)
+
 (use-package elpy
   :ensure t
   :straight t
