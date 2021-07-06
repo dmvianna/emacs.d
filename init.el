@@ -7,6 +7,12 @@
 ;; (use-package proxy-config)
 
 ;; Flycheck -- global syntax check (needed for hlint)
+;; we need to upgrade the inbuilt flymake version so
+;; that packages that require it don't fail
+(use-package flymake
+  :ensure t
+  :straight t)
+
 (use-package flycheck
   :ensure t
   :straight t
