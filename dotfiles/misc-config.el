@@ -64,7 +64,6 @@
 (setq load-prefer-newer t)
 (package-initialize)
 (use-package auto-compile
-  :ensure t
   :straight t
   :config
   '((auto-compile-on-load-mode)
@@ -72,7 +71,6 @@
 
 ;; exec path from shell
 (use-package exec-path-from-shell
-  :ensure t
   :straight t
   :config
   (exec-path-from-shell-initialize))
@@ -98,7 +96,6 @@
 ;; theme
 (use-package solarized-theme
   :straight t
-  :ensure t
   :config
   (load-theme 'solarized-dark t))
 
@@ -115,11 +112,9 @@
 
 ;; incremental completions
 (use-package consult
-  :straight t
-  :ensure t)
+  :straight t)
 (use-package selectrum
   :straight t
-  :ensure t
   :config
   '((selectrum-mode)
     (setq completion-styles '(substring))))
@@ -130,18 +125,19 @@
 
 ;; magit is too important to put anywhere else
 (use-package magit
-  :straight t
-  :ensure t)
+  :straight t)
 (bind-key "C-x g" 'magit-status)
 
 (use-package drag-stuff
   :straight t
-  :ensure t
   :init (setq drag-stuff-modifier 'ctrl)
   :config (drag-stuff-global-mode t)
   (bind-keys :map drag-stuff-mode-map
              ("<M-S-up>" . drag-stuff-up)
              ("<M-S-down>" . drag-stuff-down)))
 
+(use-package smartparens
+  :straight t
+  :config (smartparens-global-mode t))
 (provide 'misc-config)
 ;;; misc-config ends here
