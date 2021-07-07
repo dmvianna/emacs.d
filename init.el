@@ -125,13 +125,11 @@
 ;; Python
 
 (use-package py-isort
-  :ensure t
   :straight t
   :after python
   :hook (before-save . py-isort-before-save))
 
 (use-package python-black
-  :ensure t
   :straight t
   :hook (python-mode . python-black))
 
