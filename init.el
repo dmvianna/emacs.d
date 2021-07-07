@@ -91,8 +91,7 @@
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp)
-  :config
-  (add-to-list 'lsp-enabled-clients 'lsp-haskell))
+  )
 
 (use-package ormolu
   :straight t
