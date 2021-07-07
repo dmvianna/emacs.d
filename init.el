@@ -124,42 +124,6 @@
 
 ;; Python
 
-(use-package flycheck-mypy
-  :ensure t
-  :straight t)
-
-(use-package elpy
-  :ensure t
-  :straight t
-  :bind
-  (:map elpy-mode-map
-        ("C-M-n" . elpy-nav-forward-block)
-        ("C-M-p" . elpy-nav-backward-block))
-  :hook ((elpy-mode . flycheck-mode)
-         (elpy-mode . (lambda ()
-                        (set (make-local-variable 'company-backends)
-                             '((elpy-company-backend :with company-yasnippet))))))
-  :init
-  (elpy-enable)
-  :config
-  (setq elpy-rpc-virtualenv-path 'system)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (setq elpy-shell-echo-output nil)
-  (setq elpy-rpc-python-command "python3")
-  (setq elpy-rpc-timeout 2))
-
-;; (use-package lsp-pyright
-;;   :ensure t
-;;   :straight t
-;;   :config
-;;   (add-to-list 'lsp-enabled-clients 'lsp-pyright)
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-pyright)
-;;                          (lsp))))
-
-;; (use-package python-mode
-;;   :interpreter ("python" . python-mode))
-
 (use-package py-isort
   :ensure t
   :straight t
@@ -185,16 +149,29 @@
 
 ;; (use-package lsp-pyre
 ;;   :straight t
-;;   :config
-;;   (add-to-list 'lsp-enabled-clients 'lsp-pyre)
-;;   :hook (python-mode . lsp))
-
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-pyre)
+;;                          (lsp))))
 
 ;; (use-package lsp-pyright
 ;;   :straight t
 ;;   :hook (python-mode . (lambda ()
 ;;                          (require 'lsp-pyright)
-;;                          ((lsp)))))
+;;                          (lsp))))
+
+;; (use-package lsp-python-ms
+;;   :straight t
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-python-ms)
+;;                          (lsp))))
+
+(use-package lsp-jedi
+  :straight t
+  :config
+  (with-eval-after-load "lsp-mode"
+    (add-to-list 'lsp-disabled-clients 'pyls)
+    (add-to-list 'lsp-enabled-clients 'jedi))
+  :hook (python-mode . lsp))
 
 ;; Racket
 (use-package racket-mode
