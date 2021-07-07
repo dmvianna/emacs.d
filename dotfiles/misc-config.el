@@ -132,6 +132,7 @@
 (use-package magit
   :straight t
   :ensure t)
+(bind-key "C-x g" 'magit-status)
 
 (use-package drag-stuff
   :straight t
