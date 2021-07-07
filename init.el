@@ -135,43 +135,21 @@
   :straight t
   :hook (python-mode . python-black))
 
-;; (use-package flycheck-pycheckers
-;;   :ensure t
-;;   :straight t
-;;   :custom
-;;   (flycheck-pycheckers-checkers '(mypy3 pyflakes))
-;;   ;; :config (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup)
-;;   ;; :hook (flycheck-mode . flycheck-pycheckers-setup)
-;;   )
-
-;; (use-package flycheck-pyre
-;;   :straight t)
-
-;; (use-package lsp-pyre
-;;   :straight t
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-pyre)
-;;                          (lsp))))
-
-;; (use-package lsp-pyright
-;;   :straight t
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-pyright)
-;;                          (lsp))))
-
-;; (use-package lsp-python-ms
-;;   :straight t
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-python-ms)
-;;                          (lsp))))
-
 (use-package lsp-jedi
   :straight t
   :config
   (with-eval-after-load "lsp-mode"
     (add-to-list 'lsp-disabled-clients 'pyls)
     (add-to-list 'lsp-enabled-clients 'jedi))
-  :hook (python-mode . lsp))
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-jedi)
+                         (lsp)
+                         (flycheck-add-next-checker
+                          'lsp
+                          'python-pyright)
+                         (flycheck-add-next-checker
+                          'python-pyright
+                          'python-pylint))))
 
 ;; Racket
 (use-package racket-mode
