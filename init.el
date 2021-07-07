@@ -138,7 +138,8 @@
   :config
   (with-eval-after-load "lsp-mode"
     (add-to-list 'lsp-disabled-clients 'pyls)
-    (add-to-list 'lsp-enabled-clients 'jedi))
+    ;; (add-to-list 'lsp-enabled-clients 'jedi)
+    )
   :hook (python-mode . (lambda ()
                          (require 'lsp-jedi)
                          (lsp)
@@ -172,7 +173,6 @@
   :bind (:map sh-mode-map
               ("C-c C-e" . sh-execute-region))
   )
-
 
 (provide 'init)
 ;;; init ends here
