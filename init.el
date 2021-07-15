@@ -23,6 +23,10 @@
 (use-package company
   :straight t)
 
+(use-package docview
+  :bind (("<mouse-9>" . forward-page)
+         ("<mouse-8>" . backward-page)))
+
 (use-package yasnippet
   :straight t)
 
@@ -172,6 +176,7 @@
          ("zshenv\\'" . sh-mode))
   :bind (:map sh-mode-map
               ("C-c C-e" . sh-execute-region))
+  :custom (sh-basic-offset 2)
   )
 
 (provide 'init)
