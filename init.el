@@ -51,6 +51,12 @@
   :straight t
   :after lsp-ui)
 
+;; graphviz
+(use-package graphviz-dot-mode
+  :straight t
+  :config (setq graphviz-dot-mode-indent-width 2))
+(use-package company-graphviz-dot)
+
 ;; JSON
 (use-package json-mode
   :straight t
