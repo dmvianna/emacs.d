@@ -27,6 +27,14 @@
   :bind (("<mouse-9>" . forward-page)
          ("<mouse-8>" . backward-page)))
 
+(use-package image-mode
+  :bind (("<mouse-4>" . image-scroll-down)
+         ("<mouse-5>" . image-scroll-up)
+         ("<mouse-6>" . image-scroll-right)
+         ("<mouse-7>" . image-scroll-left)
+         ("<mouse-8>" . image-decrease-size)
+         ("<mouse-9>" . image-increase-size)))
+
 (use-package yasnippet
   :straight t)
 
