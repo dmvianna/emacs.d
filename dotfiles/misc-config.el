@@ -123,11 +123,6 @@
 (setq x-meta-keysym 'super
       x-super-keysym 'meta)
 
-;; magit is too important to put anywhere else
-(use-package magit
-  :straight t)
-(bind-key "C-x g" 'magit-status)
-
 (use-package drag-stuff
   :straight t
   :init (setq drag-stuff-modifier 'ctrl)

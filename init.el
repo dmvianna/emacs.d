@@ -6,6 +6,13 @@
 (require 'misc-config)
 ;; (use-package proxy-config)
 
+;; git
+(use-package magit
+  :straight t
+  :bind (:map
+         magit-mode-map
+         ("C-x g" . magit-status)))
+
 ;; Flycheck -- global syntax check (needed for hlint)
 ;; we need to upgrade the inbuilt flymake version so
 ;; that packages that require it don't fail
@@ -24,11 +31,15 @@
   :straight t)
 
 (use-package docview
-  :bind (("<mouse-9>" . forward-page)
+  :bind (:map
+         docview-mode-map
+         ("<mouse-9>" . forward-page)
          ("<mouse-8>" . backward-page)))
 
 (use-package image-mode
-  :bind (("<mouse-4>" . image-scroll-down)
+  :bind (:map
+         image-mode-map
+         ("<mouse-4>" . image-scroll-down)
          ("<mouse-5>" . image-scroll-up)
          ("<mouse-6>" . image-scroll-right)
          ("<mouse-7>" . image-scroll-left)
