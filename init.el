@@ -59,6 +59,9 @@
   :straight t
   :after lsp-ui)
 
+(use-package dockerfile-mode
+  :straight t)
+
 ;; graphviz
 (use-package graphviz-dot-mode
   :straight t
