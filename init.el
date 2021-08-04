@@ -26,6 +26,13 @@
   (setq-default flycheck-temp-prefix ".flycheck")
   )
 
+(use-package flyspell
+  :init
+  (flyspell-mode t)
+  :custom
+  (ispell-program-name "hunspell")
+  (ispell-local-dictionary "en_AU"))
+
 ;; Company -- text completion
 (use-package company
   :straight t)
@@ -161,7 +168,7 @@
   :config
   :mode "\\.md$"
   :interpreter "markdown-mode"
-  )
+  :hook flyspell)
 
 ;; Python
 
