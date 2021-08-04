@@ -42,6 +42,7 @@
 
 (use-package pdf-tools
   :straight t
+  :custom (pdf-view-display-size 'fit-height)
   :init (pdf-tools-install))
 
 (use-package image-mode
