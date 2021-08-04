@@ -134,5 +134,9 @@
 (use-package smartparens
   :straight t
   :config (smartparens-global-mode t))
+
+(global-set-key (kbd "<home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-buffer)
+
 (provide 'misc-config)
 ;;; misc-config ends here
