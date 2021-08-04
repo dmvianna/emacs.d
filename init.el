@@ -33,8 +33,16 @@
 (use-package docview
   :bind (:map
          docview-mode-map
-         ("<mouse-9>" . forward-page)
-         ("<mouse-8>" . backward-page)))
+         ("<mouse-4>" . doc-view-scroll-down-or-previous-page)
+         ("<mouse-5>" . doc-view-scroll-up-or-next-page)
+         ("<mouse-6>" . image-scroll-right)
+         ("<mouse-7>" . image-scroll-left)
+         ("<mouse-8>" . image-decrease-size)
+         ("<mouse-9>" . image-increase-size)))
+
+(use-package pdf-tools
+  :straight t
+  :init (pdf-tools-install))
 
 (use-package image-mode
   :bind (:map
