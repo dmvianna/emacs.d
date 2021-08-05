@@ -33,6 +33,12 @@
   (ispell-program-name "hunspell")
   (ispell-local-dictionary "en_AU"))
 
+(use-package langtool
+  :straight t
+  :custom
+  (langtool-bin "languagetool-commandline")
+  (langtool-default-language "en-AU"))
+
 ;; Company -- text completion
 (use-package company
   :straight t)
