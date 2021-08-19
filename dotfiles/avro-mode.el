@@ -18,7 +18,8 @@
 ;;; Avro interface description language mode (.avdl)
 ;;; Code:
 
-;;; old
+(require 'generic-x)
+
 (setq avro-primitive-types
   '("null" "boolean" "int" "long" "float" "double" "bytes" "string"))
 
@@ -34,23 +35,23 @@
 (defun make-avro-keywords (types)
   (concat "\\<" (regexp-opt types) "\\>"))
 
-(setq avro-comments
-  "//.*")
+(setq avro-comment
+  '("//"))
 
-(setq avro-highlights
+(define-generic-mode
+    'avro-mode
+  avro-comment
+  (append avro-primitive-types avro-complex-types avro-reserved-words)
   '(((make-avro-keywords avro-primitive-types) . font-lock-builtin-face)
     ((make-avro-keywords avro-complex-types) . font-lock-type-face)
     ((make-avro-keywords avro-reserved-words) . font-lock-keyword-face)
-    ((regexp-opt 'avro-delimiters) . font-lock-constant-face)
-    (avro_comments . font-lock-comment-face)
-    ))
-
-(define-derived-mode avro-mode fundamental-mode "Avro IDL"
-  "major mode for editing Avro IDL files."
-  (setq font-lock-defaults '(avro-highlights)))
-
-;;; autoload
-(add-to-list 'auto-mode-alist '("\\.avdl\\'" . avro-mode))
+    ((regexp-opt 'avro-delimiters) . font-lock-operator)
+    ;; (avro_comments . font-lock-comment-face)
+    )
+  '("\\.avdl$")
+  nil
+  "Major mode for editing Avro IDL files."
+  )
 
 (provide 'avro-mode)
 
