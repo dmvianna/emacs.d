@@ -54,7 +54,7 @@
      . font-lock-builtin-face)
     ("\\<\\(?:a\\(?:lias\\|rray\\)\\|enum\\|map\\|record\\|union\\)\\>" . font-lock-type-face)
     ("\\<\\(?:namespace\\|protocol\\)\\>" . font-lock-keyword-face)
-    ("{\\|}|\\|;\\|<\\|>" . font-lock-constant-face))
+    ("{\\|}\\|;\\|<\\|>" . font-lock-constant-face))
   '("\\.avdl$")
   nil
   "Major mode for editing Avro IDL files."
