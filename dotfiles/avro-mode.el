@@ -48,7 +48,8 @@
   ;;   ((regexp-opt 'avro-delimiters) . font-lock-operator)
   ;;   (("array") . font-lock-keyword-face)
   ;;   )
-  '(("\\<array\\>" . font-lock-type-face))
+  '(("\\<array\\>" . font-lock-type-face)
+    ("{\\|}|\\|;\\|<\\|>" . font-lock-builtin-face))
   '("\\.avdl$")
   nil
   "Major mode for editing Avro IDL files."
