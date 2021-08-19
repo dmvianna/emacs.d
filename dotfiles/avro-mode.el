@@ -20,11 +20,16 @@
 
 (require 'generic-x)
 
+(defun make-avro-keywords (types)
+  (concat "\\<" (regexp-opt types) "\\>"))
+
 (setq avro-primitive-types
-  '("null" "boolean" "int" "long" "float" "double" "bytes" "string"))
+      (make-avro-keywords
+       '("null" "boolean" "int" "long" "float" "double" "bytes" "string")))
 
 (setq avro-complex-types
-  '("record" "enum" "array" "map" "union" "alias"))
+      (make-avro-keywords
+       '("record" "enum" "array" "map" "union" "alias")))
 
 (setq avro-reserved-words
       '("protocol" "namespace"))
@@ -32,24 +37,24 @@
 (setq avro-delimiters
   '("<" ">" ";" "{" "}"))
 
-(defun make-avro-keywords (types)
-  (concat "\\<" (regexp-opt types) "\\>"))
-
 (setq avro-comment
   '("//"))
 
 (define-generic-mode
     'avro-mode
   avro-comment
-  (append avro-primitive-types avro-complex-types avro-reserved-words)
+  avro-reserved-words
   ;; '(((make-avro-keywords avro-primitive-types) . font-lock-builtin-face)
   ;;   ((make-avro-keywords avro-complex-types) . font-lock-type-face)
   ;;   ((make-avro-keywords avro-reserved-words) . font-lock-keyword-face)
   ;;   ((regexp-opt 'avro-delimiters) . font-lock-operator)
   ;;   (("array") . font-lock-keyword-face)
   ;;   )
-  '(("\\<array\\>" . font-lock-type-face)
-    ("{\\|}|\\|;\\|<\\|>" . font-lock-builtin-face))
+ '(("\\<\\(?:b\\(?:oolean\\|ytes\\)\\|double\\|float\\|int\\|long\\|null\\|string\\)\\>"
+     . font-lock-builtin-face)
+    ("\\<\\(?:a\\(?:lias\\|rray\\)\\|enum\\|map\\|record\\|union\\)\\>" . font-lock-type-face)
+    ("\\<\\(?:namespace\\|protocol\\)\\>" . font-lock-keyword-face)
+    ("{\\|}|\\|;\\|<\\|>" . font-lock-constant-face))
   '("\\.avdl$")
   nil
   "Major mode for editing Avro IDL files."
