@@ -42,12 +42,13 @@
     'avro-mode
   avro-comment
   (append avro-primitive-types avro-complex-types avro-reserved-words)
-  '(((make-avro-keywords avro-primitive-types) . font-lock-builtin-face)
-    ((make-avro-keywords avro-complex-types) . font-lock-type-face)
-    ((make-avro-keywords avro-reserved-words) . font-lock-keyword-face)
-    ((regexp-opt 'avro-delimiters) . font-lock-operator)
-    ;; (avro_comments . font-lock-comment-face)
-    )
+  ;; '(((make-avro-keywords avro-primitive-types) . font-lock-builtin-face)
+  ;;   ((make-avro-keywords avro-complex-types) . font-lock-type-face)
+  ;;   ((make-avro-keywords avro-reserved-words) . font-lock-keyword-face)
+  ;;   ((regexp-opt 'avro-delimiters) . font-lock-operator)
+  ;;   (("array") . font-lock-keyword-face)
+  ;;   )
+  '(("\\<array\\>" . font-lock-type-face))
   '("\\.avdl$")
   nil
   "Major mode for editing Avro IDL files."
