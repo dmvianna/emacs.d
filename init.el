@@ -68,6 +68,9 @@
          ("<mouse-8>" . image-decrease-size)
          ("<mouse-9>" . image-increase-size)))
 
+(use-package avro-mode
+  :mode "\\.avdl$")
+
 (use-package yasnippet
   :straight t)
 

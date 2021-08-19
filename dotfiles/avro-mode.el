@@ -19,31 +19,38 @@
 ;;; Code:
 
 ;;; old
-(defvar avro-primitive-types
+(setq avro-primitive-types
   '("null" "boolean" "int" "long" "float" "double" "bytes" "string"))
 
-(defvar avro-complex-types
+(setq avro-complex-types
   '("record" "enum" "array" "map" "union" "alias"))
 
-(defvar avro-delimiters
+(setq avro-reserved-words
+      '("protocol" "namespace"))
+
+(setq avro-delimiters
   '("<" ">" ";" "{" "}"))
 
-(defvar avro-custom-types
-  '("<([^<>]+)>|record ([[:upper:]][[:alnum:]_]*)"))
+(defun make-avro-keywords (types)
+  (concat "\\<" (regexp-opt types) "\\>"))
 
-(defvar avro-comments
-  '("//.*" "\""))
+(setq avro-comments
+  "//.*")
 
-(defvar avro-highlights
-  '(((regexp-opt avro-primitive-types 'words) . font-lock-function-name-face)
-    ((regexp-opt avro-complex-types 'words) . font-lock-builtin-face)
-    ((regexp-opt avro-delimiters 'words) . font-lock-constant-face)
-    ((avro-custom-types 1) . font-lock-type-face)
-    ((avro-comments 'words) . font-lock-comment-face)))
+(setq avro-highlights
+  '(((make-avro-keywords avro-primitive-types) . font-lock-builtin-face)
+    ((make-avro-keywords avro-complex-types) . font-lock-type-face)
+    ((make-avro-keywords avro-reserved-words) . font-lock-keyword-face)
+    ((regexp-opt 'avro-delimiters) . font-lock-constant-face)
+    (avro_comments . font-lock-comment-face)
+    ))
 
-(define-derived-mode avro-mode prog-mode "Avro IDL"
+(define-derived-mode avro-mode fundamental-mode "Avro IDL"
   "major mode for editing Avro IDL files."
   (setq font-lock-defaults '(avro-highlights)))
+
+;;; autoload
+(add-to-list 'auto-mode-alist '("\\.avdl\\'" . avro-mode))
 
 (provide 'avro-mode)
 
