@@ -145,16 +145,15 @@
   :straight t
   :custom
   (lsp-haskell-server-path "haskell-language-server-wrapper")
+  (lsp-haskell-tactic-on t)
+  (lsp-haskell-completion-snippets-on t)
+  (lsp-haskell-format-on-import-on t)
+  (lsp-haskell-formatting-provider "fourmolu")
+  (lsp-haskell-fourmolu-on t)
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp)
   )
-
-(use-package ormolu
-  :straight t
-  :hook (haskell-mode . ormolu-format-on-save-mode)
-  :bind (:map haskell-mode-map
-              ("C-c r" . ormolu-format-buffer)))
 
 ;; Dhall
 (use-package dhall-mode
