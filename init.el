@@ -98,6 +98,11 @@
 (use-package dockerfile-mode
   :straight t)
 
+;; ini files
+(use-package conf-mode
+  :mode "\\.ini\\'\\|\\.lock\\'"
+  )
+
 ;; graphviz
 (use-package graphviz-dot-mode
   :straight t
