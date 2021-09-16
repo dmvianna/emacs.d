@@ -55,6 +55,7 @@
 ;;; Mouse
 (mouse-wheel-mode t)
 (xterm-mouse-mode t)
+(set-mouse-color "#002b36") ;; solarized-dark light gray
 
 ;;; change capitalisation
 (put 'upcase-region 'disabled nil)
