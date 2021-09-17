@@ -55,7 +55,16 @@
 ;;; Mouse
 (mouse-wheel-mode t)
 (xterm-mouse-mode t)
-(set-mouse-color "#002b36") ;; solarized-dark light gray
+
+;;; Mouse color must be the same in emacs-daemon
+(setq mouse-color "#002b36") ;;; solarized-dark light gray
+(set-mouse-color mouse-color) ;;; that's emacs
+(require 'frame)
+(defun set-mouse-hook (frame)
+(modify-frame-parameters
+  frame (list (cons 'mouse-color mouse-color))))
+;;; that's what emacs-daemon uses
+(add-hook 'after-make-frame-functions 'set-mouse-hook)
 
 ;;; change capitalisation
 (put 'upcase-region 'disabled nil)
