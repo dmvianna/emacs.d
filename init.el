@@ -275,7 +275,10 @@
   (typescript-indent-level 2)
   :hook
   ((typescript-mode . subword-mode)
-   (typescript-mode . lsp))
+   (typescript-mode . lsp)
+   (typescript-mode . (lambda ()
+                        (require 'tide)
+                        (tide-setup))))
   :mode
   ("\\.tsx?\\'" . typescript-tsx-mode))
 
