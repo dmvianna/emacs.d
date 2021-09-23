@@ -225,6 +225,38 @@
   ((emacs-lisp-mode . rainbow-delimiters-mode)
    (geiser-mode . rainbow-delimiters-mode)))
 
+
+;;; javascript
+
+;;; Javascript/Typescript
+(use-package prettier-js
+  :straight t
+  :commands prettier-js-mode
+  :custom
+  (prettier-js-args '("--trailing-comma" "all" "--single-quote" "--semi" "--arrow-parens" "always")))
+
+(use-package typescript-mode
+  :straight t
+  :mode "\\.tsx?\\'")
+
+(use-package tide
+  :straight t
+  :commands tide-setup
+  :custom
+  (typescript-indent-level 2)
+  (tide-format-options '(:indentSize 2 :tabSize 2)))
+
+;; HACK: I can't figure out a way to make tide depend on the built-in js-mode
+;; using only the `use-package' machinery. So to avoid having tide take half
+;; a second at startup it can be delayed on the `tide-setup' command, with
+;; the hook on js-mode (to invoke `tide-setup') set outside of `use-package'.
+(add-hook 'js-mode-hook (lambda () (tide-setup)))
+(add-hook 'js-mode-hook #'prettier-js-mode)
+(add-hook 'typescript-mode-hook #'(lambda () (tide-setup)))
+
+;;; /javascript
+
+
 (use-package sh-script
   :ensure nil
   :mode (("\\.zsh\\'" . sh-mode)
