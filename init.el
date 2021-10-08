@@ -82,7 +82,9 @@
 ;; LSP
 (use-package lsp-mode
   :straight t
-  :bind ("C-c l" . lsp-keymap-prefix)
+  ;; lsp does not define this variable by
+  ;; default, so we have to set it here
+  :init (setq lsp-keymap-prefix "C-c l")
   :commands (lsp lsp-deferred))
 
 (use-package lsp-ui
