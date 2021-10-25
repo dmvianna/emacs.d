@@ -138,8 +138,8 @@
   :init (setq drag-stuff-modifier 'ctrl)
   :config (drag-stuff-global-mode t)
   (bind-keys :map drag-stuff-mode-map
-             ("<M-S-up>" . drag-stuff-up)
-             ("<M-S-down>" . drag-stuff-down)))
+             ("<s-up>" . drag-stuff-up)
+             ("<s-down>" . drag-stuff-down)))
 
 (use-package smartparens
   :straight t
