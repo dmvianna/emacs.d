@@ -137,6 +137,13 @@
   (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
   (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
   ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
+  :custom
+  (haskell-indentation-ifte-offset 4)
+  (haskell-indentation-layout-offset 4)
+  (haskell-indentation-left-offset 4)
+  (haskell-indentation-starter-offset 4)
+  (haskell-indentation-where-post-offset 4)
+  (haskell-indentation-where-pre-offset 4)
 )
 
 (use-package haskell-interactive-mode
