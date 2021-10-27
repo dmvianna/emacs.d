@@ -155,7 +155,7 @@
   (lsp-haskell-tactic-on t)
   (lsp-haskell-completion-snippets-on t)
   (lsp-haskell-format-on-import-on t)
-  (lsp-haskell-formatting-provider "fourmolu")
+  (lsp-haskell-formatting-provider ["fourmolu"])
   (lsp-haskell-fourmolu-on t)
   :hook
   (haskell-mode . lsp)
