@@ -146,7 +146,7 @@
 (use-package haskell-process
   :custom
   (haskell-process-type 'stack-ghci)
-  (haskell-indent-spaces 2))
+  (haskell-indent-spaces 4))
 
 (use-package lsp-haskell
   :straight t
