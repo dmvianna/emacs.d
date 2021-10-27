@@ -155,8 +155,12 @@
   (lsp-haskell-tactic-on t)
   (lsp-haskell-completion-snippets-on t)
   (lsp-haskell-format-on-import-on t)
-  (lsp-haskell-formatting-provider ["fourmolu"])
+  (lsp-haskell-formatting-provider "fourmolu")
   (lsp-haskell-fourmolu-on t)
+  (lsp-haskell-brittany nil)
+  (lsp-haskell-floskell nil)
+  (lsp-haskell-ormolu nil)
+  (lsp-haskell-stylish-haskell nil)
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp)
