@@ -24,7 +24,7 @@
     'avro-mode
   '("//") ;; comments
   '("protocol" "namespace") ;; reserved words
-  '(("\\<[[:alnum:]]+\\>" (0 font-lock-builtin-face) ("\\<[[:alnum:]]+\\>;?\\( {\\)?" nil nil (0 nil))) ;; type
+  '(("\\<[[:alnum:]_]+\\>" (0 font-lock-builtin-face) ("\\<[[:alnum:]]+\\>;?\\( {\\)?" nil nil (0 nil))) ;; type
     ("\\<\\(?:namespace\\|protocol\\)\\>" . font-lock-keyword-face)
     
     ("{\\|}\\|;\\|<\\|>" . font-lock-constant-face)) ;; separators
