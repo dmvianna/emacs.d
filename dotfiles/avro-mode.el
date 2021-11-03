@@ -1,7 +1,7 @@
 ;;; avro-mode.el -- major mode for editing Avro IDL files. -*- coding: utf-8; lexical-binding: t; -*-
 
 ;;; Copyright © by Daniel Vianna
-;;; Version: 0.0.1
+;;; Version: 0.0.2
 ;;; Created: 19 Aug 2021
 
 ;;; Keywords: languages
