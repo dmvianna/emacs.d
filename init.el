@@ -69,6 +69,8 @@
          ("<mouse-9>" . image-increase-size)))
 
 (use-package avro-mode
+  :custom
+  (tab-width 4)
   :mode "\\.avdl$")
 
 (use-package yasnippet
