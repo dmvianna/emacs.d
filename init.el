@@ -343,5 +343,8 @@
   :custom (sh-basic-offset 2)
   )
 
+(use-package yaml-mode
+  :straight t)
+
 (provide 'init)
 ;;; init ends here
