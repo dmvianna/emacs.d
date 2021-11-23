@@ -148,5 +148,12 @@
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
 
+(use-package all-the-icons
+  :straight t)
+(use-package all-the-icons-dired
+  :straight t
+  :requires all-the-icons
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 (provide 'misc-config)
 ;;; misc-config ends here
