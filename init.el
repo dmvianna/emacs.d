@@ -73,8 +73,8 @@
   (tab-width 4)
   :mode "\\.avdl$")
 
-(use-package yasnippet
-  :straight t)
+;; (use-package yasnippet
+;;   :straight t)
 
 (use-package which-key
   :straight t
