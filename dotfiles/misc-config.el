@@ -120,13 +120,31 @@
   '((global-set-key [f8] 'neotree-toggle)
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
 
+;; persist history over Emacs restarts
+(savehist-mode)
+
 ;; incremental completions
 (require 'consult-config)
+
 (use-package selectrum
   :straight t
   :config
-  '((selectrum-mode)
-    (setq completion-styles '(substring))))
+  (selectrum-mode +1))
+
+(use-package selectrum-prescient
+  :straight t
+  :custom
+  (selectrum-prescient-enable-filtering nil)
+  :config
+  (selectrum-prescient-mode +1)
+  (prescient-persist-mode +1))
+
+(use-package orderless
+  :straight t
+  :custom
+  (completion-styles '(orderless))
+  (orderless-skip-highlighting (lambda () selectrum-is-active))
+  (selectrum-highlight-candidates-function #'orderless-highlight-matches))
 
 ;; bind meta to super
 (setq x-meta-keysym 'super
