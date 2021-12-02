@@ -121,8 +121,7 @@
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
 
 ;; incremental completions
-(use-package consult
-  :straight t)
+(require 'consult-config)
 (use-package selectrum
   :straight t
   :config
