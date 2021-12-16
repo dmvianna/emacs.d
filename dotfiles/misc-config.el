@@ -8,11 +8,13 @@
 
 (column-number-mode t)
 (global-unset-key (kbd "C-z"))
-(menu-bar-mode -1)
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
+
 (setq inhibit-startup-message t)
-(set-frame-font "Inconsolata-16")
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
+
 (require 'uniquify) ;; Inbuilt - Display sane file names
 (setq uniquify-buffer-name-style 'forward)
 (require 'ido) ;; Inbuilt - Finding files made easier
