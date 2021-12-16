@@ -108,7 +108,7 @@
 
 ;; ini files
 (use-package conf-mode
-  :mode "\\.ini\\'\\|\\.lock\\'"
+  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'"
   )
 
 ;; graphviz
