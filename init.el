@@ -347,6 +347,14 @@
   :custom (sh-basic-offset 2)
   )
 
+(use-package theta-mode
+  :straight (theta-mode
+              :type git
+              :host github
+              :repo "target/theta-idl"
+              :files ("emacs/theta-mode.el"))
+  :mode ("\\.theta\\'" . theta-mode))
+
 (use-package yaml-mode
   :straight t)
 
