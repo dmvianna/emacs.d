@@ -372,5 +372,8 @@
                      "eshell-up.el"
                      "exec-path-from-shell.el")))
 
+(use-package google-this
+  :straight t)
+
 (provide 'init)
 ;;; init ends here
