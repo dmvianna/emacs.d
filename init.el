@@ -386,5 +386,9 @@
   :hook
   (after-init . immortal-scratch-mode))
 
+(use-package keychain-environment
+  :straight t
+  :init (keychain-refresh-environment))
+
 (provide 'init)
 ;;; init ends here
