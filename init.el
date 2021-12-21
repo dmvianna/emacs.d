@@ -185,14 +185,14 @@
   :mode "\\.dhall\\'")
 
 ;; Lisp
-(use-package paredit
+(use-package parinfer
   :straight t
   :hook
-  ((emacs-lisp-mode . paredit-mode)
-    (lisp-mode . paredit-mode)
-    (lisp-interaction-mode . paredit-mode)
-    (geiser-mode . paredit-mode)
-    (racket-mode . paredit-mode)))
+  ((emacs-lisp-mode . parinfer-mode)
+    (lisp-mode . parinfer-mode)
+    (lisp-interaction-mode . parinfer-mode)
+    (geiser-mode . parinfer-mode)
+    (racket-mode . parinfer-mode)))
 
 ;; Markdown
 (use-package markdown-mode
