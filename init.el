@@ -358,8 +358,19 @@
 (use-package yaml-mode
   :straight t)
 
-(use-package vterm
+(use-package multi-term
   :straight t)
+
+(use-package aweshell
+  :straight (aweshell
+             :type git
+             :host github
+             :repo "manateelazycat/aweshell"
+             :files ("aweshell.el"
+                     "eshell-did-you-mean.el"
+                     "eshell-prompt-extras.el"
+                     "eshell-up.el"
+                     "exec-path-from-shell.el")))
 
 (provide 'init)
 ;;; init ends here
