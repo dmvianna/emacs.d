@@ -15,6 +15,9 @@
 (tool-bar-mode -1)
 (add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
 
+;; disable indenting after newline
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+
 (require 'uniquify) ;; Inbuilt - Display sane file names
 (setq uniquify-buffer-name-style 'forward)
 (require 'ido) ;; Inbuilt - Finding files made easier

@@ -375,5 +375,16 @@
 (use-package google-this
   :straight t)
 
+;;
+;; Re-spawn scratch buffer when killed
+;;
+(use-package immortal-scratch
+  :straight t
+  :init
+  (setq initial-scratch-message "")
+  (setq initial-major-mode 'text-mode)
+  :hook
+  (after-init . immortal-scratch-mode))
+
 (provide 'init)
 ;;; init ends here
