@@ -386,6 +386,7 @@
   :hook
   (after-init . immortal-scratch-mode))
 
+;; ssh-add
 (use-package keychain-environment
   :straight t
   :init (keychain-refresh-environment))
