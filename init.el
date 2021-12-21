@@ -358,5 +358,8 @@
 (use-package yaml-mode
   :straight t)
 
+(use-package vterm
+  :straight t)
+
 (provide 'init)
 ;;; init ends here
