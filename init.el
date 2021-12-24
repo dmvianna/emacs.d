@@ -108,7 +108,7 @@
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
   :init
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C l")
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
@@ -238,9 +238,26 @@
 
 ;;; shells
 
+;; rest
+(use-package verb
+  :straight t)
+
+;; everything
+(use-package org
+  :straight t
+  :mode ("\\.org\\'" . org-mode)
+  :bind
+  (:map org-mode-map
+        ("C-c l" . org-store-link)
+        ;; ("C-c a" . org-agenda)
+        ;; ("C-c c" . org-capture))
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+;; term
 (use-package multi-term
   :straight t)
 
+;; elisp term
 (use-package aweshell
   :straight (aweshell
              :type git
