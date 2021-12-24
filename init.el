@@ -249,8 +249,8 @@
   :bind
   (:map org-mode-map
         ("C-c l" . org-store-link)
-        ;; ("C-c a" . org-agenda)
-        ;; ("C-c c" . org-capture))
+        ("C-c a" . org-agenda)
+        ("C-c c" . org-capture))
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;; term
