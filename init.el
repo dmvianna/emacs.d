@@ -108,7 +108,7 @@
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
   :init
-  (setq lsp-keymap-prefix "C l")
+  (setq lsp-keymap-prefix "S-l")
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
