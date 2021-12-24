@@ -150,51 +150,7 @@
 (use-package company-graphviz-dot)
 
 ;; Haskell
-
-(use-package haskell-mode
-  :straight t
-  :config
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-  ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-  ;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-  (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-  ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
-  :custom
-  (haskell-indentation-ifte-offset 4)
-  (haskell-indentation-layout-offset 4)
-  (haskell-indentation-left-offset 4)
-  (haskell-indentation-starter-offset 4)
-  (haskell-indentation-where-post-offset 4)
-  (haskell-indentation-where-pre-offset 4))
-
-(use-package haskell-interactive-mode
-  :hook
-  (haskell-mode-hook . interactive-haskell-mode))
-
-(use-package haskell-process
-  :custom
-  (haskell-process-type 'stack-ghci)
-  (haskell-indent-spaces 4))
-
-(use-package lsp-haskell
-  :straight t
-  :custom
-  (lsp-haskell-server-path "haskell-language-server-wrapper")
-  (lsp-haskell-tactic-on t)
-  (lsp-haskell-completion-snippets-on t)
-  (lsp-haskell-format-on-import-on t)
-  (lsp-haskell-formatting-provider "fourmolu")
-  (lsp-haskell-fourmolu-on t)
-  (lsp-haskell-brittany nil)
-  (lsp-haskell-floskell nil)
-  (lsp-haskell-ormolu nil)
-  (lsp-haskell-stylish-haskell nil)
-  :hook
-  (haskell-mode . lsp)
-  (haskell-literate-mode . lsp))
+(require 'haskell-config)
 
 ;; JSON
 (use-package json-mode
@@ -203,85 +159,8 @@
   :interpreter "json-mode"
   )
 
-
-;;; javascript
-
-(use-package js-mode
-  :hook
-  ((js-mode . lsp)
-   (js-mode . (lambda ()
-                (require 'tide)
-                (tide-setup)))))
-
-(use-package web-mode
-  :straight t
-  :mode (("\\.html?\\'" . web-mode)
-         ;; ("\\.tsx\\'" . web-mode)
-         ("\\.jsx\\'" . web-mode))
-  :custom
-  (web-mode-markup-indent-offset 2)
-  (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
-  (web-mode-block-padding 2)
-  (web-mode-comment-style 2)
-  (web-mode-enable-css-colorization t)
-  (web-mode-enable-auto-pairing t)
-  (web-mode-enable-comment-keywords t)
-  (web-mode-enable-current-element-highlight t)
-  :hook
-  ((web-mode . (lambda ()
-                  (require 'tide)
-                  (tide-setup)))
-   (web-mode . lsp)))
-
-(use-package prettier-js
-  :straight t
-  :commands (prettier-js-mode prettier)
-  :custom
-  (prettier-target-mode "js-mode")
-  (prettier-js-args
-   '("--trailing-comma" "all" "--single-quote" "--semi" "--arrow-parens" "always"))
-  :hook ((js-mode . prettier-js-mode)
-         (typescript-mode . prettier-js-mode)
-         (web-mode . prettier-js-mode)))
-
-(use-package typescript-mode
-  :straight t
-  :init
-  (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
-  :custom
-  (typescript-indent-level 2)
-  :hook
-  ((typescript-mode . subword-mode)
-   (typescript-mode . lsp)
-   (typescript-mode . (lambda ()
-                        (require 'tide)
-                        (tide-setup))))
-  :mode
-  ("\\.tsx?\\'" . typescript-tsx-mode))
-
-(use-package tree-sitter
-  :straight t
-  :hook
-  ((typescript-mode . tree-sitter-hl-mode)
-   (typescript-tsx-mode . tree-sitter-hl-mode)))
-
-(use-package tree-sitter-langs
-  :straight t
-  :after tree-sitter
-  :config
-  (tree-sitter-require 'tsx)
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
-
-(use-package tide
-  :straight t
-  :commands tide-setup
-  :custom
-  (typescript-indent-level 2)
-  (tide-format-options '(:indentSize 2 :tabSize 2)))
-
-;;; /javascript
-
+;;; javascript & web
+(require 'web-config)
 
 ;; Gherkin
 (use-package pickle
@@ -308,32 +187,7 @@
   :hook flyspell)
 
 ;; Python
-
-(use-package py-isort
-  :straight t
-  :after python
-  :hook (before-save . py-isort-before-save))
-
-(use-package python-black
-  :straight t
-  :hook (python-mode . python-black))
-
-(use-package lsp-jedi
-  :straight t
-  :config
-  (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-disabled-clients 'pyls)
-    ;; (add-to-list 'lsp-enabled-clients 'jedi)
-    )
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-jedi)
-                         (lsp)
-                         (flycheck-add-next-checker
-                          'lsp
-                          'python-pyright)
-                         (flycheck-add-next-checker
-                          'python-pyright
-                          'python-pylint))))
+(require 'python-config)
 
 ;; nix
 (use-package nix-mode
@@ -345,7 +199,6 @@
                     :major-modes '(nix-mode)
                     :server-id 'nix))
   :mode "\\.nix\\'")
-
 
 ;; Racket
 (use-package racket-mode
@@ -360,7 +213,6 @@
   :hook
   ((emacs-lisp-mode . rainbow-delimiters-mode)
    (geiser-mode . rainbow-delimiters-mode)))
-
 
 (use-package sh-script
   :ensure nil
@@ -384,7 +236,7 @@
 (use-package yaml-mode
   :straight t)
 
-;;; terms
+;;; shells
 
 (use-package multi-term
   :straight t)
