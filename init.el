@@ -6,6 +6,8 @@
 (require 'misc-config)
 ;; (use-package proxy-config)
 
+;;; stuff that is required to make emacs usable
+
 ;; git
 (use-package magit
   :straight t
@@ -23,8 +25,14 @@
   :straight t
   :init (global-flycheck-mode)
   :config
-  (setq-default flycheck-temp-prefix ".flycheck")
-  )
+  (setq-default flycheck-temp-prefix ".flycheck"))
+  
+
+;; Company -- text completion
+(use-package company
+  :straight t)
+
+;;; Check spelling -- I don't even know how this works
 
 (use-package flyspell
   :init
@@ -39,9 +47,7 @@
   (langtool-bin "languagetool-commandline")
   (langtool-default-language "en-AU"))
 
-;; Company -- text completion
-(use-package company
-  :straight t)
+;;; viewers
 
 (use-package docview
   :bind (:map
@@ -68,20 +74,35 @@
          ("<mouse-8>" . image-decrease-size)
          ("<mouse-9>" . image-increase-size)))
 
-(use-package avro-mode
-  :custom
-  (tab-width 4)
-  :mode "\\.avdl$")
-
-;; (use-package yasnippet
-;;   :straight t)
+;;; helpers
 
 (use-package which-key
   :straight t
   :config
   (which-key-mode))
 
-;; LSP
+(use-package google-this
+  :straight t)
+
+;;
+;; Re-spawn scratch buffer when killed
+;;
+(use-package immortal-scratch
+  :straight t
+  :init
+  (setq initial-scratch-message "")
+  (setq initial-major-mode 'text-mode)
+  :hook
+  (after-init . immortal-scratch-mode))
+
+(use-package keychain-environment
+  :straight t
+  :init (keychain-refresh-environment))
+
+;; (use-package yasnippet
+;;   :straight t)
+
+;;; LSP
 (use-package lsp-mode
   :straight t
   ;; lsp does not define this variable by
@@ -103,32 +124,30 @@
   :straight t
   :after lsp-ui)
 
-(use-package dockerfile-mode
-  :straight t)
+;;; languages
+
+(use-package avro-mode
+  :custom
+  (tab-width 4)
+  :mode "\\.avdl$")
 
 ;; ini files
 (use-package conf-mode
-  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'"
-  )
+  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'")
+
+;; Dhall
+(use-package dhall-mode
+  :straight t
+  :mode "\\.dhall\\'")
+
+(use-package dockerfile-mode
+  :straight t)
 
 ;; graphviz
 (use-package graphviz-dot-mode
   :straight t
   :config (setq graphviz-dot-mode-indent-width 2))
 (use-package company-graphviz-dot)
-
-;; JSON
-(use-package json-mode
-  :straight t
-  :mode "\\.json\\'\\|\\.jshintrc\\'"
-  :interpreter "json-mode"
-  )
-
-;; Gherkin
-(use-package pickle
-  :straight t
-  :mode "\\.feature\\'"
-  :interpreter "pickle-mode")
 
 ;; Haskell
 
@@ -149,8 +168,7 @@
   (haskell-indentation-left-offset 4)
   (haskell-indentation-starter-offset 4)
   (haskell-indentation-where-post-offset 4)
-  (haskell-indentation-where-pre-offset 4)
-)
+  (haskell-indentation-where-pre-offset 4))
 
 (use-package haskell-interactive-mode
   :hook
@@ -176,23 +194,110 @@
   (lsp-haskell-stylish-haskell nil)
   :hook
   (haskell-mode . lsp)
-  (haskell-literate-mode . lsp)
+  (haskell-literate-mode . lsp))
+
+;; JSON
+(use-package json-mode
+  :straight t
+  :mode "\\.json\\'\\|\\.jshintrc\\'"
+  :interpreter "json-mode"
   )
 
-;; Dhall
-(use-package dhall-mode
+
+;;; javascript
+
+(use-package js-mode
+  :hook
+  ((js-mode . lsp)
+   (js-mode . (lambda ()
+                (require 'tide)
+                (tide-setup)))))
+
+(use-package web-mode
   :straight t
-  :mode "\\.dhall\\'")
+  :mode (("\\.html?\\'" . web-mode)
+         ;; ("\\.tsx\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode))
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2)
+  (web-mode-block-padding 2)
+  (web-mode-comment-style 2)
+  (web-mode-enable-css-colorization t)
+  (web-mode-enable-auto-pairing t)
+  (web-mode-enable-comment-keywords t)
+  (web-mode-enable-current-element-highlight t)
+  :hook
+  ((web-mode . (lambda ()
+                  (require 'tide)
+                  (tide-setup)))
+   (web-mode . lsp)))
+
+(use-package prettier-js
+  :straight t
+  :commands (prettier-js-mode prettier)
+  :custom
+  (prettier-target-mode "js-mode")
+  (prettier-js-args
+   '("--trailing-comma" "all" "--single-quote" "--semi" "--arrow-parens" "always"))
+  :hook ((js-mode . prettier-js-mode)
+         (typescript-mode . prettier-js-mode)
+         (web-mode . prettier-js-mode)))
+
+(use-package typescript-mode
+  :straight t
+  :init
+  (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
+  :custom
+  (typescript-indent-level 2)
+  :hook
+  ((typescript-mode . subword-mode)
+   (typescript-mode . lsp)
+   (typescript-mode . (lambda ()
+                        (require 'tide)
+                        (tide-setup))))
+  :mode
+  ("\\.tsx?\\'" . typescript-tsx-mode))
+
+(use-package tree-sitter
+  :straight t
+  :hook
+  ((typescript-mode . tree-sitter-hl-mode)
+   (typescript-tsx-mode . tree-sitter-hl-mode)))
+
+(use-package tree-sitter-langs
+  :straight t
+  :after tree-sitter
+  :config
+  (tree-sitter-require 'tsx)
+  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
+
+(use-package tide
+  :straight t
+  :commands tide-setup
+  :custom
+  (typescript-indent-level 2)
+  (tide-format-options '(:indentSize 2 :tabSize 2)))
+
+;;; /javascript
+
+
+;; Gherkin
+(use-package pickle
+  :straight t
+  :mode "\\.feature\\'"
+  :interpreter "pickle-mode")
 
 ;; Lisp
 (use-package parinfer
   :straight t
   :hook
   ((emacs-lisp-mode . parinfer-mode)
-    (lisp-mode . parinfer-mode)
-    (lisp-interaction-mode . parinfer-mode)
-    (geiser-mode . parinfer-mode)
-    (racket-mode . parinfer-mode)))
+   (lisp-mode . parinfer-mode)
+   (lisp-interaction-mode . parinfer-mode)
+   (geiser-mode . parinfer-mode)
+   (racket-mode . parinfer-mode)))
 
 ;; Markdown
 (use-package markdown-mode
@@ -257,85 +362,6 @@
    (geiser-mode . rainbow-delimiters-mode)))
 
 
-;;; javascript
-
-(use-package js-mode
-  :hook
-  ((js-mode . lsp)
-   (js-mode . (lambda ()
-                (require 'tide)
-                (tide-setup)))))
-
-(use-package web-mode
-  :straight t
-  :mode (("\\.html?\\'" . web-mode)
-         ;; ("\\.tsx\\'" . web-mode)
-         ("\\.jsx\\'" . web-mode))
-  :custom
-  (web-mode-markup-indent-offset 2)
-  (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
-  (web-mode-block-padding 2)
-  (web-mode-comment-style 2)
-  (web-mode-enable-css-colorization t)
-  (web-mode-enable-auto-pairing t)
-  (web-mode-enable-comment-keywords t)
-  (web-mode-enable-current-element-highlight t)
-  :hook
-  ((web-mode . (lambda ()
-                  (require 'tide)
-                  (tide-setup)))
-   (web-mode . lsp)))
-
-(use-package prettier-js
-  :straight t
-  :commands (prettier-js-mode prettier)
-  :custom
-  (prettier-target-mode "js-mode")
-  (prettier-js-args
-   '("--trailing-comma" "all" "--single-quote" "--semi" "--arrow-parens" "always"))
-  :hook ((js-mode . prettier-js-mode)
-         (typescript-mode . prettier-js-mode)
-         (web-mode . prettier-js-mode)))
-
-(use-package typescript-mode
-  :straight t
-  :init
-  (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
-  :custom
-  (typescript-indent-level 2)
-  :hook
-  ((typescript-mode . subword-mode)
-   (typescript-mode . lsp)
-   (typescript-mode . (lambda ()
-                        (require 'tide)
-                        (tide-setup))))
-  :mode
-  ("\\.tsx?\\'" . typescript-tsx-mode))
-
-(use-package tree-sitter
-  :straight t
-  :hook
-  ((typescript-mode . tree-sitter-hl-mode)
-	 (typescript-tsx-mode . tree-sitter-hl-mode)))
-
-(use-package tree-sitter-langs
-  :straight t
-  :after tree-sitter
-  :config
-  (tree-sitter-require 'tsx)
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
-
-(use-package tide
-  :straight t
-  :commands tide-setup
-  :custom
-  (typescript-indent-level 2)
-  (tide-format-options '(:indentSize 2 :tabSize 2)))
-
-;;; /javascript
-
-
 (use-package sh-script
   :ensure nil
   :mode (("\\.zsh\\'" . sh-mode)
@@ -358,6 +384,8 @@
 (use-package yaml-mode
   :straight t)
 
+;;; terms
+
 (use-package multi-term
   :straight t)
 
@@ -371,24 +399,6 @@
                      "eshell-prompt-extras.el"
                      "eshell-up.el"
                      "exec-path-from-shell.el")))
-
-(use-package google-this
-  :straight t)
-
-;;
-;; Re-spawn scratch buffer when killed
-;;
-(use-package immortal-scratch
-  :straight t
-  :init
-  (setq initial-scratch-message "")
-  (setq initial-major-mode 'text-mode)
-  :hook
-  (after-init . immortal-scratch-mode))
-
-(use-package keychain-environment
-  :straight t
-  :init (keychain-refresh-environment))
 
 (provide 'init)
 ;;; init ends here
