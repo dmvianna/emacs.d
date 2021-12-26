@@ -99,14 +99,15 @@
   :straight t
   :init (keychain-refresh-environment))
 
-;; (use-package yasnippet
-;;   :straight t)
+(use-package yasnippet
+  :straight t)
 
 ;;; LSP
 (use-package lsp-mode
   :straight t
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
+  :custom (lsp-enable-snippet nil)
   :init
   (setq lsp-keymap-prefix "s-l")
   :hook
@@ -192,6 +193,7 @@
 ;; nix
 (use-package nix-mode
   :straight t
+  :after lsp
   :init
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
   (lsp-register-client
