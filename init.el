@@ -6,6 +6,8 @@
 (require 'misc-config)
 ;; (use-package proxy-config)
 
+;;; stuff that is required to make emacs usable
+
 ;; git
 (use-package magit
   :straight t
@@ -23,8 +25,14 @@
   :straight t
   :init (global-flycheck-mode)
   :config
-  (setq-default flycheck-temp-prefix ".flycheck")
-  )
+  (setq-default flycheck-temp-prefix ".flycheck"))
+
+
+;; Company -- text completion
+(use-package company
+  :straight t)
+
+;;; Check spelling -- I don't even know how this works
 
 (use-package flyspell
   :init
@@ -39,9 +47,7 @@
   (langtool-bin "languagetool-commandline")
   (langtool-default-language "en-AU"))
 
-;; Company -- text completion
-(use-package company
-  :straight t)
+;;; viewers
 
 (use-package docview
   :bind (:map
@@ -68,26 +74,42 @@
          ("<mouse-8>" . image-decrease-size)
          ("<mouse-9>" . image-increase-size)))
 
-(use-package avro-mode
-  :custom
-  (tab-width 4)
-  :mode "\\.avdl$")
-
-;; (use-package yasnippet
-;;   :straight t)
+;;; helpers
 
 (use-package which-key
   :straight t
   :config
   (which-key-mode))
 
-;; LSP
+(use-package google-this
+  :straight t)
+
+;;
+;; Re-spawn scratch buffer when killed
+;;
+(use-package immortal-scratch
+  :straight t
+  :init
+  (setq initial-scratch-message "")
+  (setq initial-major-mode 'text-mode)
+  :hook
+  (after-init . immortal-scratch-mode))
+
+(use-package keychain-environment
+  :straight t
+  :init (keychain-refresh-environment))
+
+(use-package yasnippet
+  :straight t)
+
+;;; LSP
 (use-package lsp-mode
   :straight t
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
+  :custom (lsp-enable-snippet nil)
   :init
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "s-l")
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
@@ -103,19 +125,33 @@
   :straight t
   :after lsp-ui)
 
-(use-package dockerfile-mode
-  :straight t)
+;;; languages
+
+(use-package avro-mode
+  :custom
+  (tab-width 4)
+  :mode "\\.avdl$")
 
 ;; ini files
 (use-package conf-mode
-  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'"
-  )
+  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'")
+
+;; Dhall
+(use-package dhall-mode
+  :straight t
+  :mode "\\.dhall\\'")
+
+(use-package dockerfile-mode
+  :straight t)
 
 ;; graphviz
 (use-package graphviz-dot-mode
   :straight t
   :config (setq graphviz-dot-mode-indent-width 2))
 (use-package company-graphviz-dot)
+
+;; Haskell
+(require 'haskell-config)
 
 ;; JSON
 (use-package json-mode
@@ -124,75 +160,24 @@
   :interpreter "json-mode"
   )
 
+;;; javascript & web
+(require 'web-config)
+
 ;; Gherkin
 (use-package pickle
   :straight t
   :mode "\\.feature\\'"
   :interpreter "pickle-mode")
 
-;; Haskell
-
-(use-package haskell-mode
-  :straight t
-  :config
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-  ;; (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-  ;; (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-  (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
-  ;; (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
-  :custom
-  (haskell-indentation-ifte-offset 4)
-  (haskell-indentation-layout-offset 4)
-  (haskell-indentation-left-offset 4)
-  (haskell-indentation-starter-offset 4)
-  (haskell-indentation-where-post-offset 4)
-  (haskell-indentation-where-pre-offset 4)
-)
-
-(use-package haskell-interactive-mode
-  :hook
-  (haskell-mode-hook . interactive-haskell-mode))
-
-(use-package haskell-process
-  :custom
-  (haskell-process-type 'stack-ghci)
-  (haskell-indent-spaces 4))
-
-(use-package lsp-haskell
-  :straight t
-  :custom
-  (lsp-haskell-server-path "haskell-language-server-wrapper")
-  (lsp-haskell-tactic-on t)
-  (lsp-haskell-completion-snippets-on t)
-  (lsp-haskell-format-on-import-on t)
-  (lsp-haskell-formatting-provider "fourmolu")
-  (lsp-haskell-fourmolu-on t)
-  (lsp-haskell-brittany nil)
-  (lsp-haskell-floskell nil)
-  (lsp-haskell-ormolu nil)
-  (lsp-haskell-stylish-haskell nil)
-  :hook
-  (haskell-mode . lsp)
-  (haskell-literate-mode . lsp)
-  )
-
-;; Dhall
-(use-package dhall-mode
-  :straight t
-  :mode "\\.dhall\\'")
-
 ;; Lisp
 (use-package parinfer
   :straight t
   :hook
   ((emacs-lisp-mode . parinfer-mode)
-    (lisp-mode . parinfer-mode)
-    (lisp-interaction-mode . parinfer-mode)
-    (geiser-mode . parinfer-mode)
-    (racket-mode . parinfer-mode)))
+   (lisp-mode . parinfer-mode)
+   (lisp-interaction-mode . parinfer-mode)
+   (geiser-mode . parinfer-mode)
+   (racket-mode . parinfer-mode)))
 
 ;; Markdown
 (use-package markdown-mode
@@ -203,36 +188,12 @@
   :hook flyspell)
 
 ;; Python
-
-(use-package py-isort
-  :straight t
-  :after python
-  :hook (before-save . py-isort-before-save))
-
-(use-package python-black
-  :straight t
-  :hook (python-mode . python-black))
-
-(use-package lsp-jedi
-  :straight t
-  :config
-  (with-eval-after-load "lsp-mode"
-    (add-to-list 'lsp-disabled-clients 'pyls)
-    ;; (add-to-list 'lsp-enabled-clients 'jedi)
-    )
-  :hook (python-mode . (lambda ()
-                         (require 'lsp-jedi)
-                         (lsp)
-                         (flycheck-add-next-checker
-                          'lsp
-                          'python-pyright)
-                         (flycheck-add-next-checker
-                          'python-pyright
-                          'python-pylint))))
+(require 'python-config)
 
 ;; nix
 (use-package nix-mode
   :straight t
+  :after lsp
   :init
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
   (lsp-register-client
@@ -240,7 +201,6 @@
                     :major-modes '(nix-mode)
                     :server-id 'nix))
   :mode "\\.nix\\'")
-
 
 ;; Racket
 (use-package racket-mode
@@ -255,86 +215,6 @@
   :hook
   ((emacs-lisp-mode . rainbow-delimiters-mode)
    (geiser-mode . rainbow-delimiters-mode)))
-
-
-;;; javascript
-
-(use-package js-mode
-  :hook
-  ((js-mode . lsp)
-   (js-mode . (lambda ()
-                (require 'tide)
-                (tide-setup)))))
-
-(use-package web-mode
-  :straight t
-  :mode (("\\.html?\\'" . web-mode)
-         ;; ("\\.tsx\\'" . web-mode)
-         ("\\.jsx\\'" . web-mode))
-  :custom
-  (web-mode-markup-indent-offset 2)
-  (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
-  (web-mode-block-padding 2)
-  (web-mode-comment-style 2)
-  (web-mode-enable-css-colorization t)
-  (web-mode-enable-auto-pairing t)
-  (web-mode-enable-comment-keywords t)
-  (web-mode-enable-current-element-highlight t)
-  :hook
-  ((web-mode . (lambda ()
-                  (require 'tide)
-                  (tide-setup)))
-   (web-mode . lsp)))
-
-(use-package prettier-js
-  :straight t
-  :commands (prettier-js-mode prettier)
-  :custom
-  (prettier-target-mode "js-mode")
-  (prettier-js-args
-   '("--trailing-comma" "all" "--single-quote" "--semi" "--arrow-parens" "always"))
-  :hook ((js-mode . prettier-js-mode)
-         (typescript-mode . prettier-js-mode)
-         (web-mode . prettier-js-mode)))
-
-(use-package typescript-mode
-  :straight t
-  :init
-  (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
-  :custom
-  (typescript-indent-level 2)
-  :hook
-  ((typescript-mode . subword-mode)
-   (typescript-mode . lsp)
-   (typescript-mode . (lambda ()
-                        (require 'tide)
-                        (tide-setup))))
-  :mode
-  ("\\.tsx?\\'" . typescript-tsx-mode))
-
-(use-package tree-sitter
-  :straight t
-  :hook
-  ((typescript-mode . tree-sitter-hl-mode)
-	 (typescript-tsx-mode . tree-sitter-hl-mode)))
-
-(use-package tree-sitter-langs
-  :straight t
-  :after tree-sitter
-  :config
-  (tree-sitter-require 'tsx)
-  (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
-
-(use-package tide
-  :straight t
-  :commands tide-setup
-  :custom
-  (typescript-indent-level 2)
-  (tide-format-options '(:indentSize 2 :tabSize 2)))
-
-;;; /javascript
-
 
 (use-package sh-script
   :ensure nil
@@ -358,9 +238,28 @@
 (use-package yaml-mode
   :straight t)
 
+;;; shells
+
+;; rest
+(use-package verb
+  :straight t)
+
+;; everything
+(use-package org
+  :straight t
+  :mode ("\\.org\\'" . org-mode)
+  :bind
+  (:map org-mode-map
+        ("C-c l" . org-store-link)
+        ("C-c a" . org-agenda)
+        ("C-c c" . org-capture))
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+;; term
 (use-package multi-term
   :straight t)
 
+;; elisp term
 (use-package aweshell
   :straight (aweshell
              :type git
