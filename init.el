@@ -136,6 +136,11 @@
 (use-package conf-mode
   :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'")
 
+;; csv files
+(use-package csv-mode
+  :straight t
+  :mode "\\.csv\\'")
+
 ;; Dhall
 (use-package dhall-mode
   :straight t
