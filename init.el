@@ -234,10 +234,11 @@
 
 (use-package theta-mode
   :straight (theta-mode
-              :type git
-              :host github
-              :repo "target/theta-idl"
-              :files ("emacs/theta-mode.el"))
+             :type git
+             :host github
+             :repo "target/theta-idl"
+             :branch "stage"
+             :files ("emacs/theta-mode.el"))
   :mode ("\\.theta\\'" . theta-mode))
 
 (use-package yaml-mode
