@@ -155,6 +155,10 @@
 (setq x-meta-keysym 'super
       x-super-keysym 'meta)
 
+;; ibuffer
+(use-package ibuffer
+  :bind ("C-x C-b" . ibuffer))
+
 (use-package drag-stuff
   :straight t
   :init (setq drag-stuff-modifier 'ctrl)
