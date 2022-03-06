@@ -159,6 +159,27 @@
 (use-package ibuffer
   :bind ("C-x C-b" . ibuffer))
 
+(use-package ibuffer-vc
+  :straight t
+  :defer 5
+  :init
+  ;; Include version control status info in the ibuffer list.
+  (setq ibuffer-formats
+        '((mark modified read-only vc-status-mini " "
+                (name 18 18 :left :elide)
+                " "
+                (size 9 -1 :right)
+                " "
+                (mode 16 16 :left :elide)
+                " "
+                (vc-status 16 16 :left)
+                " "
+                filename-and-process)))
+  :config (add-hook 'ibuffer-hook (lambda()
+                                    (ibuffer-vc-set-filter-groups-by-vc-root)
+                                    (unless (eq ibuffer-sorting-mode 'alphabetic)
+                                      (ibuffer-do-sort-by-alphabetic)))))
+
 (use-package drag-stuff
   :straight t
   :init (setq drag-stuff-modifier 'ctrl)
