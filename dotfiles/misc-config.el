@@ -118,9 +118,11 @@
 (setq default-directory (getenv "HOME"))
 
 ;; directory tree view
+(use-package treemacs
+  :straight t)
+
 (use-package neotree
   :straight t
-  :ensure t
   :config
   '((global-set-key [f8] 'neotree-toggle)
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
