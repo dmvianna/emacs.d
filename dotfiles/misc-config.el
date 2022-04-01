@@ -161,7 +161,8 @@
 
 (use-package ibuffer-vc
   :straight t
-  :defer 5
+  :hook (ibuffer-mode . ibuffer-vc-generate-filter-groups-by-vc-root)
+  :bind (:map ibuffer-mode-map ("g" . ibuffer-list-buffers))
   :init
   ;; Include version control status info in the ibuffer list.
   (setq ibuffer-formats
