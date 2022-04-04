@@ -34,18 +34,18 @@
 
 ;;; Check spelling -- I don't even know how this works
 
-(use-package flyspell
-  :init
-  (flyspell-mode t)
-  :custom
-  (ispell-program-name "hunspell")
-  (ispell-local-dictionary "en_AU"))
+;; (use-package flyspell
+;;   :init
+;;   (flyspell-mode t)
+;;   :custom
+;;   (ispell-program-name "hunspell")
+;;   (ispell-local-dictionary "en_AU"))
 
-(use-package langtool
-  :straight t
-  :custom
-  (langtool-bin "languagetool-commandline")
-  (langtool-default-language "en-AU"))
+;; (use-package langtool
+;;   :straight t
+;;   :custom
+;;   (langtool-bin "languagetool-commandline")
+;;   (langtool-default-language "en-AU"))
 
 ;;; viewers
 
