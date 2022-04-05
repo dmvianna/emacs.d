@@ -244,6 +244,16 @@
 (use-package yaml-mode
   :straight t)
 
+(use-package sqlformat
+  :straight t
+  :custom
+  (sqlformat-command 'pgformatter)
+  (sqlformat-args '("-s4" "-g"))
+  :hook
+  (before-save . sqlformat-on-save)
+  :mode ("\\.sql\\'" . sql-mode)
+  )
+
 ;;; shells
 
 ;; rest
