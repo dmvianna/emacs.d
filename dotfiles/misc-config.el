@@ -183,10 +183,6 @@
                                     (unless (eq ibuffer-sorting-mode 'alphabetic)
                                       (ibuffer-do-sort-by-alphabetic)))))
 
-(use-package project
-  ;; needed to match latest magit
-  :straight t)
-
 (use-package drag-stuff
   :straight t
   :init (setq drag-stuff-modifier 'ctrl)

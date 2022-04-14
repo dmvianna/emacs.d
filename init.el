@@ -11,6 +11,9 @@
 ;; git
 (use-package magit
   :straight t
+  :init
+  (if (not (boundp 'project-switch-commands))
+      (setq project-switch-commands nil))
   :bind (:map
          magit-mode-map
          ("C-x g" . magit-status)))
