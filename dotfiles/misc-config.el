@@ -205,5 +205,7 @@
   :requires all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
+(global-linum-mode)
+
 (provide 'misc-config)
 ;;; misc-config ends here
