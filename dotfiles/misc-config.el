@@ -205,7 +205,10 @@
   :requires all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
-(global-linum-mode)
+(use-package linum-mode
+  :hook
+  (pdf-view-mode . (lambda () (linum-mode 0)))
+  (global-linum-mode))
 
 (provide 'misc-config)
 ;;; misc-config ends here
