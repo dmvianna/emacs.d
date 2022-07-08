@@ -193,8 +193,8 @@
 ;; Markdown
 (use-package markdown-mode
   :straight t
-  :config
-  (display-line-numbers-mode t)
+  :hook
+  (markdown-mode . display-line-numbers-mode)
   :mode "\\.md$"
   :interpreter "markdown-mode"
   :hook flyspell)
