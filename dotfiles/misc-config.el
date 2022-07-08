@@ -205,10 +205,12 @@
   :requires all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
-(use-package linum-mode
+(use-package prog-mode
   :hook
-  (pdf-view-mode . (lambda () (linum-mode 0)))
-  (global-linum-mode))
+  (prog-mode . display-line-numbers-mode)
+  (pdf-view-mode . (lambda () (display-line-numbers-mode 0)))
+  :init
+  (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 
 (provide 'misc-config)
 ;;; misc-config ends here
