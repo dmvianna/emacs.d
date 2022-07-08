@@ -131,7 +131,8 @@
 (savehist-mode)
 
 ;; incremental completions
-(require 'consult-config)
+(use-package consult
+  :straight t)
 
 (use-package selectrum
   :straight t
