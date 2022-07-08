@@ -208,7 +208,6 @@
 (use-package prog-mode
   :hook
   (prog-mode . display-line-numbers-mode)
-  (pdf-view-mode . (lambda () (display-line-numbers-mode 0)))
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 

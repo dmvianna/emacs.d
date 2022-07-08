@@ -65,7 +65,10 @@
 (use-package pdf-tools
   :straight t
   :custom (pdf-view-display-size 'fit-height)
-  :init (pdf-tools-install))
+  :init
+  (pdf-tools-install)
+  :hook
+  (pdf-view-mode . (lambda (display-line-numbers-mode nil))))
 
 (use-package image-mode
   :bind (:map
@@ -191,6 +194,7 @@
 (use-package markdown-mode
   :straight t
   :config
+  (display-line-numbers-mode t)
   :mode "\\.md$"
   :interpreter "markdown-mode"
   :hook flyspell)
