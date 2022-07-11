@@ -212,5 +212,8 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 
+;;; focus on emacs frame when it is started
+(add-hook 'server-switch-hook #'raise-frame)
+
 (provide 'misc-config)
 ;;; misc-config ends here
