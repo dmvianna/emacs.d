@@ -66,8 +66,8 @@
 (set-mouse-color mouse-color) ;;; that's emacs
 (require 'frame)
 (defun set-mouse-hook (frame)
-(modify-frame-parameters
-  frame (list (cons 'mouse-color mouse-color))))
+  (modify-frame-parameters
+   frame (list (cons 'mouse-color mouse-color))))
 ;;; that's what emacs-daemon uses
 (add-hook 'after-make-frame-functions 'set-mouse-hook)
 
