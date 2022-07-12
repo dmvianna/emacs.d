@@ -97,7 +97,9 @@
  'after-make-frame-functions
  (lambda (frame)
    (set-default-hook frame)
-   (default-layout)))
+   (select-frame frame)
+   (when (display-graphic-p frame)
+     (default-layout))))
 
 ;;; change capitalisation
 (put 'upcase-region 'disabled nil)
