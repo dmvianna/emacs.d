@@ -215,5 +215,19 @@
 ;;; focus on emacs frame when it is started
 (add-hook 'server-switch-hook #'raise-frame)
 
+;;; make a fullscreen function
+(defun fullscreen ()
+  "Make Emacs use all the screen area."
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+
+;;; start emacs with my preferred layout
+(split-window-horizontally)
+(treemacs)
+(fullscreen)
+
 (provide 'misc-config)
 ;;; misc-config ends here
