@@ -64,12 +64,40 @@
 ;;; Mouse color must be the same in emacs-daemon
 (setq mouse-color "#002b36") ;;; solarized-dark light gray
 (set-mouse-color mouse-color) ;;; that's emacs
+
+;;; focus on emacs frame when it is started
+(add-hook 'server-switch-hook #'raise-frame)
+
+;;; make a fullscreen function
+(defun fullscreen-frame ()
+  "Make Emacs use all the screen area."
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+
+;;; make a default layout function
+(defun default-layout ()
+  "Apply my preferred layout to an existing frame."
+  (interactive)
+  (when window-system
+    (fullscreen-frame)
+    (split-window-horizontally)
+    (treemacs)))
+
 (require 'frame)
-(defun set-mouse-hook (frame)
+(defun set-default-hook (frame)
+  "Set all default frame logic.  FRAME is the frame being created."
   (modify-frame-parameters
    frame (list (cons 'mouse-color mouse-color))))
+
 ;;; that's what emacs-daemon uses
-(add-hook 'after-make-frame-functions 'set-mouse-hook)
+(add-hook
+ 'after-make-frame-functions
+ (lambda (frame)
+   (set-default-hook frame)
+   (default-layout)))
 
 ;;; change capitalisation
 (put 'upcase-region 'disabled nil)
@@ -211,30 +239,6 @@
   (prog-mode . display-line-numbers-mode)
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
-
-;;; focus on emacs frame when it is started
-(add-hook 'server-switch-hook #'raise-frame)
-
-;;; make a fullscreen function
-(defun fullscreen ()
-  "Make Emacs use all the screen area."
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
-
-;;; make a default layout function
-
-(defun default-layout ()
-  "Apply my preferred layout to an existing frame."
-  (interactive)
-  (split-window-horizontally)
-  (treemacs)
-  (fullscreen))
-
-;;; start emacs with my preferred layout ... in standalone emacs
-;;; (default-layout)
 
 (provide 'misc-config)
 ;;; misc-config ends here
