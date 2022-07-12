@@ -224,10 +224,17 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 
-;;; start emacs with my preferred layout
-(split-window-horizontally)
-(treemacs)
-(fullscreen)
+;;; make a default layout function
+
+(defun default-layout ()
+  "Apply my preferred layout to an existing frame."
+  (interactive)
+  (split-window-horizontally)
+  (treemacs)
+  (fullscreen))
+
+;;; start emacs with my preferred layout ... in standalone emacs
+;;; (default-layout)
 
 (provide 'misc-config)
 ;;; misc-config ends here
