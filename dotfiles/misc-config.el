@@ -81,10 +81,9 @@
 (defun default-layout ()
   "Apply my preferred layout to an existing frame."
   (interactive)
-  (when window-system
-    (fullscreen-frame)
-    (split-window-horizontally)
-    (treemacs)))
+  (fullscreen-frame)
+  (split-window-horizontally)
+  (treemacs))
 
 (require 'frame)
 (defun set-default-hook (frame)
