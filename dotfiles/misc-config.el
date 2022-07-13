@@ -113,12 +113,6 @@
   '((auto-compile-on-load-mode)
     (auto-compile-on-save-mode)))
 
-;; exec path from shell
-(use-package exec-path-from-shell
-  :straight t
-  :config
-  (exec-path-from-shell-initialize))
-
 ;; org-mode
 (global-set-key "\C-ca" 'org-agenda)
 
