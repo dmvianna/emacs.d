@@ -303,5 +303,8 @@
   :straight t
   :init (keychain-refresh-environment))
 
+(use-package string-inflection
+  :straight t)
+
 (provide 'init)
 ;;; init ends here
