@@ -29,5 +29,4 @@
              )
 
 (provide 'early-init)
-;;; early-init ends here
-
+;;; early-init.el ends here

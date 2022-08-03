@@ -78,4 +78,4 @@
   (tide-format-options '(:indentSize 2 :tabSize 2)))
 
 (provide 'web-config)
-;;; web-config ends here
+;;; web-config.el ends here

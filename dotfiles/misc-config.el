@@ -245,4 +245,4 @@
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 
 (provide 'misc-config)
-;;; misc-config ends here
+;;; misc-config.el ends here

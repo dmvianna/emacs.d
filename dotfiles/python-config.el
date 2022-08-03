@@ -31,4 +31,4 @@
                           'python-pylint))))
 
 (provide 'python-config)
-;;; python-config ends here
+;;; python-config.el ends here

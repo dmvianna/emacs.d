@@ -121,4 +121,4 @@
   )
 
 (provide 'consult-config)
-;;; consult-config ends here
+;;; consult-config.el ends here

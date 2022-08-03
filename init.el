@@ -307,4 +307,4 @@
   :straight t)
 
 (provide 'init)
-;;; init ends here
+;;; init.el ends here

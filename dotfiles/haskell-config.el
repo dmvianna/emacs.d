@@ -49,4 +49,4 @@
   (haskell-literate-mode . lsp))
 
 (provide 'haskell-config)
-;;; haskell-config ends here
+;;; haskell-config.el ends here
