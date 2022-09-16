@@ -244,5 +244,16 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 
+(eval-after-load 'grep
+  '(progn
+     (add-to-list 'grep-find-ignored-directories "tmp")
+     (add-to-list 'grep-find-ignored-directories "node_modules")
+     (add-to-list 'grep-find-ignored-directories "amazonka")
+     (add-to-list 'grep-find-ignored-directories "amazonka-1.6.1")
+     (add-to-list 'grep-find-ignored-directories "amazonka-2.0.0")
+     (add-to-list 'grep-find-ignored-directories ".stack-work")))
+(setq wgrep-enable-key (kbd "C-c C-c"))
+(add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))
+
 (provide 'misc-config)
 ;;; misc-config.el ends here
