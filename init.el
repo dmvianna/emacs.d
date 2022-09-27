@@ -289,7 +289,8 @@
   :straight (visual-regexp-steroids
              :type git
              :host github
-             :repo "benma/visual-regexp-steroids.el")
+             :repo "benma/visual-regexp-steroids.el"
+             :files ("visual-regexp-steroids.el" "regexp.py"))
   :requires visual-regexp
   :bind (:map global-map
               ("C-c r" . vr/replace)
