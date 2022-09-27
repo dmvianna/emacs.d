@@ -293,7 +293,9 @@
   :requires visual-regexp
   :bind (:map global-map
               ("C-c r" . vr/replace)
-              ("C-c q" . vr/query-replace)))
+              ("C-c q" . vr/query-replace)
+              ("C-r" . vr/isearch-backward)
+              ("C-s" . vr/isearch-forward)))
 
 
 (use-package multiple-cursors
