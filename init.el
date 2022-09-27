@@ -1,5 +1,8 @@
 ;;; Package --- Summary
 ;;; Commentary:
+;;;
+;;; Reload this config with M-: (load user-init-file)
+;;;
 ;;; init file
 ;;; Code:
 
