@@ -118,6 +118,7 @@
   :straight t
   :config
   (dolist (var '("PATH" "SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO"
+                 "SSH_AGENT_PID" "SSH_AUTH_SOCK"
                  "LANG" "LC_CTYPE" "NIX_SSL_CERT_FILE" "NIX_PATH" "XAUTHORITY"))
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
@@ -239,6 +240,7 @@
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package prog-mode
+  :straight nil
   :hook
   (prog-mode . display-line-numbers-mode)
   :init

@@ -3,8 +3,10 @@
 ;;; early init file
 ;;; Code:
 
-;;; disable package.el
-(setq package-enable-at-startup nil)
+;;; disable package.el and use straight by default
+(setq package-enable-at-startup nil
+      straight-use-package-by-default t
+      straight-vc-git-default-protocol 'ssh)
 
 ;;; bootstrap straight.el
 (defvar bootstrap-version)

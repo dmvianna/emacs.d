@@ -53,6 +53,7 @@
 ;;; viewers
 
 (use-package docview
+  :straight nil
   :bind (:map
          docview-mode-map
          ("<mouse-4>" . doc-view-scroll-down-or-previous-page)
@@ -71,6 +72,7 @@
   (pdf-view-mode . (lambda (display-line-numbers-mode nil))))
 
 (use-package image-mode
+  :straight nil
   :bind (:map
          image-mode-map
          ("<mouse-4>" . image-scroll-down)
@@ -134,12 +136,14 @@
 ;;; languages
 
 (use-package avro-mode
+  :straight nil
   :custom
   (tab-width 4)
   :mode "\\.avdl$")
 
 ;; ini files
 (use-package conf-mode
+  :straight nil
   :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'")
 
 ;; csv files
@@ -159,7 +163,8 @@
 (use-package graphviz-dot-mode
   :straight t
   :config (setq graphviz-dot-mode-indent-width 2))
-(use-package company-graphviz-dot)
+(use-package company-graphviz-dot
+  :straight nil)
 
 ;; Haskell
 (require 'haskell-config)
@@ -305,6 +310,28 @@
 
 (use-package string-inflection
   :straight t)
+
+(use-package visual-regexp
+  :straight t)
+
+(use-package visual-regexp-steroids
+  :straight (visual-regexp-steroids
+             :type git
+             :host github
+             :repo "benma/visual-regexp-steroids.el")
+  :requires visual-regexp
+  :bind (:map global-map
+              ("C-c r" . vr/replace)
+              ("C-c q" . vr/query-replace)))
+
+
+(use-package multiple-cursors
+  :straight t
+  :bind (:map global-map
+              ("C-c m" . vr/mc-mark)
+              ("C->" . mc/mark-next-like-this)
+              ("C-<" . mc/mark-previous-like-this)
+              ("C-c C-<" . mc/mark-all-like-this)))
 
 (provide 'init)
 ;;; init.el ends here

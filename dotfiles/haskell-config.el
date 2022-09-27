@@ -23,10 +23,12 @@
   (haskell-indentation-where-pre-offset 4))
 
 (use-package haskell-interactive-mode
+  :straight nil
   :hook
   (haskell-mode-hook . interactive-haskell-mode))
 
 (use-package haskell-process
+  :straight nil
   :custom
   (haskell-process-type 'stack-ghci)
   (haskell-indent-spaces 4))
