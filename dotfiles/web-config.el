@@ -12,7 +12,6 @@
                 (tide-setup)))))
 
 (use-package web-mode
-  :straight t
   :mode (("\\.html?\\'" . web-mode)
          ;; ("\\.tsx\\'" . web-mode)
          ("\\.jsx\\'" . web-mode))
@@ -33,7 +32,6 @@
    (web-mode . lsp)))
 
 (use-package prettier-js
-  :straight t
   :commands (prettier-js-mode prettier)
   :custom
   (prettier-target-mode "js-mode")
@@ -44,7 +42,6 @@
          (web-mode . prettier-js-mode)))
 
 (use-package typescript-mode
-  :straight t
   :init
   (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
   :custom
@@ -59,20 +56,17 @@
   ("\\.tsx?\\'" . typescript-tsx-mode))
 
 (use-package tree-sitter
-  :straight t
   :hook
   ((typescript-mode . tree-sitter-hl-mode)
    (typescript-tsx-mode . tree-sitter-hl-mode)))
 
 (use-package tree-sitter-langs
-  :straight t
   :after tree-sitter
   :config
   (tree-sitter-require 'tsx)
   (add-to-list 'tree-sitter-major-mode-language-alist '(typescript-tsx-mode . tsx)))
 
 (use-package tide
-  :straight t
   :commands tide-setup
   :custom
   (typescript-indent-level 2)

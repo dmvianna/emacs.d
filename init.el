@@ -64,7 +64,6 @@
          ("<mouse-9>" . image-increase-size)))
 
 (use-package pdf-tools
-  :straight t
   :custom (pdf-view-display-size 'fit-height)
   :init
   (pdf-tools-install)
@@ -85,18 +84,15 @@
 ;;; helpers
 
 (use-package which-key
-  :straight t
   :config
   (which-key-mode))
 
-(use-package google-this
-  :straight t)
+(use-package google-this)
 
 ;;
 ;; Re-spawn scratch buffer when killed
 ;;
 (use-package immortal-scratch
-  :straight t
   :init
   (setq initial-scratch-message "")
   (setq initial-major-mode 'text-mode)
@@ -104,15 +100,12 @@
   (after-init . immortal-scratch-mode))
 
 (use-package keychain-environment
-  :straight t
   :init (keychain-refresh-environment))
 
-(use-package yasnippet
-  :straight t)
+(use-package yasnippet)
 
 ;;; LSP
 (use-package lsp-mode
-  :straight t
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
   :custom (lsp-enable-snippet nil)
@@ -124,13 +117,11 @@
   :commands (lsp lsp-deferred))
 
 (use-package lsp-ui
-  :straight t
   :hook (lsp-mode . lsp-ui-mode)
   :custom (lsp-ui-doc-position 'bottom)
   :commands lsp-ui-mode)
 
 (use-package company-lsp
-  :straight t
   :after lsp-ui)
 
 ;;; languages
@@ -148,20 +139,16 @@
 
 ;; csv files
 (use-package csv-mode
-  :straight t
   :mode "\\.csv\\'")
 
 ;; Dhall
 (use-package dhall-mode
-  :straight t
   :mode "\\.dhall\\'")
 
-(use-package dockerfile-mode
-  :straight t)
+(use-package dockerfile-mode)
 
 ;; graphviz
 (use-package graphviz-dot-mode
-  :straight t
   :config (setq graphviz-dot-mode-indent-width 2))
 (use-package company-graphviz-dot
   :straight nil)
@@ -171,7 +158,6 @@
 
 ;; JSON
 (use-package json-mode
-  :straight t
   :mode "\\.json\\'\\|\\.jshintrc\\'"
   :interpreter "json-mode"
   )
@@ -181,13 +167,11 @@
 
 ;; Gherkin
 (use-package pickle
-  :straight t
   :mode "\\.feature\\'"
   :interpreter "pickle-mode")
 
 ;; Lisp
 (use-package parinfer
-  :straight t
   :hook
   ((emacs-lisp-mode . parinfer-mode)
    (lisp-mode . parinfer-mode)
@@ -197,7 +181,6 @@
 
 ;; Markdown
 (use-package markdown-mode
-  :straight t
   :hook
   (markdown-mode . display-line-numbers-mode)
   :mode "\\.md$"
@@ -209,7 +192,6 @@
 
 ;; nix
 (use-package nix-mode
-  :straight t
   :after lsp
   :init
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
@@ -221,14 +203,12 @@
 
 ;; Racket
 (use-package racket-mode
-  :straight t
   :mode "\\.rkt\\'"
   :interpreter "racket-mode")
 
 ;; rainbow
 ;; rainbow-delimiters for elisp
 (use-package rainbow-delimiters
-  :straight t
   :hook
   ((emacs-lisp-mode . rainbow-delimiters-mode)
    (geiser-mode . rainbow-delimiters-mode)))
@@ -253,18 +233,15 @@
              :files ("emacs/theta-mode.el"))
   :mode ("\\.theta\\'" . theta-mode))
 
-(use-package yaml-mode
-  :straight t)
+(use-package yaml-mode)
 
 ;;; shells
 
 ;; rest
-(use-package verb
-  :straight t)
+(use-package verb)
 
 ;; everything
 (use-package org
-  :straight t
   :mode ("\\.org\\'" . org-mode)
   :bind
   (:map org-mode-map
@@ -274,8 +251,7 @@
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;; term
-(use-package multi-term
-  :straight t)
+(use-package multi-term)
 
 ;; elisp term
 (use-package aweshell
@@ -289,14 +265,12 @@
                      "eshell-up.el"
                      "exec-path-from-shell.el")))
 
-(use-package google-this
-  :straight t)
+(use-package google-this)
 
 ;;
 ;; Re-spawn scratch buffer when killed
 ;;
 (use-package immortal-scratch
-  :straight t
   :init
   (setq initial-scratch-message "")
   (setq initial-major-mode 'text-mode)
@@ -305,14 +279,11 @@
 
 ;; ssh-add
 (use-package keychain-environment
-  :straight t
   :init (keychain-refresh-environment))
 
-(use-package string-inflection
-  :straight t)
+(use-package string-inflection)
 
-(use-package visual-regexp
-  :straight t)
+(use-package visual-regexp)
 
 (use-package visual-regexp-steroids
   :straight (visual-regexp-steroids
@@ -326,7 +297,6 @@
 
 
 (use-package multiple-cursors
-  :straight t
   :bind (:map global-map
               ("C-c m" . vr/mc-mark)
               ("C->" . mc/mark-next-like-this)

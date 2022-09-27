@@ -4,7 +4,6 @@
 ;;; Code:
 
 (use-package haskell-mode
-  :straight t
   :config
   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
   (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
@@ -34,7 +33,6 @@
   (haskell-indent-spaces 4))
 
 (use-package lsp-haskell
-  :straight t
   :custom
   (lsp-haskell-server-path "haskell-language-server-wrapper")
   (lsp-haskell-tactic-on t)

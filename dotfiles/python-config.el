@@ -4,16 +4,13 @@
 ;;; Code:
 
 (use-package py-isort
-  :straight t
   :after python
   :hook (before-save . py-isort-before-save))
 
 (use-package python-black
-  :straight t
   :hook (python-mode . python-black))
 
 (use-package lsp-jedi
-  :straight t
   :config
   (with-eval-after-load "lsp-mode"
     (add-to-list 'lsp-disabled-clients 'pyls))

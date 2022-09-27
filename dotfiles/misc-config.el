@@ -108,14 +108,12 @@
 (setq load-prefer-newer t)
 (package-initialize)
 (use-package auto-compile
-  :straight t
   :config
   '((auto-compile-on-load-mode)
     (auto-compile-on-save-mode)))
 
 ;; exec path from shell
 (use-package exec-path-from-shell
-  :straight t
   :config
   (dolist (var '("PATH" "SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO"
                  "SSH_AGENT_PID" "SSH_AUTH_SOCK"
@@ -143,7 +141,6 @@
 
 ;; theme
 (use-package solarized-theme
-  :straight t
   :config
   (load-theme 'solarized-dark t))
 
@@ -151,11 +148,9 @@
 (setq default-directory (getenv "HOME"))
 
 ;; directory tree view
-(use-package treemacs
-  :straight t)
+(use-package treemacs)
 
 (use-package neotree
-  :straight t
   :config
   '((global-set-key [f8] 'neotree-toggle)
     (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
@@ -164,16 +159,13 @@
 (savehist-mode)
 
 ;; incremental completions
-(use-package consult
-  :straight t)
+(use-package consult)
 
 (use-package selectrum
-  :straight t
   :config
   (selectrum-mode +1))
 
 (use-package selectrum-prescient
-  :straight t
   :custom
   (selectrum-prescient-enable-filtering nil)
   :config
@@ -181,7 +173,6 @@
   (prescient-persist-mode +1))
 
 (use-package orderless
-  :straight t
   :custom
   (completion-styles '(orderless))
   (orderless-skip-highlighting (lambda () selectrum-is-active))
@@ -196,7 +187,6 @@
   :bind ("C-x C-b" . ibuffer))
 
 (use-package ibuffer-vc
-  :straight t
   :hook (ibuffer-mode . ibuffer-vc-generate-filter-groups-by-vc-root)
   :bind (:map ibuffer-mode-map ("g" . ibuffer-list-buffers))
   :init
@@ -218,7 +208,6 @@
                                       (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package drag-stuff
-  :straight t
   :init (setq drag-stuff-modifier 'ctrl)
   :config (drag-stuff-global-mode t)
   (bind-keys :map drag-stuff-mode-map
@@ -226,16 +215,13 @@
              ("<s-down>" . drag-stuff-down)))
 
 (use-package smartparens
-  :straight t
   :config (smartparens-global-mode t))
 
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
 
-(use-package all-the-icons
-  :straight t)
+(use-package all-the-icons)
 (use-package all-the-icons-dired
-  :straight t
   :requires all-the-icons
   :hook (dired-mode . all-the-icons-dired-mode))
 
