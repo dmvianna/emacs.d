@@ -309,5 +309,22 @@
               ("C-<" . mc/mark-previous-like-this)
               ("C-c C-<" . mc/mark-all-like-this)))
 
+(use-package moldable-emacs
+  :straight (moldable-emacs
+             :type git
+             :host github
+             :repo "ag91/moldable-emacs"
+             :files ("moldable-emacs.el"))
+  :bind (:map global-map
+              ("C-c n m" . me-mold)
+              ("C-c n f" . me-go-forward)
+              ("C-c n b" . me-go-back)
+              ("C-c n o" . me-open-at-point)
+              ("C-c n d" . me-mold-docs)
+              ("C-c n g" . me-goto-mold-source)
+              ("C-c n e a" . me-mold-add-last-example))
+  :config
+  (me-setup-molds))
+
 (provide 'init)
 ;;; init.el ends here
