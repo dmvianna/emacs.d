@@ -3,6 +3,10 @@
 ;;; Python configuration
 ;;; Code:
 
+(use-package poetry
+  :hook
+  (python-mode . poetry-tracking-mode))
+
 (use-package py-isort
   :after python
   :hook (before-save . py-isort-before-save))
@@ -20,6 +24,7 @@
   :hook (python-mode . (lambda ()
                          (require 'lsp-jedi)
                          (lsp)
+                         (poetry-tracking-mode)
                          (flycheck-add-next-checker
                           'lsp
                           'python-pyright)
