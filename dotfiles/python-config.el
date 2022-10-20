@@ -12,7 +12,8 @@
   :hook (before-save . py-isort-before-save))
 
 (use-package python-black
-  :hook (python-mode . python-black))
+  :after python
+  :hook (python-mode . python-black-on-save-mode))
 
 (use-package lsp-jedi
   :config
