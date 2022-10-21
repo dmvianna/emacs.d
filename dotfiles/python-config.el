@@ -3,9 +3,10 @@
 ;;; Python configuration
 ;;; Code:
 
-(use-package poetry
-  :hook
-  (python-mode . poetry-tracking-mode))
+;; Goes into infinite loop when used with LSP
+;; (use-package poetry
+;;   :hook
+;;   (python-mode . poetry-tracking-mode))
 
 (use-package py-isort
   :after python
