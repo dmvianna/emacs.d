@@ -13,7 +13,6 @@
 
 ;; git
 (use-package magit
-  :straight t
   :init
   (if (not (boundp 'project-switch-commands))
       (setq project-switch-commands nil))
@@ -24,11 +23,9 @@
 ;; Flycheck -- global syntax check (needed for hlint)
 ;; we need to upgrade the inbuilt flymake version so
 ;; that packages that require it don't fail
-(use-package flymake
-  :straight t)
+(use-package flymake)
 
 (use-package flycheck
-  :straight t
   :init (global-flycheck-mode)
   :config
   (setq-default flycheck-temp-prefix ".flycheck"))
@@ -36,7 +33,9 @@
 
 ;; Company -- text completion
 (use-package company
-  :straight t)
+  :config
+  (setq company-idle-delay 0.3)
+  (global-company-mode t))
 
 ;;; Check spelling -- I don't even know how this works
 
@@ -125,7 +124,18 @@
   :commands lsp-ui-mode)
 
 (use-package company-lsp
-  :after lsp-ui)
+  :after lsp-ui
+  :config
+  (setq lsp-completion-provider :capf))
+
+;; Posframe is a pop-up tool that must be manually installed for dap-mode
+(use-package posframe)
+
+;; Use the Debug Adapter Protocol for running tests and debugging
+(use-package dap-mode
+  :hook
+  (lsp-mode . dap-mode)
+  (lsp-mode . dap-ui-mode))
 
 ;;; languages
 
@@ -216,6 +226,9 @@
   ((emacs-lisp-mode . rainbow-delimiters-mode)
    (geiser-mode . rainbow-delimiters-mode)))
 
+;; scala
+(require 'scala-config)
+
 (use-package sh-script
   :ensure nil
   :mode (("\\.zsh\\'" . sh-mode)
@@ -243,7 +256,7 @@
 ;; rest
 (use-package verb)
 
-;; everything
+;; org-mode
 (use-package org
   :mode ("\\.org\\'" . org-mode)
   :bind
