@@ -148,7 +148,9 @@
 (setq default-directory (getenv "HOME"))
 
 ;; directory tree view
-(use-package treemacs)
+(use-package treemacs
+  :init
+  (require 'treemacs-extensions))
 
 (use-package neotree
   :config
