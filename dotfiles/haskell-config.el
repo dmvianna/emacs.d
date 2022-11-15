@@ -29,7 +29,8 @@
 (use-package haskell-process
   :straight nil
   :custom
-  (haskell-process-type 'stack-ghci)
+  ;; (haskell-process-type 'stack-ghci)
+  (haskell-process-type 'cabal-new-repl)
   (haskell-indent-spaces 4))
 
 (use-package lsp-haskell
