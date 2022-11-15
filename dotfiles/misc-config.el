@@ -245,5 +245,7 @@
 (setq wgrep-enable-key (kbd "C-c C-c"))
 (add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))
 
+(setq browse-url-browser-function 'browse-url-chrome)
+
 (provide 'misc-config)
 ;;; misc-config.el ends here
