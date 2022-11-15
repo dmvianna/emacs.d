@@ -113,6 +113,9 @@
   :custom (lsp-enable-snippet nil)
   :init
   (setq lsp-keymap-prefix "s-l")
+  ;; give lsp enough memory
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq gc-cons-threshold 80000000)
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
