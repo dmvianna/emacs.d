@@ -30,7 +30,7 @@
   :straight nil
   :custom
   ;; (haskell-process-type 'stack-ghci)
-  (haskell-process-type 'cabal-new-repl)
+  (haskell-process-type 'cabal-repl)
   (haskell-indent-spaces 4))
 
 (use-package lsp-haskell
