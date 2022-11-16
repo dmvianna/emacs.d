@@ -247,5 +247,16 @@
 
 (setq browse-url-browser-function 'browse-url-chrome)
 
+(use-package smart-mode-line
+  :init
+  (progn
+     (setq sml/theme nil
+           sml/shorten-directory t
+           sml/name-width 32
+           sml/shorten-modes t
+           sml/use-projectile-p 'before-prefixes
+           sml/projectile-replacement-format "%s/")
+     (sml/setup)))
+
 (provide 'misc-config)
 ;;; misc-config.el ends here
