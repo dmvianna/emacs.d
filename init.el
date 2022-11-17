@@ -325,6 +325,10 @@
               ("C-<" . mc/mark-previous-like-this)
               ("C-c C-<" . mc/mark-all-like-this)))
 
+
+;; code folding, very useful with big JSON files
+(use-package origami)
+
 ;; direnv
 
 (use-package direnv
