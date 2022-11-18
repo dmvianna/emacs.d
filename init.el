@@ -33,8 +33,8 @@
 
 ;; Company -- text completion
 (use-package company
-  :config
-  (setq company-idle-delay 0.3)
+  :custom
+  (company-idle-delay 0.3)
   (global-company-mode t))
 
 ;;; Check spelling -- I don't even know how this works
@@ -95,9 +95,9 @@
 ;; Re-spawn scratch buffer when killed
 ;;
 (use-package immortal-scratch
-  :init
-  (setq initial-scratch-message "")
-  (setq initial-major-mode 'text-mode)
+  :custom
+  (initial-scratch-message "")
+  (initial-major-mode 'text-mode)
   :hook
   (after-init . immortal-scratch-mode))
 
@@ -110,12 +110,12 @@
 (use-package lsp-mode
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
-  :custom (lsp-enable-snippet nil)
-  :init
-  (setq lsp-keymap-prefix "s-l")
+  :custom
+  (lsp-enable-snippet nil)
+  (lsp-keymap-prefix "s-l")
   ;; give lsp enough memory
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  (setq gc-cons-threshold 80000000)
+  (read-process-output-max (* 1024 1024)) ;; 1mb
+  (gc-cons-threshold 80000000)
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
@@ -124,15 +124,17 @@
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (lsp-ui-doc-enable t)
   (lsp-ui-doc-position 'bottom)
-  (lsp-ui-doc-use-webkit nil)
   :commands lsp-ui-mode)
+
+(use-package lsp-treemacs
+  :custom
+  (lsp-treemacs-sync-mode t))
 
 (use-package company-lsp
   :after lsp-ui
-  :config
-  (setq lsp-completion-provider :capf))
+  :custom
+  (lsp-completion-provider :capf))
 
 ;; Posframe is a pop-up tool that must be manually installed for dap-mode
 (use-package posframe)
@@ -168,7 +170,7 @@
 
 ;; graphviz
 (use-package graphviz-dot-mode
-  :config (setq graphviz-dot-mode-indent-width 2))
+  :custom (graphviz-dot-mode-indent-width 2))
 (use-package company-graphviz-dot
   :straight nil)
 
@@ -287,18 +289,6 @@
                      "eshell-up.el"
                      "exec-path-from-shell.el")))
 
-(use-package google-this)
-
-;;
-;; Re-spawn scratch buffer when killed
-;;
-(use-package immortal-scratch
-  :init
-  (setq initial-scratch-message "")
-  (setq initial-major-mode 'text-mode)
-  :hook
-  (after-init . immortal-scratch-mode))
-
 ;; ssh-add
 (use-package keychain-environment
   :init (keychain-refresh-environment))
@@ -341,9 +331,6 @@
   ;; exceptions
   ;; (add-to-list 'direnv-non-file-modes 'foobar-mode)
 
-  ;; nix-shells make too much spam -- hide
-  (setq direnv-always-show-summary nil)
-
   :hook
   ;; ensure direnv updates before flycheck and lsp
   ;; https://github.com/wbolster/emacs-direnv/issues/17
@@ -351,6 +338,8 @@
   (lsp-before-open-hook . direnv-update-environment)
 
   :custom
+  ;; nix-shells make too much spam -- hide
+  (direnv-always-show-summary nil)
   ;; quieten logging
   (warning-suppress-types '((direnv))))
 
