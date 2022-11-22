@@ -319,10 +319,13 @@
              :files ("visual-regexp-steroids.el" "regexp.py"))
   :requires visual-regexp
   :bind (:map global-map
+              ("C-s" . isearch-forward)
+              ("C-r" . isearch-backward)
+              ("C-q" . query-replace)
               ("C-c r" . vr/replace)
               ("C-c q" . vr/query-replace)
-              ("C-r" . vr/isearch-backward)
-              ("C-s" . vr/isearch-forward)))
+              ("C-c r" . vr/isearch-backward)
+              ("C-c s" . vr/isearch-forward)))
 
 
 (use-package multiple-cursors
