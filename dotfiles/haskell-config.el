@@ -49,5 +49,15 @@
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
 
+(defun my/haskell-cabal-format-and-save ()
+  "Format .cabal files with cabal-fmt."
+  (shell-command (format "cabal-fmt --inplace %s" (buffer-file-name)))
+  (revert-buffer nil t))
+
+(use-package haskell-cabal-mode
+  :straight nil
+  :hook
+  (before-save . my/haskell-cabal-format-and-save))
+
 (provide 'haskell-config)
 ;;; haskell-config.el ends here
