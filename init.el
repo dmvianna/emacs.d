@@ -196,7 +196,8 @@
    (lisp-mode . parinfer-mode)
    (lisp-interaction-mode . parinfer-mode)
    (geiser-mode . parinfer-mode)
-   (racket-mode . parinfer-mode)))
+   (racket-mode . parinfer-mode)
+   (before-save . delete-trailing-whitespace)))
 
 ;; Markdown
 (use-package markdown-mode
