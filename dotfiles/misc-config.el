@@ -254,8 +254,9 @@
            sml/shorten-directory t
            sml/name-width 32
            sml/shorten-modes t
-           sml/use-projectile-p 'before-prefixes
-           sml/projectile-replacement-format "%s/")
+           ;; sml/use-projectile-p 'before-prefixes
+           ;; sml/projectile-replacement-format "%s/"
+           )
      (sml/setup)))
 
 (provide 'misc-config)
