@@ -91,6 +91,9 @@
 
 (use-package google-this)
 
+;;; format code helper
+(use-package format-all)
+
 ;;
 ;; Re-spawn scratch buffer when killed
 ;;

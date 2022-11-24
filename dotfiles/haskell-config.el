@@ -1,6 +1,6 @@
 ;;; Package --- Summary
 ;;; Commentary:
-;;; Haskell configuration
+;;; Haskell configuration.
 ;;; Code:
 
 (use-package haskell-mode
@@ -49,15 +49,11 @@
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
 
-(defun my/haskell-cabal-format-and-save ()
-  "Format .cabal files with cabal-fmt."
-  (shell-command (format "cabal-fmt --inplace %s" (buffer-file-name)))
-  (revert-buffer nil t))
-
-(use-package haskell-cabal-mode
+(use-package haskell-cabal
   :straight nil
   :hook
-  (before-save . my/haskell-cabal-format-and-save))
+  (haskell-cabal-mode . format-all-mode)
+  (format-all-mode . format-all-ensure-formatter))
 
 (provide 'haskell-config)
 ;;; haskell-config.el ends here
