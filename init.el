@@ -190,7 +190,9 @@
   :interpreter "pickle-mode")
 
 ;; Lisp
-(use-package parinfer
+(use-package parinfer-rust-mode
+  :init
+  (setq parinfer-rust-auto-download t)
   :hook
   ((emacs-lisp-mode . parinfer-mode)
    (lisp-mode . parinfer-mode)
