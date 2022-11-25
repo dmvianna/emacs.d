@@ -263,7 +263,7 @@
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
 ;;; memory management: https://www.dr-qubit.org/Lost_undo-tree_history.html
 (use-package undo-tree
-  :init (undo-tree-mode))
+  :init (global-undo-tree-mode))
 
 (provide 'misc-config)
 ;;; misc-config.el ends here
