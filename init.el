@@ -184,6 +184,10 @@
   :interpreter "json-mode"
   )
 
+;; java
+(use-package lsp-java
+  :hook (java-mode . lsp))
+
 ;;; javascript & web
 (require 'web-config)
 
