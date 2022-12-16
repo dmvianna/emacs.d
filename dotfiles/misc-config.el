@@ -16,7 +16,10 @@
 (add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
 
 ;; disable indenting after newline
-(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+;; (when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+
+;; open pairs with extra newline in between, and autoindent
+(electric-pair-mode t)
 
 (require 'uniquify) ;; Inbuilt - Display sane file names
 (setq uniquify-buffer-name-style 'forward)
