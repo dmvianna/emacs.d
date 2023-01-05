@@ -78,5 +78,5 @@
   :config
   (setq completion-styles '(orderless)))
 
-(provide minibuffers)
+(provide 'minibuffers)
 ;;; minibuffers.el ends here.

@@ -44,9 +44,9 @@
 ;; t is True, nil is False. If you're copy-pasting 1 or -1,
 ;; these are also truthy and falsy values, respectively.
 (setq inhibit-startup-message t)
-(scroll-bar-mode nil)
-(menu-bar-mode nil)
-(tool-bar-mode nil)
+(scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; My favourite font. Do as you please.
 (add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
