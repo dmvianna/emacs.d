@@ -6,370 +6,278 @@
 ;;; init file
 ;;; Code:
 
-(require 'misc-config)
-;; (use-package proxy-config)
+;;;
+;;;
+;;; File structure inspired by emacs-bedrock
+;;; https://git.sr.ht/~ashton314/emacs-bedrock
+;;;
+;;;
 
-;;; stuff that is required to make emacs usable
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Basic settings
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; git
-(use-package magit
-  :init
-  (if (not (boundp 'project-switch-commands))
-      (setq project-switch-commands nil))
-  :bind (:map
-         magit-mode-map
-         ("C-x g" . magit-status)))
+;; Startup speed, annoyance suppression
+(setq gc-cons-threshold 10000000)
+(setq byte-compile-warnings '(not obsolete))
+(setq warning-suppress-log-types '((comp) (bytecomp)))
 
-;; Flycheck -- global syntax check (needed for hlint)
-;; we need to upgrade the inbuilt flymake version so
-;; that packages that require it don't fail
-(use-package flymake)
-
-(use-package flycheck
-  :init (global-flycheck-mode)
+;;; auto-byte-compile
+(setq load-prefer-newer t)
+(package-initialize)
+(use-package auto-compile
   :config
-  (setq-default flycheck-temp-prefix ".flycheck"))
+  '((auto-compile-on-load-mode)
+    (auto-compile-on-save-mode)))
+
+;; file encoding
+(prefer-coding-system 'utf-8)
+(setq buffer-file-coding-system 'utf-8)
+
+;; Disable backgrounding, of course. The first thing
+;; a newbie in a terminal should do to remain sane.
+(global-unset-key (kbd "C-z"))
+
+;; Basic layout
+;; t is True, nil is False. If you're copy-pasting 1 or -1,
+;; these are also truthy and falsy values, respectively.
+(setq inhibit-startup-message t)
+(scroll-bar-mode nil)
+(menu-bar-mode nil)
+(tool-bar-mode nil)
+
+;; My favourite font. Do as you please.
+(add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
+
+;; open pairs with extra newline in between, and autoindent
+(electric-pair-mode t)
+
+;; default mode for the *scratch* buffer
+(setq initial-major-mode 'fundamental-mode)
+;; this information is useless for most
+(setq display-time-default-load-average nil)
+
+;; Automatically reread from disk if the underlying file changes
+(setq auto-revert-interval 3)
+(setq auto-revert-check-vc-info t)
+(global-auto-revert-mode)
+
+;; line wrap by default
+(global-visual-line-mode t)
+
+;; Save history of minibuffer
+(savehist-mode)
+
+;;; Save all tempfiles in $TMPDIR/emacs-$UID/
+(defconst emacs-tmp-dir
+   (format "%s/%s%s/" temporary-file-directory "emacs-" (user-uid)))
+(unless (file-directory-p emacs-tmp-dir)
+  (make-directory emacs-tmp-dir))
+(setq backup-directory-alist
+      `(("." . ,emacs-tmp-dir)))
+(setq undo-tree-history-directory-alist
+      `((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms
+      `((".*" ,emacs-tmp-dir t)))
+;; (setq undo-tree-history-directory-alist
+;;       `((".*" . ,emacs-tmp-dir)))
+;; (setq auto-save-list-file-prefix
+;;       emacs-tmp-dir)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Minibuffer/completion settings
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
+
+(setq enable-recursive-minibuffers t)                             ; Use the minibuffer whilst in the minibuffer
+(setq completion-cycle-threshold 1)                               ; TAB cycles candidates
+(setq completions-detailed t)                                     ; Show annotations
+(setq tab-always-indent 'complete)                                ; When I hit TAB, try to complete, otherwise, indent
+
+(fido-vertical-mode)                                              ; Show completion candidates in a vertical, interactive list
+(setq completion-styles '(basic initials substring))              ; Different styles to match input to candidates
+(define-key minibuffer-mode-map (kbd "TAB") 'minibuffer-complete) ; TAB acts more like how it does in the shell
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Mouse
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(mouse-wheel-mode t)
+(xterm-mouse-mode t)
+
+;;; Mouse color must be the same in emacs-daemon
+(setq mouse-color "#002b36") ;;; solarized-dark light gray
+(set-mouse-color mouse-color) ;;; that's emacs
+
+;;; Keep mouse color in GUI too
+(require 'frame)
+(defun set-default-hook (frame)
+  "Set all default frame logic.  FRAME is the frame being created."
+  (modify-frame-parameters
+   frame (list (cons 'mouse-color mouse-color))))
+
+;; Enable horizontal scrolling
+(setq mouse-wheel-tilt-scroll t)
+(setq mouse-wheel-flip-direction t)
+
+;; mouse wheel in iterm2 terminal
+(require 'mwheel)
+(require 'mouse)
+(xterm-mouse-mode t)
+(mouse-wheel-mode t)
+(global-set-key [mouse-4] 'next-line)
+(global-set-key [mouse-5] 'previous-line)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   My preferred default interface
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; focus on emacs frame when it is started
+(add-hook 'server-switch-hook #'raise-frame)
+
+;;; make a fullscreen function
+(defun fullscreen-frame ()
+  "Make Emacs use all the screen area."
+  (interactive)
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+
+;;; make a default layout function
+(defun default-layout ()
+  "Apply my preferred layout to an existing frame."
+  (interactive)
+  (fullscreen-frame)
+  (split-window-horizontally)
+  (treemacs))
 
 
-;; Company -- text completion
-(use-package company
-  :config
-  (setq company-idle-delay 0.3)
-  (global-company-mode t))
+;;; that's what emacs-daemon uses
+(add-hook
+ 'after-make-frame-functions
+ (lambda (frame)
+   (set-default-hook frame)
+   (select-frame frame)
+   (when (display-graphic-p frame)
+     (default-layout))))
 
-;;; Check spelling -- I don't even know how this works
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Interface enhancements/defaults
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (use-package flyspell
-;;   :init
-;;   (flyspell-mode t)
-;;   :custom
-;;   (ispell-program-name "hunspell")
-;;   (ispell-local-dictionary "en_AU"))
+;; Mode line information
+(setq line-number-mode t)                         ; Show current line in modeline
+(setq column-number-mode t)                       ; Show column as well
 
-;; (use-package langtool
-;;   :straight t
-;;   :custom
-;;   (langtool-bin "languagetool-commandline")
-;;   (langtool-default-language "en-AU"))
+(setq x-underline-at-descent-line nil)            ; Prettier underlines
+(setq switch-to-buffer-obey-display-actions t)    ; Make switching buffers more consistent
 
-;;; viewers
+(setq-default show-trailing-whitespace nil)       ; By default, don't underline trailing spaces
+(setq-default indicate-buffer-boundaries 'left)   ; Show icons showing the size of the buffer in the margin
 
-(use-package docview
+;;; Set tab width
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(setq indent-line-function 'insert-tab)
+
+;; Misc. UI tweaks
+(blink-cursor-mode nil)           ; Steady cursor
+;; (pixel-scroll-precision-mode)     ; Smooth scrolling
+(global-hl-line-mode)             ; Highlight the current line
+
+;; bind home and end keys to beginning and end of file
+(global-set-key (kbd "<home>") 'beginning-of-buffer)
+(global-set-key (kbd "<end>") 'end-of-buffer)
+
+;; Display line numbers in programming mode
+(use-package prog-mode
   :straight nil
-  :bind (:map
-         docview-mode-map
-         ("<mouse-4>" . doc-view-scroll-down-or-previous-page)
-         ("<mouse-5>" . doc-view-scroll-up-or-next-page)
-         ("<mouse-6>" . image-scroll-right)
-         ("<mouse-7>" . image-scroll-left)
-         ("<mouse-8>" . image-decrease-size)
-         ("<mouse-9>" . image-increase-size)))
-
-(use-package pdf-tools
-  :custom (pdf-view-display-size 'fit-height)
-  :init
-  (pdf-tools-install)
   :hook
-  (pdf-view-mode . (lambda (display-line-numbers-mode nil))))
+  (prog-mode . display-line-numbers-mode)
+  :init
+  (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 
-(use-package image-mode
-  :straight nil
-  :bind (:map
-         image-mode-map
-         ("<mouse-4>" . image-scroll-down)
-         ("<mouse-5>" . image-scroll-up)
-         ("<mouse-6>" . image-scroll-right)
-         ("<mouse-7>" . image-scroll-left)
-         ("<mouse-8>" . image-decrease-size)
-         ("<mouse-9>" . image-increase-size)))
+;; Use shift-arrow to move between windows
+(require 'windmove)
+(windmove-default-keybindings 'shift)
 
-;;; helpers
+;;; change capitalisation
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
-(use-package which-key
+;; ;; Display sane file names
+;; (require 'uniquify)
+;; (setq uniquify-buffer-name-style 'forward)
+
+;; bind meta to super
+(setq x-meta-keysym 'super
+      x-super-keysym 'meta)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Tab-bar configuration
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Show the tab-bar as soon as tab-bar functions are invoked
+(setq tab-bar-show 0)
+
+;; Add the time to the tab-bar, if visible
+(add-to-list 'tab-bar-format 'tab-bar-format-align-right 'append)
+(add-to-list 'tab-bar-format 'tab-bar-format-global 'append)
+(setq display-time-format "%a %F %T")
+(setq display-time-interval 1)
+(display-time-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Theme
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package solarized-theme
   :config
-  (which-key-mode))
+  (load-theme 'solarized-dark t))
 
-(use-package google-this)
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :requires all-the-icons
+  :hook (dired-mode . all-the-icons-dired-mode))
 
-;;; format code helper
-(use-package format-all)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Optional mixins
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;
-;; Re-spawn scratch buffer when killed
-;;
-(use-package immortal-scratch
-  :init
-  (setq initial-scratch-message "")
-  (setq initial-major-mode 'text-mode)
-  :hook
-  (after-init . immortal-scratch-mode))
+;; Uncomment these lines or copy from the mixin/ files as you see fit
 
-(use-package keychain-environment
-  :init (keychain-refresh-environment))
+;; UI/UX enhancements mostly focused on minibuffer and autocompletion interfaces
+(load-file (concat user-emacs-directory "mixins/ui.el"))
 
-(use-package yasnippet)
+;; Packages for software development
+(load-file (concat user-emacs-directory "mixins/dev.el"))
 
-;;; LSP
-(use-package lsp-mode
-  ;; lsp does not define this variable by
-  ;; default, so we have to set it here
-  :custom (lsp-enable-snippet nil)
-  :init
-  (setq lsp-keymap-prefix "s-l")
-  ;; give lsp enough memory
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  (setq gc-cons-threshold 80000000)
-  :hook
-  (before-save . lsp-format-buffer)
-  (before-save . lsp-organize-imports)
-  :commands (lsp lsp-deferred))
+;; Language support
+(load-file (concat user-emacs-directory "mixins/languages.el"))
 
-(use-package lsp-ui
-  :hook (lsp-mode . lsp-ui-mode)
-  :custom
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-position 'bottom)
-  (lsp-ui-doc-use-webkit nil)
-  :commands lsp-ui-mode)
+;; File viewers
+(load-file (concat user-emacs-directory "mixins/viewers.el"))
 
-(use-package company-lsp
-  :after lsp-ui
-  :config
-  (setq lsp-completion-provider :capf))
-
-;; Posframe is a pop-up tool that must be manually installed for dap-mode
-(use-package posframe)
-
-;; Use the Debug Adapter Protocol for running tests and debugging
-(use-package dap-mode
-  :hook
-  (lsp-mode . dap-mode)
-  (lsp-mode . dap-ui-mode))
-
-;;; languages
-
-(use-package avro-mode
-  :straight nil
-  :custom
-  (tab-width 4)
-  :mode "\\.avdl$")
-
-;; ini files
-(use-package conf-mode
-  :straight nil
-  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'")
-
-;; csv files
-(use-package csv-mode
-  :mode "\\.csv\\'")
-
-;; Dhall
-(use-package dhall-mode
-  :mode "\\.dhall\\'")
-
-(use-package dockerfile-mode)
-
-;; graphviz
-(use-package graphviz-dot-mode
-  :config (setq graphviz-dot-mode-indent-width 2))
-(use-package company-graphviz-dot
-  :straight nil)
-
-;; Haskell
-(require 'haskell-config)
-
-;; JSON
-(use-package json-mode
-  :mode "\\.json\\'\\|\\.jshintrc\\'"
-  :interpreter "json-mode"
-  )
-
-;; java
-(use-package lsp-java
-  :hook (java-mode . lsp))
-
-;;; javascript & web
-(require 'web-config)
-
-;; Gherkin
-(use-package pickle
-  :mode "\\.feature\\'"
-  :interpreter "pickle-mode")
-
-;; Lisp
-(use-package parinfer-rust-mode
-  :init
-  (setq parinfer-rust-auto-download t)
-  :hook
-  ((emacs-lisp-mode . parinfer-mode)
-   (lisp-mode . parinfer-mode)
-   (lisp-interaction-mode . parinfer-mode)
-   (geiser-mode . parinfer-mode)
-   (racket-mode . parinfer-mode)
-   (before-save . delete-trailing-whitespace)))
-
-;; Markdown
-(use-package markdown-mode
-  :hook
-  (markdown-mode . display-line-numbers-mode)
-  :mode "\\.md$"
-  :interpreter "markdown-mode"
-  :hook flyspell)
-
-;; Python
-(require 'python-config)
-
-;; nix
-(use-package nix-mode
-  :after lsp
-  :init
-  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
-                    :major-modes '(nix-mode)
-                    :server-id 'nix))
-  :mode "\\.nix\\'")
-
-;; Racket
-(use-package racket-mode
-  :mode "\\.rkt\\'"
-  :interpreter "racket-mode")
-
-;; rainbow
-;; rainbow-delimiters for elisp
-(use-package rainbow-delimiters
-  :hook
-  ((emacs-lisp-mode . rainbow-delimiters-mode)
-   (geiser-mode . rainbow-delimiters-mode)))
-
-;; scala
-(require 'scala-config)
-
-(use-package sh-script
-  :ensure nil
-  :mode (("\\.zsh\\'" . sh-mode)
-         ("\\.sh\\'" . sh-mode)
-         ("zshrc\\'" . sh-mode)
-         ("zshenv\\'" . sh-mode))
-  :bind (:map sh-mode-map
-              ("C-c C-e" . sh-execute-region))
-  :custom (sh-basic-offset 2)
-  )
-
-(use-package theta-mode
-  :straight (theta-mode
-             :type git
-             :host github
-             :repo "target/theta-idl"
-             :branch "stage"
-             :files ("emacs/theta-mode.el"))
-  :mode ("\\.theta\\'" . theta-mode))
-
-(use-package yaml-mode)
-
-(use-package terraform-mode
-  :hook
-  (terraform-mode . lsp))
-
-;;; shells
-
-;; rest
-(use-package verb)
-
-;; org-mode
-(use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :bind
-  (:map org-mode-map
-        ("C-c l" . org-store-link)
-        ("C-c a" . org-agenda)
-        ("C-c c" . org-capture))
-  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
-
-;; term
-(use-package multi-term)
-
-;; elisp term
-(use-package aweshell
-  :straight (aweshell
-             :type git
-             :host github
-             :repo "manateelazycat/aweshell"
-             :files ("aweshell.el"
-                     "eshell-did-you-mean.el"
-                     "eshell-prompt-extras.el"
-                     "eshell-up.el"
-                     "exec-path-from-shell.el")))
-
-(use-package google-this)
-
-;;
-;; Re-spawn scratch buffer when killed
-;;
-(use-package immortal-scratch
-  :init
-  (setq initial-scratch-message "")
-  (setq initial-major-mode 'text-mode)
-  :hook
-  (after-init . immortal-scratch-mode))
-
-;; ssh-add
-(use-package keychain-environment
-  :init (keychain-refresh-environment))
-
-(use-package string-inflection)
-
-(use-package visual-regexp)
-
-(use-package visual-regexp-steroids
-  :straight (visual-regexp-steroids
-             :type git
-             :host github
-             :repo "benma/visual-regexp-steroids.el"
-             :files ("visual-regexp-steroids.el" "regexp.py"))
-  :requires visual-regexp
-  :bind (:map global-map
-              ("C-s" . isearch-forward)
-              ("C-r" . isearch-backward)
-              ("C-q" . query-replace)
-              ("C-c r" . vr/replace)
-              ("C-c q" . vr/query-replace)
-              ("C-c r" . vr/isearch-backward)
-              ("C-c s" . vr/isearch-forward)))
-
-
-(use-package multiple-cursors
-  :bind (:map global-map
-              ("C-c m" . vr/mc-mark)
-              ("C->" . mc/mark-next-like-this)
-              ("C-<" . mc/mark-previous-like-this)
-              ("C-c C-<" . mc/mark-all-like-this)))
-
-
-;; code folding, very useful with big JSON files
-(use-package origami)
-
-;; direnv
-
-(use-package direnv
-  :config
-  ;; enable globally
-  (direnv-mode)
-  ;; exceptions
-  ;; (add-to-list 'direnv-non-file-modes 'foobar-mode)
-
-  ;; nix-shells make too much spam -- hide
-  (setq direnv-always-show-summary nil)
-
-  :hook
-  ;; ensure direnv updates before flycheck and lsp
-  ;; https://github.com/wbolster/emacs-direnv/issues/17
-  (flycheck-before-syntax-check . direnv-update-environment)
-  (lsp-before-open-hook . direnv-update-environment)
-
-  :custom
-  ;; quieten logging
-  (warning-suppress-types '((direnv))))
+;; Minibuffer & popups
+(load-file (concat user-emacs-directory "mixins/minibuffers.el"))
 
 (provide 'init)
 ;;; init.el ends here

@@ -3,6 +3,8 @@
 !README.md
 !early-init.el
 !init.el
+!mixins/
+!mixins/*.el
 !dotfiles/
 !dotfiles/*.el
 dotfiles/sql-config.el
