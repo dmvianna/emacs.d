@@ -51,9 +51,6 @@
 ;; My favourite font. Do as you please.
 (add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
 
-;; open pairs with extra newline in between, and autoindent
-(electric-pair-mode t)
-
 ;; default mode for the *scratch* buffer
 (setq initial-major-mode 'fundamental-mode)
 ;; this information is useless for most
@@ -204,8 +201,10 @@
 ;; Display line numbers in programming mode
 (use-package prog-mode
   :straight nil
-  :hook
-  (prog-mode . display-line-numbers-mode)
+  :config
+  ;; open pairs with extra newline in between, and autoindent
+  (electric-pair-local-mode t)
+  (display-line-numbers-mode t)
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
 

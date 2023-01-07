@@ -75,8 +75,8 @@
 ;; JSON
 (use-package json-mode
   :mode "\\.json\\'\\|\\.jshintrc\\'"
-  :interpreter "json-mode"
-  )
+  :interpreter "json-mode")
+
 
 ;; java
 (use-package lsp-java
@@ -92,15 +92,17 @@
 
 ;; Lisp
 (use-package parinfer-rust-mode
-  :init
-  (setq parinfer-rust-auto-download t)
+  :custom
+  (parinfer-rust-auto-download t)
+  (electric-pair-local-mode -1)
   :hook
-  ((emacs-lisp-mode . parinfer-mode)
-   (lisp-mode . parinfer-mode)
-   (lisp-interaction-mode . parinfer-mode)
-   (geiser-mode . parinfer-mode)
-   (racket-mode . parinfer-mode)
-   (before-save . delete-trailing-whitespace)))
+  (emacs-lisp-mode
+   lisp-mode
+   lisp-interaction-mode
+   geiser-mode
+   racket-mode)
+  (before-save . delete-trailing-whitespace))
+
 
 ;; Markdown
 (use-package markdown-mode
@@ -140,8 +142,8 @@
          ("zshenv\\'" . sh-mode))
   :bind (:map sh-mode-map
               ("C-c C-e" . sh-execute-region))
-  :custom (sh-basic-offset 2)
-  )
+  :custom (sh-basic-offset 2))
+
 
 (use-package theta-mode
   :straight (theta-mode
