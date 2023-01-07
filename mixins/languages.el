@@ -70,7 +70,7 @@
   :straight nil)
 
 ;; Haskell
-(load-file (concat user-emacs-directory "dotfiles/haskell-config.el"))
+(load-file (concat user-emacs-directory "mixins/languages/haskell-config.el"))
 
 ;; JSON
 (use-package json-mode
@@ -83,7 +83,7 @@
   :hook (java-mode . lsp))
 
 ;;; javascript & web
-(load-file (concat user-emacs-directory "dotfiles/web-config.el"))
+(load-file (concat user-emacs-directory "mixins/languages/web-config.el"))
 
 ;; Gherkin
 (use-package pickle
@@ -111,7 +111,7 @@
   :hook flyspell)
 
 ;; Python
-(load-file (concat user-emacs-directory "dotfiles/python-config.el"))
+(load-file (concat user-emacs-directory "mixins/languages/python-config.el"))
 
 ;; nix
 (use-package nix-mode
@@ -130,7 +130,7 @@
   :interpreter "racket-mode")
 
 ;; scala
-(load-file (concat user-emacs-directory "dotfiles/scala-config.el"))
+(load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
 
 (use-package sh-script
   :ensure nil
