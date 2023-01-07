@@ -103,7 +103,6 @@
    racket-mode)
   (before-save . delete-trailing-whitespace))
 
-
 ;; Markdown
 (use-package markdown-mode
   :hook
