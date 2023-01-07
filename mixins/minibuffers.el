@@ -59,11 +59,7 @@
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 ;; Consult: Misc. enhanced commands
-(use-package consult
-  :bind (("C-x b" . consult-buffer) ;; orig. switch-to-buffer
-         ("M-y" . consult-yank-pop) ;; orig. yank-pop
-         ("C-s" . consult-line)     ;; orig. isearch
-         ))
+(load-file (concat user-emacs-directory "mixins/minibuffers/consult-config.el"))
 
 ;; Orderless: powerful completion style
 (use-package orderless
