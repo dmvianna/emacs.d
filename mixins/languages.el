@@ -57,6 +57,10 @@
 
 (use-package dockerfile-mode)
 
+;; elm
+(use-package elm-mode
+  :hook (elm-mode . lsp))
+
 ;; graphviz
 (use-package graphviz-dot-mode
   :config (setq graphviz-dot-mode-indent-width 2))
