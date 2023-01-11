@@ -198,16 +198,15 @@
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<end>") 'end-of-buffer)
 
-;; Display line numbers
-(global-linum-mode t)
-
 (use-package prog-mode
   :straight nil
   :config
   ;; open pairs with extra newline in between, and autoindent
   (electric-pair-local-mode t)
   :init
-  (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode)))
+  (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode))
+  ;; Display line numbers
+  :hook (prog-mode . display-line-numbers-mode))
 
 ;; Use shift-arrow to move between windows
 (require 'windmove)
