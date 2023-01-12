@@ -234,11 +234,11 @@
 (setq tab-bar-show 0)
 
 ;; Add the time to the tab-bar, if visible
-(add-to-list 'tab-bar-format 'tab-bar-format-align-right 'append)
-(add-to-list 'tab-bar-format 'tab-bar-format-global 'append)
-(setq display-time-format "%a %F %T")
-(setq display-time-interval 1)
-(display-time-mode)
+;; (add-to-list 'tab-bar-format 'tab-bar-format-align-right 'append)
+;; (add-to-list 'tab-bar-format 'tab-bar-format-global 'append)
+;; (setq display-time-format "%a %F %T")
+;; (setq display-time-interval 1)
+;; (display-time-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
