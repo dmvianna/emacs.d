@@ -48,7 +48,7 @@
 ;; directory tree view
 (use-package treemacs
   :init
-  (require 'treemacs-extensions))
+  (require 'treemacs-treelib))
 
 (use-package neotree
   :config
@@ -96,10 +96,10 @@
      (setq sml/theme nil
            sml/shorten-directory t
            sml/name-width 32
-           sml/shorten-modes t
+           sml/shorten-modes t)
            ;; sml/use-projectile-p 'before-prefixes
            ;; sml/projectile-replacement-format "%s/"
-           )
+
      (sml/setup)))
 
 
