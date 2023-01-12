@@ -32,7 +32,8 @@
 (use-package yasnippet)
 
 ;; code folding, very useful with big JSON files
-(use-package origami)
+(use-package origami
+  :bind (:map origami-mode-map ("TAB" . origami-toggle-node)))
 
 ;; use tab and let lisp figure out the closing parens...
 (use-package smartparens
