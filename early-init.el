@@ -25,9 +25,9 @@
 ;;; use use-package
 (straight-use-package 'use-package)
 
-;; Misc config
+;; add modules within this directory to the scope
 (add-to-list 'load-path
-             (expand-file-name "dotfiles" user-emacs-directory)
+             (expand-file-name "local-packages" user-emacs-directory)
              )
 
 (provide 'early-init)
