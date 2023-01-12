@@ -153,7 +153,7 @@
 ;; directory tree view
 (use-package treemacs
   :init
-  (require 'treemacs-extensions))
+  (require 'treemacs-treelib))
 
 (use-package neotree
   :config
@@ -166,22 +166,23 @@
 ;; incremental completions
 (use-package consult)
 
-(use-package selectrum
+(use-package vertico
   :config
-  (selectrum-mode +1))
+  (vertico-mode))
 
-(use-package selectrum-prescient
-  :custom
-  (selectrum-prescient-enable-filtering nil)
-  :config
-  (selectrum-prescient-mode +1)
-  (prescient-persist-mode +1))
+;; (use-package selectrum-prescient
+;;   :custom
+;;   (selectrum-prescient-enable-filtering nil)
+;;   :config
+;;   (selectrum-prescient-mode +1)
+;;   (prescient-persist-mode +1))
 
 (use-package orderless
   :custom
   (completion-styles '(orderless))
-  (orderless-skip-highlighting (lambda () selectrum-is-active))
-  (selectrum-highlight-candidates-function #'orderless-highlight-matches))
+  ;; (orderless-skip-highlighting (lambda () selectrum-is-active))
+  ;; (selectrum-highlight-candidates-function #'orderless-highlight-matches))
+)
 
 ;; bind meta to super
 (setq x-meta-keysym 'super
