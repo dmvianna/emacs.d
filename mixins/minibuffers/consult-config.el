@@ -6,6 +6,7 @@
 (use-package consult
  ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
+         ("C-y" . consult-yank-from-kill-ring)
          ("C-c h" . consult-history)
          ("C-c m" . consult-mode-command)
          ("C-c b" . consult-bookmark)
@@ -110,7 +111,7 @@
   (setq consult-project-root-function
         (lambda ()
           (when-let (project (project-current))
-            (car (project-roots project)))))
+            (car (project-roots project))))))
   ;;;; 2. projectile.el (projectile-project-root)
   ;; (autoload 'projectile-project-root "projectile")
   ;; (setq consult-project-root-function #'projectile-project-root)
@@ -118,7 +119,7 @@
   ;; (setq consult-project-root-function #'vc-root-dir)
   ;;;; 4. locate-dominating-file
   ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
-  )
+
 
 (provide 'consult-config)
 ;;; consult-config.el ends here
