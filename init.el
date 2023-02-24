@@ -229,6 +229,23 @@
 (setq x-meta-keysym 'super
       x-super-keysym 'meta)
 
+;; Disable emoji picker / rebind it in Gnome
+;; I can't do it from within emacs but I need somewhere to put my documentation,
+;; so here it is:
+;;
+;; List relevant info:
+;;
+;; $ gsettings list-recursively org.freedesktop.ibus.panel.emoji
+;;
+;; It will list the default:
+;;
+;; > org.freedesktop.ibus.panel.emoji hotkey ['<Super>period']
+;;
+;; Replace with something safe:
+;;
+;; $ gsettings set org.freedesktop.ibus.panel.emoji hotkey '["<Super>e"]'
+;;
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   Tab-bar configuration
