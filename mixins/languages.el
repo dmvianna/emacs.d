@@ -4,19 +4,20 @@
 ;;; Code:
 
 ;;; LSP
+
 (use-package lsp-mode
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
   :custom (lsp-enable-snippet nil)
   :init
-  (setq lsp-keymap-prefix "s-l")
   ;; give lsp enough memory
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
   (setq gc-cons-threshold 80000000)
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
-  :commands (lsp lsp-deferred))
+  :commands (lsp lsp-deferred)
+  :bind-keymap ("s-l" . lsp-command-map))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -24,6 +25,10 @@
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-position 'bottom)
   (lsp-ui-doc-use-webkit nil)
+  :config
+  (progn
+   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
   :commands lsp-ui-mode)
 
 (use-package company-lsp
