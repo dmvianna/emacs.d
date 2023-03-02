@@ -23,7 +23,7 @@
 
 (use-package haskell-interactive-mode
   :straight nil
-  :bind (:map interactive-haskell-mode-map ("M-." . nil))
+  :bind ("M-." . nil)
   :hook
   (haskell-mode-hook . interactive-haskell-mode))
 
