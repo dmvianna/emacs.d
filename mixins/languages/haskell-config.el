@@ -35,6 +35,7 @@
   (haskell-indent-spaces 4))
 
 (use-package lsp-haskell
+  :after haskell-mode
   :custom
   (lsp-haskell-server-path "haskell-language-server-wrapper")
   (lsp-haskell-tactic-on t)
