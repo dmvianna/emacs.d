@@ -68,9 +68,8 @@
 
 ;; graphviz
 (use-package graphviz-dot-mode
-  :config (setq graphviz-dot-mode-indent-width 2))
-(use-package company-graphviz-dot
-  :straight nil)
+  :config (setq graphviz-dot-mode-indent-width 2)
+  :hook (graphviz-dot-mode . company-mode))
 
 ;; Haskell
 (load-file (concat user-emacs-directory "mixins/languages/haskell-config.el"))
