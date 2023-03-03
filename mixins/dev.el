@@ -139,6 +139,15 @@
          magit-mode-map
          ("C-x g" . magit-status)))
 
+;; the current transient release (magit dependency)
+;; is broken (v0.3.7), so we use this
+(use-package transient
+  :straight (transient
+             :type git
+             :host github
+             :repo "magit/transient"))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   web browser
