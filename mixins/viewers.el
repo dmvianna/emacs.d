@@ -32,5 +32,11 @@
          ("<mouse-8>" . image-decrease-size)
          ("<mouse-9>" . image-increase-size)))
 
+(use-package nov
+  :mode
+  ("\\.epub$" . nov-mode)
+
+  :hook (nov-mode . nov-xwidget-inject-all-files))
+
 (provide 'viewers)
 ;;; viewers.el ends here.
