@@ -225,10 +225,6 @@
 ;; (require 'uniquify)
 ;; (setq uniquify-buffer-name-style 'forward)
 
-;; bind meta to super
-(setq x-meta-keysym 'super
-      x-super-keysym 'meta)
-
 ;; Disable emoji picker / rebind it in Gnome
 ;; I can't do it from within emacs but I need somewhere to put my documentation,
 ;; so here it is:
