@@ -23,7 +23,7 @@
          ("C-M-#" . consult-register)
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)                ;; orig. yank-pop
-         ("<help> a" . consult-apropos)            ;; orig. apropos-command
+         ;; ("<help> a" . consult-apropos)         ;; obsolete
          ;; M-g bindings (goto-map)
          ("M-g e" . consult-compile-error)
          ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
@@ -42,7 +42,7 @@
          ("M-s r" . consult-ripgrep)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
-         ("M-s m" . consult-multi-occur)
+         ;; ("M-s m" . consult-multi-occur)        ;; obsolete
          ("M-s k" . consult-keep-lines)
          ("M-s u" . consult-focus-lines)
          ;; Isearch integration
