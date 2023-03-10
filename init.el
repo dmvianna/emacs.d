@@ -58,6 +58,14 @@
 
 ;; default mode for the *scratch* buffer
 (setq initial-major-mode 'fundamental-mode)
+
+;; No electric indent in text-mode (used in fundamental-mode --
+;; see immortal-scratch
+(defun disable-electric-indent-local-mode ()
+  "Disable adding tab following newline after return."
+  (electric-indent-local-mode -1))
+(add-hook 'text-mode-hook 'disable-electric-indent-local-mode)
+
 ;; this information is useless for most
 (setq display-time-default-load-average nil)
 
