@@ -25,7 +25,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Startup speed, annoyance suppression
-(setq gc-cons-threshold 10000000)
+;;
+;; `gc-cons-percentage` is the proper place to set the garbage collector threshold,
+;; [see](https://lists.gnu.org/archive/html/help-gnu-emacs/2007-06/msg00243.html).
+;;
+;; (setq gc-cons-threshold 10000000)
 (setq byte-compile-warnings '(not obsolete))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 
