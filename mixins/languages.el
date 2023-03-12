@@ -27,8 +27,12 @@
   (lsp-ui-doc-use-webkit nil)
   :config
   (progn
-   (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
-   (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references))
+    (define-key lsp-ui-mode-map
+       [remap haskell-mode-jump-to-def-or-tag] #'lsp-ui-peek-find-definitions)
+    (define-key lsp-ui-mode-map
+       [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+    (define-key lsp-ui-mode-map
+       [remap xref-find-references] #'lsp-ui-peek-find-references))
   :commands lsp-ui-mode)
 
 (use-package company-lsp
