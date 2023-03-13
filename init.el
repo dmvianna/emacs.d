@@ -15,7 +15,7 @@
 
 ;;;
 ;;; To reload the config, run
-;;; M-; (load user-init-file)
+;;; M-: (load user-init-file)
 ;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -191,6 +191,9 @@
 ;;;   Interface enhancements/defaults
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Switch windows easily
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; Mode line information
 (setq line-number-mode t)                         ; Show current line in modeline
