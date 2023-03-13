@@ -116,6 +116,7 @@
 (fido-vertical-mode)                                              ; Show completion candidates in a vertical, interactive list
 (setq completion-styles '(basic initials substring))              ; Different styles to match input to candidates
 (define-key minibuffer-mode-map (kbd "TAB") 'minibuffer-complete) ; TAB acts more like how it does in the shell
+(define-key minibuffer-mode-map (kbd "<right>") 'minibuffer-complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;

@@ -58,7 +58,7 @@
 
 ;; ibuffer
 (use-package ibuffer
-  :bind ("C-x C-b" . ibuffer))
+  :config (global-set-key [remap-list-buffers] 'ibuffer))
 
 (use-package ibuffer-vc
   :hook (ibuffer-mode . ibuffer-vc-generate-filter-groups-by-vc-root)
