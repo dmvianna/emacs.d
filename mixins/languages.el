@@ -10,10 +10,12 @@
   ;; default, so we have to set it here
   :custom
   (lsp-enable-snippet nil)
-  (lsp-use-plists t)
   :init
   ;; give lsp enough memory
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  ;; probably overkill, but doesn't hurt. LSP should use
+  ;; better deserialisation.
+  (setq lsp-use-plists t)
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
