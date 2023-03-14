@@ -8,7 +8,9 @@
 (use-package lsp-mode
   ;; lsp does not define this variable by
   ;; default, so we have to set it here
-  :custom (lsp-enable-snippet nil)
+  :custom
+  (lsp-enable-snippet nil)
+  (lsp-use-plists t)
   :init
   ;; give lsp enough memory
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
@@ -21,7 +23,6 @@
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (lsp-use-plists t)
   (lsp-ui-doc-enable t)
   (lsp-ui-doc-position 'bottom)
   (lsp-ui-doc-use-webkit nil)
