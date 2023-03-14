@@ -26,10 +26,20 @@
 
 ;; Startup speed, annoyance suppression
 ;;
-;; `gc-cons-percentage` is the proper place to set the garbage collector threshold,
-;; [see](https://lists.gnu.org/archive/html/help-gnu-emacs/2007-06/msg00243.html).
-;;
-;; (setq gc-cons-threshold 10000000)
+
+;; Garbage collection is hard, let a library do it
+(use-package gcmh
+  :delight (gcmh-mode)
+  :commands (gcmh-mode)
+  :functions (gcmh-idle-garbage-collect)
+  :custom
+  (gcmh-idle-delay 'auto)
+  (gcmh-auto-idle-delay-factor 10)
+  (gcmh-high-cons-threshold (* 16 1024 1024))
+  (gcmh-verbose nil)
+  :hook
+  (emacs-startup-hook . gcmh-mode))
+
 (setq byte-compile-warnings '(not obsolete))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 

@@ -3,6 +3,10 @@
 ;;; early init file
 ;;; Code:
 
+;; increase this early, decrease later on again
+(setq gc-cons-threshold most-positive-fixnum)
+(setq gc-cons-percentage 0.6)
+
 ;;; disable package.el and use straight by default
 (setq package-enable-at-startup nil
       straight-use-package-by-default t
@@ -27,8 +31,8 @@
 
 ;; add modules within this directory to the scope
 (add-to-list 'load-path
-             (expand-file-name "local-packages" user-emacs-directory)
-             )
+             (expand-file-name "local-packages" user-emacs-directory))
+
 
 (provide 'early-init)
 ;;; early-init.el ends here
