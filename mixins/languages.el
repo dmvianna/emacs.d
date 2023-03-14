@@ -13,8 +13,9 @@
   :init
   ;; give lsp enough memory
   (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  ;; probably overkill, but doesn't hurt. LSP should use
-  ;; better deserialisation.
+  ;; Probably overkill, but doesn't hurt.
+  ;; LSP should use better deserialisation.
+  ;; https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
   (setq lsp-use-plists t)
   :hook
   (before-save . lsp-format-buffer)
