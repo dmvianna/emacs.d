@@ -3,11 +3,6 @@
 ;;; Haskell configuration.
 ;;; Code:
 
-(use-package haskell-process
-  :straight nil
-  :custom
-  (haskell-process-type 'auto))
-
 (use-package lsp-haskell
   :custom
   (lsp-haskell-server-path "haskell-language-server-wrapper")
