@@ -49,6 +49,9 @@
   :config
   (setq lsp-completion-provider :capf))
 
+;; eglot
+(use-package eglot)
+
 ;; Posframe is a pop-up tool that must be manually installed for dap-mode
 (use-package posframe)
 
