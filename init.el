@@ -105,10 +105,6 @@
       `((".*" . ,emacs-tmp-dir)))
 (setq auto-save-file-name-transforms
       `((".*" ,emacs-tmp-dir t)))
-;; (setq undo-tree-history-directory-alist
-;;       `((".*" . ,emacs-tmp-dir)))
-;; (setq auto-save-list-file-prefix
-;;       emacs-tmp-dir)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -237,7 +233,9 @@
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode))
   ;; Display line numbers
-  :hook (prog-mode . display-line-numbers-mode))
+  :hook
+  (prog-mode . display-line-numbers-mode)
+  (prog-mode . undo-tree-mode))
 
 ;; Use shift-arrow to move between windows
 (require 'windmove)

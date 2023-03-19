@@ -34,9 +34,7 @@
 
 (use-package nov
   :mode
-  ("\\.epub$" . nov-mode)
-
-  :hook (nov-mode . nov-xwidget-inject-all-files))
+  ("\\.epub$" . nov-mode))
 
 (provide 'viewers)
 ;;; viewers.el ends here.
