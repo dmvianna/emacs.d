@@ -7,7 +7,7 @@
 ;; critical for lisps
 (use-package rainbow-delimiters
   :hook
-  (emacs-lisp-mode geiser-mode))
+  (emacs-lisp-mode . geiser-mode))
 
 ;; we need to upgrade the inbuilt flymake version so
 ;; that packages that require it don't fail
