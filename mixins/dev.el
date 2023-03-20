@@ -45,8 +45,7 @@
 ;;; memory management: https://www.dr-qubit.org/Lost_undo-tree_history.html
 (use-package undo-tree
   :custom
-  (undo-tree-save-history nil)
-  (undo-tree-load-history nil)
+  (undo-tree-auto-save-history nil)
   (undo-tree-limit 8000000) ;; 10 times smaller than default
   (undo-tree-strong-limit 12000000) ;; 10 times smaller than default
   (undo-tree-outer-limit 360000000) ;; 10 times smaller than default
