@@ -54,7 +54,12 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
-  :hook (haskell-mode . eglot-ensure))
+  :hook (haskell-mode . eglot-ensure)
+  :config
+  (setq-default
+   eglot-workspace-configuration
+   '(haskell
+     (formattingProvider "fourmolu"))))
 
 (defun my-eglot-organize-imports ()
   "Organize imports in eglot."
