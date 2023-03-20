@@ -17,11 +17,6 @@
 (use-package flycheck
   :init (global-flycheck-mode)
   :config
-  (setq flycheck-executable-find
-        (lambda
-          (cmd)
-          (direnv-update-environment default-directory)
-          (executable-find cmd)))
   (setq-default flycheck-temp-prefix ".flycheck"))
 
 
