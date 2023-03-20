@@ -17,8 +17,9 @@
 (use-package flycheck
   :init (global-flycheck-mode)
   :config
-  (setq-default flycheck-temp-prefix ".flycheck"))
-
+  (setq-default flycheck-temp-prefix ".flycheck")
+  :custom
+  (flycheck-disabled-checkers '(haskell-stack-ghc haskell-ghc haskell-hlint)))
 
 ;; Company -- text completion
 (use-package company
