@@ -50,7 +50,12 @@
   (setq lsp-completion-provider :capf))
 
 ;; eglot
-(use-package eglot)
+(use-package eglot
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-confirm-server-initiated-edits t)
+  :hook (haskell-mode . eglot-ensure))
+
 (defun my-eglot-organize-imports ()
   "Organize imports in eglot."
   (interactive)

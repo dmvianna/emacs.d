@@ -28,7 +28,10 @@
   (global-company-mode t))
 
 ;;; format code helper
-(use-package format-all)
+(use-package format-all
+  :config
+  (custom-set-variables '(format-all-formatters '(("Haskell" fourmolu))))
+  :hook (format-all-mode . format-all-ensure-formatter))
 
 (use-package yasnippet)
 
