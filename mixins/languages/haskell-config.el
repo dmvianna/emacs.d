@@ -14,9 +14,7 @@
   (lsp-haskell-brittany nil)
   (lsp-haskell-floskell nil)
   (lsp-haskell-ormolu nil)
-  (lsp-haskell-stylish-haskell nil)
-  :hook
-  (haskell-mode . format-all-mode))
+  (lsp-haskell-stylish-haskell nil))
 
 (use-package haskell-cabal
   :straight nil
