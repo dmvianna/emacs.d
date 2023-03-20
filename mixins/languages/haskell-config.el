@@ -22,5 +22,8 @@
   (haskell-cabal-mode . format-all-mode)
   (format-all-mode . format-all-ensure-formatter))
 
+(use-package flycheck-haskell
+ :hook (haskell-mode . flycheck-haskell-setup))
+
 (provide 'haskell-config)
 ;;; haskell-config.el ends here
