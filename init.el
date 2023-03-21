@@ -234,8 +234,7 @@
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode))
   ;; Display line numbers
   :hook
-  (prog-mode . display-line-numbers-mode)
-  (prog-mode . undo-tree-mode))
+  (prog-mode . display-line-numbers-mode))
 
 ;; Use shift-arrow to move between windows
 (require 'windmove)

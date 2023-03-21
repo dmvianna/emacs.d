@@ -53,6 +53,7 @@
   (undo-tree-strong-limit 12000000) ;; 10 times smaller than default
   (undo-tree-outer-limit 360000000) ;; 10 times smaller than default
   :init
+  (setq undo-tree-enable-undo-in-region nil)
   (defadvice undo-tree-make-history-save-file-name
       (after undo-tree activate)
     (setq ad-return-value (concat ad-return-value ".gz"))))

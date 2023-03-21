@@ -22,5 +22,11 @@
   (haskell-cabal-mode . format-all-mode)
   (format-all-mode . format-all-ensure-formatter))
 
+(use-package haskell-mode
+  :straight nil
+  :delight "λ"
+  :after haskell-font-lock
+  :hook (haskell-mode . undo-tree-mode))
+
 (provide 'haskell-config)
 ;;; haskell-config.el ends here
