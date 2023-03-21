@@ -90,17 +90,17 @@
              ("M-S-<down>" . drag-stuff-down)))
 
 
-(use-package smart-mode-line
-  :init
-  (progn
-     (setq sml/theme nil
-           sml/shorten-directory t
-           sml/name-width 32
-           sml/shorten-modes t)
-           ;; sml/use-projectile-p 'before-prefixes
-           ;; sml/projectile-replacement-format "%s/"
+;; (use-package smart-mode-line
+;;   :init
+;;   (progn
+;;      (setq sml/theme nil
+;;            sml/shorten-directory t
+;;            sml/name-width 32
+;;            sml/shorten-modes t)
+;;            ;; sml/use-projectile-p 'before-prefixes
+;;            ;; sml/projectile-replacement-format "%s/"
 
-     (sml/setup)))
+;;      (sml/setup)))
 
 
 (provide 'ui)

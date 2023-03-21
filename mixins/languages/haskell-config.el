@@ -25,8 +25,7 @@
 (use-package haskell-mode
   :straight nil
   :delight "λ"
-  :after haskell-font-lock
-  :hook (haskell-mode . undo-tree-mode))
+  :after haskell-font-lock)
 
 (provide 'haskell-config)
 ;;; haskell-config.el ends here

@@ -46,17 +46,17 @@
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
 ;;; memory management: https://www.dr-qubit.org/Lost_undo-tree_history.html
-(use-package undo-tree
-  :custom
-  (undo-tree-auto-save-history nil)
-  (undo-tree-limit 8000000) ;; 10 times smaller than default
-  (undo-tree-strong-limit 12000000) ;; 10 times smaller than default
-  (undo-tree-outer-limit 360000000) ;; 10 times smaller than default
-  :init
-  (setq undo-tree-enable-undo-in-region nil)
-  (defadvice undo-tree-make-history-save-file-name
-      (after undo-tree activate)
-    (setq ad-return-value (concat ad-return-value ".gz"))))
+;; (use-package undo-tree
+;;   :custom
+;;   (undo-tree-auto-save-history nil)
+;;   (undo-tree-limit 8000000) ;; 10 times smaller than default
+;;   (undo-tree-strong-limit 12000000) ;; 10 times smaller than default
+;;   (undo-tree-outer-limit 360000000) ;; 10 times smaller than default
+;;   :init
+;;   (setq undo-tree-enable-undo-in-region nil)
+;;   (defadvice undo-tree-make-history-save-file-name
+;;       (after undo-tree activate)
+;;     (setq ad-return-value (concat ad-return-value ".gz"))))
 
 ;;; exclude the following directories from grep searches
 (eval-after-load 'grep
