@@ -195,5 +195,7 @@
   :hook
   (terraform-mode . lsp))
 
+(use-package udev-mode)
+
 (provide 'languages)
 ;;; languages.el ends here
