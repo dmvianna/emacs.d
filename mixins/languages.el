@@ -50,7 +50,9 @@
   (setq lsp-completion-provider :capf))
 
 ;; eglot
+(use-package jsonrpc) ;; hopefully this doesn't leak memory
 (use-package eglot
+  :after jsonrpc
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
