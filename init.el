@@ -26,8 +26,11 @@
 
 ;; Startup speed, annoyance suppression
 ;;
+;; We have started, bring gc threshold back down
+(setq gc-cons-threshold (* 16 1024 1024) ;; 16 MB
+      gc-cons-percentage 0.1)
 
-;; Garbage collection is hard, let a library do it
+;; garbage collection is hard, let a library do it
 (use-package gcmh
   :delight (gcmh-mode)
   :commands (gcmh-mode)
