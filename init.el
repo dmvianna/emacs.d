@@ -322,5 +322,8 @@
 ;; Minibuffer & popups
 (load-file (concat user-emacs-directory "mixins/minibuffers.el"))
 
+;; Entertainment
+(load-file (concat user-emacs-directory "mixins/entertainment.el"))
+
 (provide 'init)
 ;;; init.el ends here
