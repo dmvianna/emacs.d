@@ -84,7 +84,7 @@
 ;; ini files
 (use-package conf-mode
   :straight nil
-  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'")
+  :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'\\|\\.desktop\\'")
 
 ;; csv files
 (use-package csv-mode
