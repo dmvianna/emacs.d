@@ -76,12 +76,8 @@
 ;; default mode for the *scratch* buffer
 (setq initial-major-mode 'fundamental-mode)
 
-;; No electric indent in text-mode (used in fundamental-mode --
-;; see immortal-scratch
-(defun disable-electric-indent-local-mode ()
-  "Disable adding tab following newline after return."
-  (electric-indent-local-mode -1))
-(add-hook 'text-mode-hook 'disable-electric-indent-local-mode)
+;; No electric indent
+(electric-indent-mode -1)
 
 ;; this information is useless for most
 (setq display-time-default-load-average nil)
@@ -125,7 +121,6 @@
 (fido-vertical-mode)                                              ; Show completion candidates in a vertical, interactive list
 (setq completion-styles '(basic initials substring))              ; Different styles to match input to candidates
 (define-key minibuffer-mode-map (kbd "TAB") 'minibuffer-complete) ; TAB acts more like how it does in the shell
-(define-key minibuffer-mode-map (kbd "<right>") 'minibuffer-complete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
