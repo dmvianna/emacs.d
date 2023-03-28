@@ -24,7 +24,8 @@
 ;; Company -- text completion
 (use-package company
   :config
-  (setq company-idle-delay 0.3)
+  (setq company-idle-delay 0.3
+        company-minimum-prefix-length 1)
   (global-company-mode t))
 
 ;;; format code helper
