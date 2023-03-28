@@ -192,7 +192,7 @@
 
 (use-package terraform-mode
   :init
-  (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls")))
+  (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-lsp")))
   :hook
   (terraform-mode . eglot-ensure))
 
