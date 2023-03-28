@@ -26,7 +26,7 @@
   ;; formatting of multiline strings only. You might want to disable it so that
   ;; emacs can use indentation provided by scala-mode.
   (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  :hook (scala-mode . lsp))
+  :hook (scala-mode . eglot-ensure))
 
 (provide 'scala-config)
 ;;; scala-config.el ends here

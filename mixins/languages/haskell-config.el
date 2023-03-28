@@ -25,7 +25,8 @@
 (use-package haskell-mode
   :straight nil
   :delight "λ"
-  :after haskell-font-lock)
+  :after haskell-font-lock
+  :hook (haskell-mode . eglot-ensure))
 
 (provide 'haskell-config)
 ;;; haskell-config.el ends here

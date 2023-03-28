@@ -56,7 +56,6 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
-  :hook (haskell-mode . eglot-ensure)
   :config
   (setq-default
    eglot-workspace-configuration
@@ -98,7 +97,7 @@
 
 ;; elm
 (use-package elm-mode
-  :hook (elm-mode . lsp))
+  :hook (elm-mode . eglot-ensure))
 
 ;; graphviz
 (use-package graphviz-dot-mode
@@ -111,12 +110,12 @@
 ;; JSON
 (use-package json-mode
   :mode "\\.json\\'\\|\\.jshintrc\\'"
-  :interpreter "json-mode")
-
+  :interpreter "json-mode"
+  :hook (json-mode . eglot-ensure))
 
 ;; java
 (use-package lsp-java
-  :hook (java-mode . lsp))
+  :hook (java-mode . eglot-ensure))
 
 ;;; javascript & web
 (load-file (concat user-emacs-directory "mixins/languages/web-config.el"))
@@ -152,13 +151,14 @@
 
 ;; nix
 (use-package nix-mode
-  :after lsp
   :init
+  (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
   (lsp-register-client
    (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
                     :major-modes '(nix-mode)
                     :server-id 'nix))
+  :hook (nix-mode . eglot-ensure)
   :mode "\\.nix\\'")
 
 ;; Racket
@@ -179,7 +179,6 @@
               ("C-c C-e" . sh-execute-region))
   :custom (sh-basic-offset 2))
 
-
 (use-package theta-mode
   :straight (theta-mode
              :type git
@@ -193,7 +192,7 @@
 
 (use-package terraform-mode
   :hook
-  (terraform-mode . lsp))
+  (terraform-mode . eglot-ensure))
 
 (use-package udev-mode)
 
