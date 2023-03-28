@@ -320,5 +320,8 @@
 ;; Entertainment
 (load-file (concat user-emacs-directory "mixins/entertainment.el"))
 
+;; Modes that must be loaded early
+(load-file (concat user-emacs-directory "mixins/early-modes.el"))
+
 (provide 'init)
 ;;; init.el ends here

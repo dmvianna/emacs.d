@@ -191,6 +191,8 @@
 (use-package yaml-mode)
 
 (use-package terraform-mode
+  :init
+  (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls")))
   :hook
   (terraform-mode . eglot-ensure))
 
