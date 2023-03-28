@@ -6,7 +6,7 @@
 (use-package consult
  ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
-         ("C-y" . consult-yank-from-kill-ring)
+         ("C-c y" . consult-yank-from-kill-ring)
          ("C-c h" . consult-history)
          ("C-c m" . consult-mode-command)
          ("C-c b" . consult-bookmark)
