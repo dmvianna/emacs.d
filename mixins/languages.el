@@ -97,7 +97,7 @@
 
 ;; elm
 (use-package elm-mode
-  :hook (elm-mode . eglot-ensure))
+  :hook (elm-mode . lsp-deferred))
 
 ;; graphviz
 (use-package graphviz-dot-mode
@@ -111,11 +111,11 @@
 (use-package json-mode
   :mode "\\.json\\'\\|\\.jshintrc\\'"
   :interpreter "json-mode"
-  :hook (json-mode . eglot-ensure))
+  :hook (json-mode . lsp-deferred))
 
 ;; java
 (use-package lsp-java
-  :hook (java-mode . eglot-ensure))
+  :hook (java-mode . lsp-deferred))
 
 ;;; javascript & web
 (load-file (concat user-emacs-directory "mixins/languages/web-config.el"))
