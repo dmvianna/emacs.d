@@ -56,11 +56,14 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
-  :config
-  (setq-default
-   eglot-workspace-configuration
-   '(haskell
-     (formattingProvider "fourmolu"))))
+  :hook (eglot-managed-mode . (lambda () (put 'eglot-note 'flymake-overlay-control nil)
+                               (put 'eglot-warning 'flymake-overlay-control nil)
+                               (put 'eglot-error 'flymake-overlay-control nil)))
+   :config
+   (setq-default
+    eglot-workspace-configuration
+    '(haskell
+      (formattingProvider "fourmolu"))))
 
 (defun my-eglot-organize-imports ()
   "Organize imports in eglot."
