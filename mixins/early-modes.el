@@ -8,7 +8,7 @@
 (use-package direnv
     :config
     ;; enable globally
-    (direnvmode)
+    (direnv-mode)
     ;; exceptions
     ;; (add-to-list 'direnv-non-file-modes 'foobar-mode)
 
@@ -25,10 +25,17 @@
     ;; quieten logging
     (warning-suppress-types '((direnv))))
 
+(use-package inheritenv
+  :straight (inheritenv :type git :host github :repo "purcell/inheritenv"))
 
 (use-package envrc
- :disabled t
- :config (envrc-global-mode))
+  :straight (envrc :type git :host github :repo "purcell/envrc")
+  :commands (envrc-mode)
+  :hook ((scala-mode . envrc-mode)))
+
+(use-package project
+ :init
+ (setq project-vc-extra-root-markers '(".envrc")))
 
 (provide 'early-modes)
 ;;; early-modes.el ends here
