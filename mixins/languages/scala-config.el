@@ -10,7 +10,8 @@
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
   :commands sbt-start sbt-command
-  :bind (("C-p" . comint-previous-input)
+  :bind (:map sbt-mode-map
+         ("C-p" . comint-previous-input)
          ("C-n" . comint-next-input))
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
