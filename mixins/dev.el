@@ -61,9 +61,7 @@
 
 (use-package vundo
   :commands (vundo)
-
   :straight (vundo :type git :host github :repo "casouri/vundo")
-
   ;; Better contrasting highlight.
   (custom-set-faces
     '(vundo-node ((t (:foreground "#808080"))))
