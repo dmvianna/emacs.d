@@ -59,14 +59,46 @@
 ;;       (after undo-tree activate)
 ;;     (setq ad-return-value (concat ad-return-value ".gz"))))
 
+(use-package undo-hl
+  :delight
+  :straight (undo-hl :type git :host github :repo "casouri/undo-hl")
+  :hook ((text-mode . undo-hl-mode)
+         (prog-mode . undo-hl-mode))
+  :custom-face
+  (undo-hl-insert ((t (:background "#FFFF00"))))
+  (undo-hl-delete ((t (:background "#FFFF00")))))
+
 (use-package vundo
-  :commands (vundo)
+  :after undo-hl
   :straight (vundo :type git :host github :repo "casouri/vundo")
-  ;; Better contrasting highlight.
-  (custom-set-faces
-    '(vundo-node ((t (:foreground "#808080"))))
-    '(vundo-stem ((t (:foreground "#808080"))))
-    '(vundo-highlight ((t (:foreground "#FFFF00"))))))
+  :config
+  ;; this is all so that undo-hl works with vundo. It mostly does.
+  (setq undo-hl-undo-commands
+     (-union
+         undo-hl-undo-commands
+         '(vundo-backward vundo-forward vundo-stem-root vundo-stem-end)))
+  (defvar my-real-vundo-buf nil)
+  (defun my-vundo-forward-pre-command-hook ()
+    (let ((buf (current-buffer)))
+      (when (bound-and-true-p my-real-vundo-buf)
+        (unless (eq buf my-real-vundo-buf)
+          (with-current-buffer my-real-vundo-buf (run-hooks 'pre-command-hook))))))
+  ;; also undo-hl stuff
+  (add-hook 'vundo-pre-enter-hook
+    (lambda ()
+      (setq my-real-vundo-buf (current-buffer))
+      (add-hook 'pre-command-hook 'my-vundo-forward-pre-command-hook)
+      (undo-hl-mode 1)))
+  (add-hook 'vundo-post-exit-hook
+    (lambda ()
+      (remove-hook 'pre-command-hook 'my-vundo-forward-pre-command-hook)
+      (undo-hl-mode -1)
+      (makunbound 'my-real-vundo-buf)))
+   ;; Better contrasting highlight.
+ :custom-face
+ (vundo-node ((t (:foreground "#808080"))))
+ (vundo-stem ((t (:foreground "#808080"))))
+ (vundo-highlight ((t (:foreground "#FFFF00")))))
 
 ;;; exclude the following directories from grep searches
 (eval-after-load 'grep
