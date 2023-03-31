@@ -30,9 +30,7 @@
 
 (use-package envrc
   :straight (envrc :type git :host github :repo "purcell/envrc")
-  :commands (envrc-mode)
-  :hook ((scala-mode . envrc-mode)
-         (haskell-mode . envrc-mode)))
+  :commands (envrc-mode))
 
 (use-package project
  :init

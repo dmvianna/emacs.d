@@ -19,6 +19,7 @@
 (use-package haskell-cabal
   :straight nil
   :hook
+  (haskell-mode . envrc-mode)
   (haskell-cabal-mode . format-all-mode)
   (format-all-mode . format-all-ensure-formatter))
 

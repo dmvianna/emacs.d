@@ -5,7 +5,8 @@
 
 ;; Enable scala-mode for highlighting, indentation and motion commands
 (use-package scala-mode
-  :interpreter ("scala" . scala-mode))
+  :interpreter ("scala" . scala-mode)
+  :hook (scala-mode . envrc-mode))
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
@@ -13,6 +14,7 @@
   :bind (:map sbt-mode-map
          ("C-p" . comint-previous-input)
          ("C-n" . comint-next-input))
+  :hook (sbt-mode . envrc-mode)
   :config
   ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
   ;; allows using SPACE when in the minibuffer
