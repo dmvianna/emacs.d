@@ -167,6 +167,7 @@
 ;; git shell ?! :-DDDD
 (use-package magit
   :init
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (if (not (boundp 'project-switch-commands))
       (setq project-switch-commands nil))
   :bind (:map
