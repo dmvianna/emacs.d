@@ -89,6 +89,8 @@
 
 ;; line wrap by default
 (global-visual-line-mode t)
+;; but when I want to truncate, I mean it
+(setq truncate-partial-width-windows nil)
 
 ;; Save history of minibuffer
 (savehist-mode)

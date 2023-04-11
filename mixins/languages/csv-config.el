@@ -27,10 +27,13 @@ SEPARATOR most likely a comma."
 ;; now define how to use csv-mode
 (use-package csv-mode
   :hook
-  (csv-mode . csv-align-mode)
-  (csv-mode . (lambda () (interactive)
-                (toggle-truncate-lines nil)))
   (csv-mode . csv-highlight)
+  (csv-mode . csv-align-mode)
+  (csv-mode . (lambda ( ;; this is has order and type, leave it alone
+                        ;; and also relies on (setq truncate-partial-width-windows nil)
+                        ;; disable line wrapping in csv-mode
+                         (visual-line-mode -1)
+                         (setq truncate-lines 1))))
   :mode "\\.csv\\'")
 
 (provide 'csv-config)
