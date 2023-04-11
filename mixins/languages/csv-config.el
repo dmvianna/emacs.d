@@ -29,11 +29,11 @@ SEPARATOR most likely a comma."
   :hook
   (csv-mode . csv-highlight)
   (csv-mode . csv-align-mode)
-  (csv-mode . (lambda () ( ;; this is has order and type, leave it alone
-                          ;; and also relies on (setq truncate-partial-width-windows nil)
-                          ;; disable line wrapping in csv-mode
-                           (visual-line-mode -1)
-                           (setq truncate-lines 1))))
+  ;; this is has order and type, leave it alone
+  ;; and also relies on (setq truncate-partial-width-windows nil)
+  ;; disable line wrapping in csv-mode
+  (csv-mode . (lambda () (visual-line-mode -1)
+                         (setq truncate-lines 1)))
   :mode "\\.csv\\'")
 
 (provide 'csv-config)
