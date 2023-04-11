@@ -113,6 +113,14 @@
 (setq wgrep-enable-key (kbd "C-c C-c"))
 (add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))
 
+;; file search
+(use-package rg
+ :ensure-system-package (rg . ripgrep))
+
+;; fallback cross file definition lookup
+(use-package dumb-jump
+ :ensure-system-package (rg . ripgrep))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;; shells

@@ -29,6 +29,9 @@
 ;;; use use-package
 (straight-use-package 'use-package)
 
+;; activate some use-package extensions
+(use-package use-package-ensure-system-package)
+
 ;; add modules within this directory to the scope
 (add-to-list 'load-path
              (expand-file-name "local-packages" user-emacs-directory))
