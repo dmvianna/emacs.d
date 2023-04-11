@@ -86,8 +86,8 @@
   :init (setq drag-stuff-modifier 'ctrl)
   :config (drag-stuff-global-mode t)
   (bind-keys :map drag-stuff-mode-map
-             ("M-S-<up>" . drag-stuff-up)
-             ("M-S-<down>" . drag-stuff-down)))
+             ("M-p" . drag-stuff-up)
+             ("M-n" . drag-stuff-down)))
 
 
 ;; (use-package smart-mode-line
