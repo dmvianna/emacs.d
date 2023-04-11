@@ -89,12 +89,7 @@
   :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'\\|\\.desktop\\'")
 
 ;; csv files
-(use-package csv-mode
-  :hook
-  (csv-mode . csv-align-mode)
-  (csv-mode . (lambda () (interactive)
-                (toggle-truncate-lines nil)))
-  :mode "\\.csv\\'")
+(load-file (concat user-emacs-directory "mixins/languages/csv-config.el"))
 
 ;; Dhall
 (use-package dhall-mode
