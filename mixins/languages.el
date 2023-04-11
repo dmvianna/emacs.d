@@ -137,7 +137,6 @@
   (emacs-lisp-mode
    lisp-mode
    lisp-interaction-mode
-   geiser-mode
    racket-mode)
   (before-save . delete-trailing-whitespace))
 
