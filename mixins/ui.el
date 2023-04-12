@@ -14,6 +14,7 @@
   (after-init . immortal-scratch-mode))
 
 (use-package which-key
+  :delight
   :config
   (which-key-mode))
 
