@@ -176,6 +176,7 @@
 ;; git shell ?! :-DDDD
 (use-package magit
   :init
+  (setq vc-display-status nil) ;; don't display branch name in mode line
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (if (not (boundp 'project-switch-commands))
       (setq project-switch-commands nil))
