@@ -58,6 +58,9 @@
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
+;; Consult: Misc. enhanced commands
+(load-file (concat user-emacs-directory "mixins/minibuffers/consult-config.el"))
+
 ;; Orderless: powerful completion style
 (use-package orderless
   :config
