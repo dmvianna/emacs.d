@@ -6,7 +6,7 @@
 (use-package consult
  ;; Replace bindings. Lazily loaded due by `use-package'.
   :bind (;; C-c bindings (mode-specific-map)
-         ("C-c y" . consult-yank-from-kill-ring)
+         ;; ("C-c y" . consult-yank-from-kill-ring)
          ("C-c h" . consult-history)
          ("C-c m" . consult-mode-command)
          ("C-c b" . consult-bookmark)
@@ -22,7 +22,7 @@
          ("M-'" . consult-register-store)          ;; orig. abbrev-prefix-mark (unrelated)
          ("C-M-#" . consult-register)
          ;; Other custom bindings
-         ("M-y" . consult-yank-pop)                ;; orig. yank-pop
+         ;; ("M-y" . consult-yank-pop)                ;; orig. yank-pop
          ;; ("<help> a" . consult-apropos)         ;; obsolete
          ;; M-g bindings (goto-map)
          ("M-g e" . consult-compile-error)
