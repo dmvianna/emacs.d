@@ -177,8 +177,16 @@
 
 ;; git shell ?! :-DDDD
 (use-package magit
-  :custom (magit-diff-refine-hunk (quote all))
+  :custom (magit-diff-refine-hunk 'all)
   :init
+  ;; it is always git, so no need to display it
+  ;; https://emacs.stackexchange.com/a/10957/3895
+  (defadvice vc-mode-line (after strip-backend () activate)
+  (when (stringp vc-mode)
+    (let ((noback (replace-regexp-in-string
+                   (format "^ %s" (vc-backend buffer-file-name))
+                   " " vc-mode)))
+      (setq vc-mode noback))))
   (setq vc-display-status nil) ;; don't display branch name in mode line
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (if (not (boundp 'project-switch-commands))
