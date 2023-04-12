@@ -177,6 +177,7 @@
 
 ;; git shell ?! :-DDDD
 (use-package magit
+  :custom (magit-diff-refine-hunk (quote all))
   :init
   (setq vc-display-status nil) ;; don't display branch name in mode line
   (setq ediff-window-setup-function 'ediff-setup-windows-plain)
