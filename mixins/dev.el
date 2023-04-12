@@ -24,6 +24,7 @@
 
 ;; Company -- text completion
 (use-package company
+  :delight
   :config
   (setq company-idle-delay 0.3
         company-minimum-prefix-length 1)
