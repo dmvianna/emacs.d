@@ -17,6 +17,8 @@
   :config
   (which-key-mode))
 
+(use-package delight)
+
 (use-package string-inflection)
 
 (use-package visual-regexp)
