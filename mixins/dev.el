@@ -44,6 +44,7 @@
 
 ;; use tab and let lisp figure out the closing parens...
 (use-package smartparens
+  :delight
   :config (smartparens-global-mode t))
 
 ;;; save lots of undo history

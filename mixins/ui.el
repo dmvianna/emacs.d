@@ -85,6 +85,7 @@
 
 ;; drag selections around
 (use-package drag-stuff
+  :delight
   :init (setq drag-stuff-modifier 'ctrl)
   :config (drag-stuff-global-mode t)
   (bind-keys :map drag-stuff-mode-map
