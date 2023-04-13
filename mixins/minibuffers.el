@@ -62,9 +62,7 @@
 (load-file (concat user-emacs-directory "mixins/minibuffers/consult-config.el"))
 
 ;; Orderless: powerful completion style
-(use-package orderless
-  :config
-  (setq completion-styles '(orderless)))
+(load-file (concat user-emacs-directory "mixins/minibuffers/orderless-config.el"))
 
 (provide 'minibuffers)
 ;;; minibuffers.el ends here.
