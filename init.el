@@ -244,6 +244,11 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
+;;; dired enhancements
+(with-eval-after-load 'dired
+  (setq dired-x-hands-off-my-keys nil)
+  (require 'dired-x))
+
 ;; ;; Display sane file names
 ;; (require 'uniquify)
 ;; (setq uniquify-buffer-name-style 'forward)
