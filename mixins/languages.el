@@ -12,7 +12,7 @@
   (lsp-enable-snippet nil)
   :init
   (setq
-   ;; easier than debugging right now
+   ;; easier than debugging right now https://emacs-lsp.github.io/lsp-mode/page/file-watchers/
    lsp-enable-file-watchers nil
    ;; give lsp enough memory
    read-process-output-max (* 1024 1024) ;; 1mb)
