@@ -177,7 +177,6 @@
 
 ;; git shell ?! :-DDDD
 (use-package magit
-  :custom (magit-diff-refine-hunk 'all)
   :init
   ;; it is always git, so no need to display it
   ;; https://emacs.stackexchange.com/a/10957/3895
