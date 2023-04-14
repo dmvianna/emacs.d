@@ -61,6 +61,8 @@
                                (put 'eglot-error 'flymake-overlay-control nil)))
    :config
    (setq-default
+    eglot-ignored-server-capabilities
+    '(workspace/didChangeWatchedFiles)
     eglot-workspace-configuration
     '(haskell
       (formattingProvider "fourmolu"))))
