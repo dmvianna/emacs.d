@@ -12,16 +12,18 @@
   (lsp-enable-snippet nil)
   :init
   (setq
-        ;; give lsp enough memory
-        read-process-output-max (* 1024 1024) ;; 1mb)
-        ;; Probably overkill, but doesn't hurt.
-        ;; LSP should use better deserialisation.
-        ;; https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
-        lsp-use-plists t
-        ;; Yes, I want to restart
-        lsp-restart 'auto-restart
-        lsp-enable-folding nil
-        lsp-enable-snippet nil)
+   ;; easier than debugging right now
+   lsp-enable-file-watchers nil
+   ;; give lsp enough memory
+   read-process-output-max (* 1024 1024) ;; 1mb)
+   ;; Probably overkill, but doesn't hurt.
+   ;; LSP should use better deserialisation.
+   ;; https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
+   lsp-use-plists t
+   ;; Yes, I want to restart
+   lsp-restart 'auto-restart
+   lsp-enable-folding nil
+   lsp-enable-snippet nil)
   :hook
   (before-save . lsp-format-buffer)
   (before-save . lsp-organize-imports)
