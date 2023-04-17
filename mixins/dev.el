@@ -198,8 +198,7 @@
          ("C-x g" . magit-status)))
 
 (use-package abridge-diff
-  :after magit ;; optional, if you'd like to use with magit
-  :init (abridge-diff-mode 1))
+  :after magit)
 
 ;; the current transient release (magit dependency)
 ;; is broken (v0.3.7), so we use this
