@@ -6,7 +6,8 @@
 ;; Enable scala-mode for highlighting, indentation and motion commands
 (use-package scala-mode
   :interpreter ("scala" . scala-mode)
-  :hook (scala-mode . envrc-mode))
+  :hook (scala-mode . envrc-mode)
+  :hook (scala-mode . eglot-ensure))
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
@@ -29,8 +30,7 @@
   ;; Metals claims to support range formatting by default but it supports range
   ;; formatting of multiline strings only. You might want to disable it so that
   ;; emacs can use indentation provided by scala-mode.
-  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  :hook (scala-mode . eglot-ensure))
+  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
 
 (provide 'scala-config)
 ;;; scala-config.el ends here
