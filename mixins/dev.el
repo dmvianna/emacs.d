@@ -180,7 +180,7 @@
   :init
   ;; status is expensive in big repos, only refresh if
   ;; it is the current buffer
-  (setq magit-refresh-status-buffer nil)
+  ;; (setq magit-refresh-status-buffer nil)
   ;; it is always git, so no need to display it
   ;; https://emacs.stackexchange.com/a/10957/3895
   (defadvice vc-mode-line (after strip-backend () activate)
