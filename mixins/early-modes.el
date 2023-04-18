@@ -28,9 +28,9 @@
 (use-package inheritenv
   :straight (inheritenv :type git :host github :repo "purcell/inheritenv"))
 
-(use-package envrc
-  :straight (envrc :type git :host github :repo "purcell/envrc")
-  :commands (envrc-mode))
+;; (use-package envrc
+;;   :straight (envrc :type git :host github :repo "purcell/envrc")
+;;   :commands (envrc-mode))
 
 (use-package project
  :init
