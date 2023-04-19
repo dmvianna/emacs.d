@@ -135,10 +135,7 @@
 ;; Lisp
 (use-package emacs-lisp-mode
   :straight nil
-  :custom
-  (flycheck-emacs-lisp-check-declare t)
-  (flycheck-emacs-lisp-checkdoc t)
-  :hook (emacs-lisp . flycheck))
+  :hook (emacs-lisp-mode . flymake-mode))
 
 (use-package parinfer-rust-mode
   :custom
