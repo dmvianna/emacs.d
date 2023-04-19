@@ -135,7 +135,22 @@
 ;; Lisp
 (use-package emacs-lisp-mode
   :straight nil
-  :hook (emacs-lisp-mode . flymake-mode))
+  :mode "\\.el\\'"
+  :hook
+  (emacs-lisp-mode . flymake-mode))
+
+(use-package slime
+  :mode "\\.cl\\'"
+  :config
+  (setq inferior-lisp-program "sbcl")
+  (defun override-slime-del-key ()
+  (define-key slime-repl-mode-map
+    (read-kbd-macro paredit-backward-delete-key) nil))
+  :hook (slime-repl-mode . 'override-slime-del-key)
+  :ensure-system-package
+  ;; follow further instructions for installing quicklisp (package manager)
+  ;; at https://github.com/susam/emacs4cl#get-started
+  (sbcl . "sbcl"))
 
 (use-package parinfer-rust-mode
   :custom
