@@ -160,6 +160,17 @@
         ("C-c c" . org-capture))
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
+(use-package org-roam)
+
+(use-package org-journal
+  :bind
+  ("C-c n j" . org-journal-new-entry)
+  :custom
+  (org-journal-date-prefix "#+title: ")
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-dir "~/Documents/Notes/")
+  (org-journal-date-format "%A, %d %B %Y"))
+
 ;; term
 (use-package multi-term)
 
