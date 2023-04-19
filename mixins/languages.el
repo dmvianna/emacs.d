@@ -133,6 +133,13 @@
   :interpreter "pickle-mode")
 
 ;; Lisp
+(use-package emacs-lisp-mode
+  :straight nil
+  :custom
+  (flycheck-emacs-lisp-check-declare t)
+  (flycheck-emacs-lisp-checkdoc t)
+  :hook (emacs-lisp . flycheck))
+
 (use-package parinfer-rust-mode
   :custom
   (parinfer-rust-auto-download t)
