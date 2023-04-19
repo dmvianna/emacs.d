@@ -171,6 +171,14 @@
   (org-journal-dir "~/Documents/Notes/")
   (org-journal-date-format "%A, %d %B %Y"))
 
+(use-package org-download
+  :after org
+  :bind
+  (:map org-mode-map
+        (("s-Y" . org-download-screenshot)
+         ("s-y" . org-download-yank)))
+  :ensure-system-package (org-download . wl-clipboard))
+
 ;; term
 (use-package multi-term)
 
