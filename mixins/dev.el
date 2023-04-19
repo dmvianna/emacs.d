@@ -177,6 +177,7 @@
   (:map org-mode-map
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
+  :custom (org-download-method 'attach)
   :ensure-system-package (org-download . wl-clipboard))
 
 ;; term
