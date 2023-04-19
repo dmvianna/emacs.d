@@ -14,15 +14,14 @@
   (after-init . immortal-scratch-mode))
 
 (use-package which-key
-  :delight
   :config
   (which-key-mode))
 
 (use-package delight
   :init
-  (delight '((which-key-mode)
+  (delight '((which-key-mode nil t)
              (visual-line-mode nil t)
-             (eldoc-mode))))
+             (eldoc-mode nil t))))
 
 (use-package string-inflection)
 
