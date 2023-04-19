@@ -29,7 +29,7 @@
   :straight (inheritenv :type git :host github :repo "purcell/inheritenv"))
 
 (use-package envrc
-  :delight "envrc"
+  :delight " env"
   :straight (envrc :type git :host github :repo "purcell/envrc")
   :commands (envrc-mode)
   :init (envrc-global-mode))

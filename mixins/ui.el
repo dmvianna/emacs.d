@@ -18,7 +18,11 @@
   :config
   (which-key-mode))
 
-(use-package delight)
+(use-package delight
+  :init
+  (delight '((which-key-mode)
+             (visual-line-mode nil t)
+             (eldoc-mode))))
 
 (use-package string-inflection)
 
