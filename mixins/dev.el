@@ -16,7 +16,7 @@
 
 ;; Syntax checking and everything else related to it
 (use-package flycheck
-  :init (global-flycheck-mode)
+  ;; :init (global-flycheck-mode)
   :config
   (setq-default flycheck-temp-prefix ".flycheck")
   :custom
