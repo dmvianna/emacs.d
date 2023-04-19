@@ -1,4 +1,4 @@
-;;; ui.el --- Summary
+;;; ui.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; UI goodies.
 ;;; Code:

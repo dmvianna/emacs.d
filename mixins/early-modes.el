@@ -1,4 +1,4 @@
-;;; early-modes.el --- Summary
+;;; early-modes.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Modes that need to be loaded early, before language modes and such,
 ;;; to work properly.

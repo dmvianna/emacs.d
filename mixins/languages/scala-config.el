@@ -1,4 +1,4 @@
-;;; Package --- Summary
+;;; Package --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Scala configuration
 ;;; Code:

@@ -1,4 +1,4 @@
-;;; csv-config.el --- Summary
+;;; csv-config.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Display CSV files nicely
 ;;; Code:

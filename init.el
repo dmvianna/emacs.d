@@ -1,4 +1,4 @@
-;;; Package --- Summary
+;;; Package --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;;
 ;;; Reload this config with M-: (load user-init-file)

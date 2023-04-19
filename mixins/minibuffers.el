@@ -1,4 +1,4 @@
-;;; minibuffers.el --- Summary
+;;; minibuffers.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Minibuffers and popup goodies.
 ;;; Code:

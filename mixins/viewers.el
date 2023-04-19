@@ -1,4 +1,4 @@
-;;; viewers.el --- Summary
+;;; viewers.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; File viewers.
 ;;; Code:

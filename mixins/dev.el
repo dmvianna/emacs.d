@@ -1,4 +1,4 @@
-;;; dev.el --- Summary
+;;; dev.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Cross language functionality.
 ;;; Code:

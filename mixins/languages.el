@@ -1,4 +1,4 @@
-;;; languages.el --- Summary
+;;; languages.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Programming language support -- LSP and individual languages.
 ;;; Code:

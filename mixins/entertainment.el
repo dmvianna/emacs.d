@@ -1,4 +1,4 @@
-;;; entertainment.el --- Summary
+;;; entertainment.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Entertainment for the masses.
 ;;; Code:
