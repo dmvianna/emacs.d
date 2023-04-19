@@ -139,14 +139,22 @@
   :hook
   (emacs-lisp-mode . flymake-mode))
 
+(use-package lisp-mode
+  :straight nil
+  :mode "\\.cl\\|\\.lisp\\'"
+  :hook
+  (lisp-mode-hook . rainbow-delimiters-mode)
+  (lisp-interaction-mode . rainbow-delimiters-mode))
+
 (use-package slime
-  :mode "\\.cl\\'"
   :config
   (setq inferior-lisp-program "sbcl")
   (defun override-slime-del-key ()
   (define-key slime-repl-mode-map
     (read-kbd-macro paredit-backward-delete-key) nil))
-  :hook (slime-repl-mode . 'override-slime-del-key)
+  :hook
+  (slime-repl-mode . 'override-slime-del-key)
+  (slime-repl-mode . rainbow-delimiters-mode)
   :ensure-system-package
   ;; follow further instructions for installing quicklisp (package manager)
   ;; at https://github.com/susam/emacs4cl#get-started
@@ -159,7 +167,9 @@
   (parinfer-rust-preferred-mode 'paren)
   :hook
   (emacs-lisp-mode
+   ielm-mode
    lisp-mode
+   slime-repl-mode
    lisp-interaction-mode
    racket-mode)
   (before-save . delete-trailing-whitespace))
