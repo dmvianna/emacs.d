@@ -58,6 +58,7 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
+  (eglot-sync-connect nil) ; don't block while connecting to server
   :hook (eglot-managed-mode . (lambda () (put 'eglot-note 'flymake-overlay-control nil)
                                (put 'eglot-warning 'flymake-overlay-control nil)
                                (put 'eglot-error 'flymake-overlay-control nil)))
