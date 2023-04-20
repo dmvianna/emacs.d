@@ -158,7 +158,19 @@
         ("C-c l" . org-store-link)
         ("C-c a" . org-agenda)
         ("C-c c" . org-capture))
-  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+  :config
+  (define-key org-mode-map (kbd "C-c C-r") verb-command-map)
+  :ensure-system-package "pandoc")
+
+(defun markdown-convert-buffer-to-org ()
+  "Convert the current buffer's content from markdown to orgmode format and save it with the current buffer's file name but with .org extension."
+  (interactive)
+  (shell-command-on-region
+   (point-min)
+   (point-max)
+   (format
+    "pandoc -f markdown -t org -o %s"
+    (concat (file-name-sans-extension (buffer-file-name)) ".org"))))
 
 (use-package org-roam)
 
