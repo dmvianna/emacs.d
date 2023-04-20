@@ -27,8 +27,25 @@
 ;; Startup speed, annoyance suppression
 ;;
 ;; We have started, bring gc threshold back down
-(setq gc-cons-threshold (* 16 1024 1024) ;; 16 MB
-      gc-cons-percentage 0.1)
+(setq doom-gc-cons-threshold (* 16 1024 1024)) ;; 16 MB
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq gc-cons-threshold doom-gc-cons-threshold
+          gc-cons-percentage 0.1)))
+
+;; It may also be wise to raise gc-cons-threshold while the minibuffer is active, so the GC
+;; doesn’t slow down expensive commands (or completion frameworks, like helm and ivy). Here
+;; is how Doom does it:
+(defun doom-defer-garbage-collection-h ()
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun doom-restore-garbage-collection-h ()
+  "Defer it so that commands launched immediately after will enjoy the benefits."
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold doom-gc-cons-threshold))))
+
+(add-hook 'minibuffer-setup-hook #'doom-defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'doom-restore-garbage-collection-h)
 
 ;; garbage collection is hard, let a library do it
 (use-package gcmh
