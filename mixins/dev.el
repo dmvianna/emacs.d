@@ -27,7 +27,8 @@
   :delight
   :config
   (setq company-idle-delay 0.3
-        company-minimum-prefix-length 1)
+        company-minimum-prefix-length 1
+        company-dabbrev-ignore-case nil)
   (global-company-mode t))
 
 ;;; format code helper
