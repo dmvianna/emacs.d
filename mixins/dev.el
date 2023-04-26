@@ -216,7 +216,6 @@
                    " " vc-mode)))
       (setq vc-mode noback))))
   (setq vc-display-status nil) ;; don't display branch name in mode line
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain)
   (if (not (boundp 'project-switch-commands))
       (setq project-switch-commands nil))
   :bind (:map
@@ -234,6 +233,11 @@
              :host github
              :repo "magit/transient"))
 
+(use-package ediff
+  :straight nil
+  :config
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain
+        ediff-split-window-function 'mouse-split-window-horizontally))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
