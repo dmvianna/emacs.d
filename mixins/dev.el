@@ -237,7 +237,8 @@
   :straight nil
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
-        ediff-split-window-function 'mouse-split-window-horizontally))
+        ediff-split-window-function 'mouse-split-window-horizontally
+        ediff-prefer-iconified-control-frame t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
