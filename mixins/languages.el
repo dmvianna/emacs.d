@@ -135,6 +135,9 @@
 ;; Lisp
 (use-package emacs-lisp-mode
   :straight nil
+  :config
+  (setq-local electric-quote-comment nil
+              electric-quote-string nil)
   :mode "\\.el\\'"
   :hook
   (emacs-lisp-mode . flymake-mode))
@@ -142,6 +145,9 @@
 (use-package lisp-mode
   :straight nil
   :mode "\\.cl\\|\\.lisp\\'"
+  :config
+  (setq-local electric-quote-comment nil
+              electric-quote-string nil)
   :hook
   (lisp-mode-hook . rainbow-delimiters-mode)
   (lisp-interaction-mode . rainbow-delimiters-mode))
@@ -150,8 +156,8 @@
   :config
   (setq inferior-lisp-program "sbcl")
   (defun override-slime-del-key ()
-  (define-key slime-repl-mode-map
-    (read-kbd-macro paredit-backward-delete-key) nil))
+   (define-key slime-repl-mode-map
+     (read-kbd-macro paredit-backward-delete-key) nil))
   :hook
   (slime-repl-mode . 'override-slime-del-key)
   (slime-repl-mode . rainbow-delimiters-mode)
