@@ -32,6 +32,9 @@
 
 ;; Popup completion-at-point
 (use-package corfu
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
   :config
   (global-corfu-mode))
 
