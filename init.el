@@ -137,7 +137,7 @@
 ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
 
 (setq enable-recursive-minibuffers t)                             ; Use the minibuffer whilst in the minibuffer
-(setq completion-cycle-threshold 1)                               ; TAB cycles candidates
+(setq completion-cycle-threshold 3)                               ; TAB cycles candidates
 (setq completions-detailed t)                                     ; Show annotations
 (setq tab-always-indent 'complete)                                ; When I hit TAB, try to complete, otherwise, indent
 (setq tab-first-completion 'word-or-paren-or-punct)

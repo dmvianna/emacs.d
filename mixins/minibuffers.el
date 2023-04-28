@@ -38,8 +38,6 @@
   (corfu-auto t)
   (corfu-separator ?\s)
   (corfu-scroll-margin 5)
-  :init
-  (setq completion-cycle-threshold 3)
   :config
   (global-corfu-mode))
 
