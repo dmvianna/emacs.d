@@ -65,7 +65,7 @@
 
 (use-package corfu-history
   :after corfu
-    :straight (:host github
+  :straight (:host github
                    :repo "minad/corfu"
                    :files ("extensions/corfu-history.el"))
   :config

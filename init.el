@@ -140,6 +140,7 @@
 (setq completion-cycle-threshold 1)                               ; TAB cycles candidates
 (setq completions-detailed t)                                     ; Show annotations
 (setq tab-always-indent 'complete)                                ; When I hit TAB, try to complete, otherwise, indent
+(setq tab-first-completion 'word-or-paren-or-punct)
 
 (fido-vertical-mode)                                              ; Show completion candidates in a vertical, interactive list
 (setq completion-styles '(basic initials substring))              ; Different styles to match input to candidates
