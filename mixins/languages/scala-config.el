@@ -22,7 +22,12 @@
    'minibuffer-complete-word
    'self-insert-command
    minibuffer-local-completion-map)
-  (setq sbt:program-options '("-Dsbt.supershell=false"))
+  (setq sbt:program-options
+        '("-Dsbt.supershell=false"
+          "-J-XX:+UseParallelGC" ; improve GC performance by leveraging multiple processors
+          "-J-Xmx2g" ; maximum size of the memory allocation pool
+          "-J-Xms100m" ; minimum and initial size of the heap
+          "-J-Xss4m")) ; thread stack size
   :hook (sbt-mode . fix-sbt-movement))
 
 (use-package lsp-metals
