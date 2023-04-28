@@ -137,7 +137,7 @@
 ;; For help, see: https://www.masteringemacs.org/article/understanding-minibuffer-completion
 
 (setq enable-recursive-minibuffers t)                             ; Use the minibuffer whilst in the minibuffer
-(setq completion-cycle-threshold 1)                               ; TAB cycles candidates
+(setq completion-cycle-threshold 3)                               ; TAB cycles candidates
 (setq completions-detailed t)                                     ; Show annotations
 (setq tab-always-indent 'complete)                                ; When I hit TAB, try to complete, otherwise, indent
 (setq tab-first-completion 'word-or-paren-or-punct)
@@ -184,35 +184,54 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;; always start maximized
+(add-to-list 'default-frame-alist
+             '(fullscreen . maximized))
+(add-to-list 'initial-frame-alist
+             '(fullscreen . maximized))
+
+;; we can redisplay now, boot is over
+(add-hook 'window-setup-hook
+          (lambda ()
+            (setq-default inhibit-redisplay nil
+                          inhibit-message nil)
+            (redisplay)))
+
 ;;; focus on emacs frame when it is started
 (add-hook 'server-switch-hook #'raise-frame)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
+;;; create a hook for fullscreen
+(defvar fullscreen-frame-hook nil "Hook for when we activate 'fullscreen-frame'.")
+
+;;; make a frame hook function
+(defun default-frame-layout-hook (frame)
+  "Select the FRAME and apply the default layout."
+  (set-default-hook frame)
+  (select-frame frame)
+  (raise-frame)
+  (when (display-graphic-p frame)
+    (my-fullscreen-frame-layout frame)))
 
 ;;; make a fullscreen function
-(defun fullscreen-frame ()
-  "Make Emacs use all the screen area."
+(defun my-fullscreen-frame-layout (frame)
+  "Make Emacs FRAME use all the screen area."
   (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+  (when (frame-size-changed-p frame)
+    (run-hooks 'fullscreen-frame-hook)))
 
-;;; make a default layout function
-(defun default-layout ()
-  "Apply my preferred layout to an existing frame."
-  (interactive)
-  (fullscreen-frame)
-  (split-window-horizontally)
-  (treemacs))
-
+;;; now hook the commands I want to run after fullscreen-frame-hook
+(add-hook 'fullscreen-frame-hook '(lambda () (split-window-horizontally) (treemacs)))
 
 ;;; that's what emacs-daemon uses
 (add-hook
  'after-make-frame-functions
- (lambda (frame)
-   (set-default-hook frame)
-   (select-frame frame)
-   (when (display-graphic-p frame)
-     (default-layout))))
+ #'default-frame-layout-hook)
+
+;; (add-hook
+;;  'server-after-make-frame-hook
+;;  #'default-frame-layout-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
