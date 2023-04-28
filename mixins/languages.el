@@ -135,9 +135,6 @@
 ;; Lisp
 (use-package emacs-lisp-mode
   :straight nil
-  :config
-  (setq-local electric-quote-comment nil
-              electric-quote-string nil)
   :mode "\\.el\\'"
   :hook
   (emacs-lisp-mode . flymake-mode))
@@ -145,11 +142,8 @@
 (use-package lisp-mode
   :straight nil
   :mode "\\.cl\\|\\.lisp\\'"
-  :config
-  (setq-local electric-quote-comment nil
-              electric-quote-string nil)
   :hook
-  (lisp-mode-hook . rainbow-delimiters-mode)
+  (lisp-mode . rainbow-delimiters-mode)
   (lisp-interaction-mode . rainbow-delimiters-mode))
 
 (use-package slime
