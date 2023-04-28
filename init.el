@@ -184,26 +184,22 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;;; always start maximized
-(add-to-list 'default-frame-alist
-             '(fullscreen . maximized))
-(add-to-list 'initial-frame-alist
-             '(fullscreen . maximized))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; we can redisplay now, boot is over
 (add-hook 'window-setup-hook
           (lambda ()
             (setq-default inhibit-redisplay nil
                           inhibit-message nil)
-            (redisplay)))
+            (default-frame-layout-hook (selected-frame))))
 
 ;;; focus on emacs frame when it is started
 (add-hook 'server-switch-hook #'raise-frame)
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
-;;; create a hook for fullscreen
-(defvar fullscreen-frame-hook nil "Hook for when we activate 'fullscreen-frame'.")
+;;; create a hook for maximized
+(defvar maximized-frame-hook nil "Hook for when we activate 'maximized-frame'.")
 
 ;;; make a frame hook function
 (defun default-frame-layout-hook (frame)
@@ -212,26 +208,21 @@
   (select-frame frame)
   (raise-frame)
   (when (display-graphic-p frame)
-    (my-fullscreen-frame-layout frame)))
+    (my-maximized-frame-layout frame)))
 
-;;; make a fullscreen function
-(defun my-fullscreen-frame-layout (frame)
+;;; make a maximized function
+(defun my-maximized-frame-layout (frame)
   "Make Emacs FRAME use all the screen area."
-  (interactive)
   (when (frame-size-changed-p frame)
-    (run-hooks 'fullscreen-frame-hook)))
+    (run-hooks 'maximized-frame-hook)))
 
-;;; now hook the commands I want to run after fullscreen-frame-hook
-(add-hook 'fullscreen-frame-hook '(lambda () (split-window-horizontally) (treemacs)))
+;;; now hook the commands I want to run after maximized-frame-hook
+(add-hook 'maximized-frame-hook '(lambda () (split-window-horizontally) (treemacs)))
 
 ;;; that's what emacs-daemon uses
 (add-hook
  'after-make-frame-functions
  #'default-frame-layout-hook)
-
-;; (add-hook
-;;  'server-after-make-frame-hook
-;;  #'default-frame-layout-hook)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
