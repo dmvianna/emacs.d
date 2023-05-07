@@ -22,14 +22,7 @@
   :custom
   (flycheck-disabled-checkers '(haskell-stack-ghc haskell-ghc haskell-hlint)))
 
-;; ;; Company -- text completion
-;; (use-package company
-;;   :delight
-;;   :config
-;;   (setq company-idle-delay 0.3
-;;         company-minimum-prefix-length 1
-;;         company-dabbrev-ignore-case nil)
-;;   (global-company-mode t))
+(use-package aggressive-indent)
 
 ;;; format code helper
 (use-package format-all
