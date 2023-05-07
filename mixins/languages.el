@@ -137,7 +137,8 @@
   :straight nil
   :mode "\\.el\\'"
   :hook
-  (emacs-lisp-mode . flymake-mode))
+  (emacs-lisp-mode . flymake-mode)
+  (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package lisp-mode
   :straight nil
