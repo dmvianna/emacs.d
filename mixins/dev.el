@@ -226,6 +226,10 @@
              :host github
              :repo "magit/transient"))
 
+(use-package code-review
+  :hook
+  (code-review-mode . #'emojify-mode))
+
 (use-package ediff
   :straight nil
   :config
