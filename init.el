@@ -208,7 +208,8 @@
   (select-frame frame)
   (raise-frame)
   (when (display-graphic-p frame)
-    (my-maximized-frame-layout frame)))
+    (my-maximized-frame-layout frame))
+  (setq treemacs-width-is-initially-locked t))
 
 ;;; make a maximized function
 (defun my-maximized-frame-layout (frame)
@@ -217,7 +218,11 @@
     (run-hooks 'maximized-frame-hook)))
 
 ;;; now hook the commands I want to run after maximized-frame-hook
-(add-hook 'maximized-frame-hook '(lambda () (split-window-horizontally) (treemacs)))
+(add-hook 'maximized-frame-hook
+          '(lambda ()
+             (split-window-horizontally)
+             (treemacs)
+             (setq treemacs-width-is-initially-locked nil)))
 
 ;;; that's what emacs-daemon uses
 (add-hook
