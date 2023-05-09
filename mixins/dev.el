@@ -237,6 +237,9 @@
         ediff-split-window-function 'split-window-horizontally
         ediff-prefer-iconified-control-frame t))
 
+;; major mode for viewing logs
+(use-package logview)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   web browser
