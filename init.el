@@ -374,7 +374,8 @@
 ;; Entertainment
 (load-file (concat user-emacs-directory "mixins/entertainment.el"))
 
-(load-file (concat user-emacs-directory "mixins/communication.el"))
+;; Email and internet messaging
+(load (concat user-emacs-directory "mixins/communication.el.gpg") t nil nil t)
 
 ;; Modes that must be loaded early
 (load-file (concat user-emacs-directory "mixins/early-modes.el"))
