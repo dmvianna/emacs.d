@@ -374,6 +374,8 @@
 ;; Entertainment
 (load-file (concat user-emacs-directory "mixins/entertainment.el"))
 
+(load-file (concat user-emacs-directory "mixins/communication.el"))
+
 ;; Modes that must be loaded early
 (load-file (concat user-emacs-directory "mixins/early-modes.el"))
 
