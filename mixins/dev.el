@@ -6,13 +6,17 @@
 ;; rainbow-delimiters -- excellent for any language,
 ;; critical for lisps
 (use-package rainbow-delimiters
- :hook (emacs-lisp-mode . rainbow-delimiters-mode))
+  :hook (emacs-lisp-mode . rainbow-delimiters-mode))
+
+;; helps reading yaml
+(use-package highlight-indent-guides
+  :custom (highlight-indent-guides-method 'character))
 
 ;; we need to upgrade the inbuilt flymake version so
 ;; that packages that require it don't fail
 (use-package flymake
-:bind (:map flymake-mode-map (("M-n" . flymake-goto-next-error)
-                              ("M-p" . flymake-goto-prev-error))))
+  :bind (:map flymake-mode-map (("M-n" . flymake-goto-next-error)
+                                ("M-p" . flymake-goto-prev-error))))
 
 ;; Syntax checking and everything else related to it
 (use-package flycheck
@@ -203,11 +207,11 @@
   ;; it is always git, so no need to display it
   ;; https://emacs.stackexchange.com/a/10957/3895
   (defadvice vc-mode-line (after strip-backend () activate)
-  (when (stringp vc-mode)
-    (let ((noback (replace-regexp-in-string
-                   (format "^ %s" (vc-backend buffer-file-name))
-                   " " vc-mode)))
-      (setq vc-mode noback))))
+   (when (stringp vc-mode)
+     (let ((noback (replace-regexp-in-string
+                    (format "^ %s" (vc-backend buffer-file-name))
+                    " " vc-mode)))
+       (setq vc-mode noback))))
   (setq vc-display-status nil) ;; don't display branch name in mode line
   (if (not (boundp 'project-switch-commands))
       (setq project-switch-commands nil))
