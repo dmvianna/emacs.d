@@ -49,17 +49,6 @@
               ("C-<" . mc/mark-previous-like-this)
               ("C-c C-<" . mc/mark-all-like-this)))
 
-;; directory tree view
-(use-package treemacs
-  :init
-  (require 'treemacs-treelib))
-
-(use-package neotree
-  :config
-  '((global-set-key [f8] 'neotree-toggle)
-    (setq neo-theme (if (display-graphic-p) 'icons 'arrow))))
-
-
 ;; ibuffer
 (use-package ibuffer
   :elpaca nil

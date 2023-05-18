@@ -184,6 +184,11 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; directory tree view
+(use-package treemacs
+  :init
+  (require 'treemacs-treelib))
+
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
