@@ -142,13 +142,15 @@
   (lisp-interaction-mode . rainbow-delimiters-mode))
 
 (use-package slime
-  :config
-  (setq inferior-lisp-program "sbcl")
-  (defun override-slime-del-key ()
-    (define-key slime-repl-mode-map
-      (read-kbd-macro paredit-backward-delete-key) nil))
+  :commands slime
+  :custom
+  (slime-kill-without-query-p t)
+  (slime-repl-history-file (concat user-emacs-directory "slime-history.eld"))
+  (slime-startup-animation nil)
+  :init
+  (setq inferior-lisp-program "sbcl"
+        slime-contribs '(slime-fancy))
   :hook
-  (slime-repl-mode . 'override-slime-del-key)
   (slime-repl-mode . rainbow-delimiters-mode)
   ;; follow further instructions for installing quicklisp (package manager)
   ;; at https://github.com/susam/emacs4cl#get-started
