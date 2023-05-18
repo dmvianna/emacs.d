@@ -200,7 +200,7 @@
 (load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
 
 (use-package sh-script
-  :ensure nil
+  :elpaca nil
   :mode (("\\.zsh\\'" . sh-mode)
          ("\\.sh\\'" . sh-mode)
          ("zshrc\\'" . sh-mode)

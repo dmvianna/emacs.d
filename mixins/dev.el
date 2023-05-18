@@ -149,16 +149,7 @@
 ;; rest
 (use-package verb)
 
-;; org-mode
-(use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :bind
-  (:map org-mode-map
-        ("C-c l" . org-store-link)
-        ("C-c a" . org-agenda)
-        ("C-c c" . org-capture))
-  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
-
+;; org-related
 (use-package org-pandoc-import
   :elpaca (:host github
                  :repo "tecosaur/org-pandoc-import"

@@ -346,13 +346,25 @@
 
 ;; org is loaded by other packages, so it must be loaded first lest we load
 ;; conflicting versions
-(use-package org)
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :bind
+  (:map org-mode-map
+        ("C-c l" . org-store-link)
+        ("C-c a" . org-agenda)
+        ("C-c c" . org-capture))
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   Optional mixins
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Helper used in the mixins to install system packages
+(use-package system-packages
+  :init (setq system-packages-usesudo t
+              system-packages-package-manager 'dnf))
 
 ;; Uncomment these lines or copy from the mixin/ files as you see fit
 
