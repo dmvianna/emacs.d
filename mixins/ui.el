@@ -28,11 +28,9 @@
 (use-package visual-regexp)
 
 (use-package visual-regexp-steroids
-  :straight (visual-regexp-steroids
-             :type git
-             :host github
-             :repo "benma/visual-regexp-steroids.el"
-             :files ("visual-regexp-steroids.el" "regexp.py"))
+  :elpaca (visual-regexp-steroids
+           :repo "benma/visual-regexp-steroids.el"
+           :files ("visual-regexp-steroids.el" "regexp.py"))
   :requires visual-regexp
   :bind (:map global-map
               ("C-s" . isearch-forward)

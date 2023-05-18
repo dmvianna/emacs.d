@@ -17,14 +17,14 @@
   (lsp-haskell-stylish-haskell nil))
 
 (use-package haskell-cabal
-  :straight nil
+  :elpaca nil
   :hook
   (haskell-mode . envrc-mode)
   (haskell-cabal-mode . format-all-mode)
   (format-all-mode . format-all-ensure-formatter))
 
 (use-package haskell-mode
-  :straight nil
+  :elpaca nil
   :delight "λ"
   :after haskell-font-lock
   :hook (haskell-mode . eglot-ensure))

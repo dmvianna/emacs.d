@@ -83,14 +83,14 @@
 ;;; languages
 
 (use-package avro-mode
-  :straight nil
+  :elpaca nil
   :custom
   (tab-width 4)
   :mode "\\.avdl$")
 
 ;; ini files
 (use-package conf-mode
-  :straight nil
+  :elpaca nil
   :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'\\|\\.desktop\\'")
 
 ;; csv files
@@ -134,14 +134,14 @@
 
 ;; Lisp
 (use-package emacs-lisp-mode
-  :straight nil
+  :elpaca nil
   :mode "\\.el\\'"
   :hook
   (emacs-lisp-mode . flymake-mode)
   (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package lisp-mode
-  :straight nil
+  :elpaca nil
   :mode "\\.cl\\|\\.lisp\\'"
   :hook
   (lisp-mode . rainbow-delimiters-mode)
@@ -217,12 +217,11 @@
   :custom (sh-basic-offset 2))
 
 (use-package theta-mode
-  :straight (theta-mode
-             :type git
-             :host github
-             :repo "target/theta-idl"
-             :branch "stage"
-             :files ("emacs/theta-mode.el"))
+  :elpaca (theta-mode
+           :host github
+           :repo "target/theta-idl"
+           :branch "stage"
+           :files ("emacs/theta-mode.el"))
   :mode ("\\.theta\\'" . theta-mode))
 
 (use-package yaml-mode)

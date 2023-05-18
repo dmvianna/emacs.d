@@ -32,7 +32,7 @@
 
 ;; Popup completion-at-point
 (use-package corfu
-  :straight (:host github :repo "minad/corfu")
+  :elpaca (:host github :repo "minad/corfu")
   :custom
   (corfu-cycle t)
   (corfu-auto t)
@@ -55,21 +55,19 @@
 ;; Extensions
 (use-package corfu-popupinfo
   :after corfu
-  :straight (:host github
-                   :repo "minad/corfu"
-                   :files ("extensions/corfu-popupinfo.el"))
+  :elpaca (:repo "minad/corfu"
+                 :files ("extensions/corfu-popupinfo.el"))
   :config (corfu-popupinfo-mode 1)
   :custom (corfu-popupinfo-delay '(0.5 . 0.2)))
 
 (use-package corfu-history
   :after corfu
-  :straight (:host github
-                   :repo "minad/corfu"
-                   :files ("extensions/corfu-history.el"))
+  :elpaca (:repo "minad/corfu"
+                 :files ("extensions/corfu-history.el"))
   :config
-   (corfu-history-mode 1)
-   (savehist-mode 1)
-   (add-to-list 'savehist-additional-variables 'corfu-history))
+  (corfu-history-mode 1)
+  (savehist-mode 1)
+  (add-to-list 'savehist-additional-variables 'corfu-history))
 
 ;; Make corfu popup come up in terminal overlay
 (use-package corfu-terminal

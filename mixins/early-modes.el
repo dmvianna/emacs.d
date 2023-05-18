@@ -26,17 +26,17 @@
 ;;     (warning-suppress-types '((direnv))))
 
 (use-package inheritenv
-  :straight (inheritenv :type git :host github :repo "purcell/inheritenv"))
+  :elpaca (inheritenv :host github :repo "purcell/inheritenv"))
 
 (use-package envrc
   :delight " env"
-  :straight (envrc :type git :host github :repo "purcell/envrc")
+  :elpaca (envrc :host github :repo "purcell/envrc")
   :commands (envrc-mode)
   :init (envrc-global-mode))
 
 (use-package project
- :init
- (setq project-vc-extra-root-markers '(".envrc")))
+  :init
+  (setq project-vc-extra-root-markers '(".envrc")))
 
 (provide 'early-modes)
 ;;; early-modes.el ends here

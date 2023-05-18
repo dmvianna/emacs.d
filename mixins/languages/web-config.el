@@ -4,7 +4,7 @@
 ;;; Code:
 
 (use-package js-mode
-  :straight nil
+  :elpaca nil
   :hook
   ((js-mode . lsp)
    (js-mode . (lambda ()

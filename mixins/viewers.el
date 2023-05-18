@@ -4,7 +4,7 @@
 ;;; Code:
 
 (use-package docview
-  :straight nil
+  :elpaca nil
   :bind (:map
          docview-mode-map
          ("<mouse-4>" . doc-view-scroll-down-or-previous-page)
@@ -22,7 +22,7 @@
   (pdf-view-mode . (lambda (display-line-numbers-mode nil))))
 
 (use-package image-mode
-  :straight nil
+  :elpaca nil
   :bind (:map
          image-mode-map
          ("<mouse-4>" . image-scroll-down)

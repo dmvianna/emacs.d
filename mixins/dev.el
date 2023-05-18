@@ -62,7 +62,7 @@
 
 (use-package undo-hl
   :delight
-  :straight (undo-hl :type git :host github :repo "casouri/undo-hl")
+  :elpaca (undo-hl :host github :repo "casouri/undo-hl")
   :hook ((text-mode . undo-hl-mode)
          (prog-mode . undo-hl-mode))
   :custom-face
@@ -71,11 +71,11 @@
 
 (use-package vundo
   :after undo-hl
-  :straight (vundo :type git :host github :repo "casouri/vundo")
+  :elpaca (vundo :host github :repo "casouri/vundo")
   :config
   ;; this is all so that undo-hl works with vundo. It mostly does.
   (setq undo-hl-undo-commands
-     (-union
+        (-union
          undo-hl-undo-commands
          '(vundo-backward vundo-forward vundo-stem-root vundo-stem-end)))
   (defvar my-real-vundo-buf nil)
@@ -86,26 +86,27 @@
           (with-current-buffer my-real-vundo-buf (run-hooks 'pre-command-hook))))))
   ;; also undo-hl stuff
   (add-hook 'vundo-pre-enter-hook
-    (lambda ()
-      (setq my-real-vundo-buf (current-buffer))
-      (add-hook 'pre-command-hook 'my-vundo-forward-pre-command-hook)
-      (undo-hl-mode 1)))
+            (lambda ()
+              (setq my-real-vundo-buf (current-buffer))
+              (add-hook 'pre-command-hook 'my-vundo-forward-pre-command-hook)
+              (undo-hl-mode 1)))
   (add-hook 'vundo-post-exit-hook
-    (lambda ()
-      (remove-hook 'pre-command-hook 'my-vundo-forward-pre-command-hook)
-      (undo-hl-mode -1)
-      (makunbound 'my-real-vundo-buf)))
-   ;; Better contrasting highlight.
- :custom-face
- (vundo-node ((t (:foreground "#808080"))))
- (vundo-stem ((t (:foreground "#808080"))))
- (vundo-highlight ((t (:foreground "#FFFF00")))))
+            (lambda ()
+              (remove-hook 'pre-command-hook 'my-vundo-forward-pre-command-hook)
+              (undo-hl-mode -1)
+              (makunbound 'my-real-vundo-buf)))
+  ;; Better contrasting highlight.
+  :custom-face
+  (vundo-node ((t (:foreground "#808080"))))
+  (vundo-stem ((t (:foreground "#808080"))))
+  (vundo-highlight ((t (:foreground "#FFFF00")))))
 
 ;;; exclude the following directories from grep searches
 (eval-after-load 'grep
   '(progn
      (add-to-list 'grep-find-ignored-directories "tmp")
      (add-to-list 'grep-find-ignored-directories "straight")
+     (add-to-list 'grep-find-ignored-directories "elpaca")
      (add-to-list 'grep-find-ignored-directories "node_modules")
      (add-to-list 'grep-find-ignored-directories "amazonka")
      (add-to-list 'grep-find-ignored-directories "amazonka-1.6.1")
@@ -159,9 +160,9 @@
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
 (use-package org-pandoc-import
-  :straight (:host github
-                   :repo "tecosaur/org-pandoc-import"
-                   :files ("*.el" "filters" "preprocessors")))
+  :elpaca (:host github
+                 :repo "tecosaur/org-pandoc-import"
+                 :files ("*.el" "filters" "preprocessors")))
 
 (use-package org-roam)
 
@@ -188,15 +189,14 @@
 
 ;; elisp term
 (use-package aweshell
-  :straight (aweshell
-             :type git
-             :host github
-             :repo "manateelazycat/aweshell"
-             :files ("aweshell.el"
-                     "eshell-did-you-mean.el"
-                     "eshell-prompt-extras.el"
-                     "eshell-up.el"
-                     "exec-path-from-shell.el")))
+  :elpaca (aweshell
+           :host github
+           :repo "manateelazycat/aweshell"
+           :files ("aweshell.el"
+                   "eshell-did-you-mean.el"
+                   "eshell-prompt-extras.el"
+                   "eshell-up.el"
+                   "exec-path-from-shell.el")))
 
 ;; git shell ?! :-DDDD
 (use-package magit
@@ -225,13 +225,12 @@
 ;; the current transient release (magit dependency)
 ;; is broken (v0.3.7), so we use this
 (use-package transient
-  :straight (transient
-             :type git
-             :host github
-             :repo "magit/transient"))
+  :elpaca (transient
+           :host github
+           :repo "magit/transient"))
 
 (use-package ediff
-  :straight nil
+  :elpaca nil
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
         ediff-split-window-function 'split-window-horizontally
