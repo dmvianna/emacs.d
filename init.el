@@ -263,7 +263,7 @@
 (global-set-key (kbd "<end>") 'end-of-buffer)
 
 (use-package prog-mode
-  :straight nil
+  :elpaca nil
   :config
   ;; open pairs with extra newline in between, and autoindent
   (electric-pair-local-mode nil)
