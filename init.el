@@ -266,7 +266,7 @@
   :straight nil
   :config
   ;; open pairs with extra newline in between, and autoindent
-  (electric-pair-local-mode t)
+  (electric-pair-local-mode nil)
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode))
   ;; Display line numbers
