@@ -151,15 +151,14 @@
   :config
   (setq inferior-lisp-program "sbcl")
   (defun override-slime-del-key ()
-   (define-key slime-repl-mode-map
-     (read-kbd-macro paredit-backward-delete-key) nil))
+    (define-key slime-repl-mode-map
+      (read-kbd-macro paredit-backward-delete-key) nil))
   :hook
   (slime-repl-mode . 'override-slime-del-key)
   (slime-repl-mode . rainbow-delimiters-mode)
-  :ensure-system-package
   ;; follow further instructions for installing quicklisp (package manager)
   ;; at https://github.com/susam/emacs4cl#get-started
-  (sbcl . "sbcl"))
+  :init (system-packages-ensure "sbcl"))
 
 (use-package parinfer-rust-mode
   :custom

@@ -55,14 +55,16 @@
 ;; Extensions
 (use-package corfu-popupinfo
   :after corfu
-  :elpaca (:repo "minad/corfu"
+  :elpaca (:host github
+                 :repo "minad/corfu"
                  :files ("extensions/corfu-popupinfo.el"))
   :config (corfu-popupinfo-mode 1)
   :custom (corfu-popupinfo-delay '(0.5 . 0.2)))
 
 (use-package corfu-history
   :after corfu
-  :elpaca (:repo "minad/corfu"
+  :elpaca (:host github
+                 :repo "minad/corfu"
                  :files ("extensions/corfu-history.el"))
   :config
   (corfu-history-mode 1)

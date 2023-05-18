@@ -62,6 +62,7 @@
 
 ;; ibuffer
 (use-package ibuffer
+  :elpaca nil
   :config (global-set-key [remap list-buffers] 'ibuffer))
 
 (use-package ibuffer-vc
