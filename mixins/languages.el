@@ -39,17 +39,12 @@
   :config
   (progn
     (define-key lsp-ui-mode-map
-       [remap haskell-mode-jump-to-def-or-tag] #'lsp-ui-peek-find-definitions)
+      [remap haskell-mode-jump-to-def-or-tag] #'lsp-ui-peek-find-definitions)
     (define-key lsp-ui-mode-map
-       [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+      [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
     (define-key lsp-ui-mode-map
-       [remap xref-find-references] #'lsp-ui-peek-find-references))
+      [remap xref-find-references] #'lsp-ui-peek-find-references))
   :commands lsp-ui-mode)
-
-(use-package company-lsp
-  :after lsp-ui
-  :config
-  (setq lsp-completion-provider :capf))
 
 ;; eglot
 (use-package jsonrpc) ;; hopefully this doesn't leak memory
@@ -60,15 +55,15 @@
   (eglot-confirm-server-initiated-edits t)
   (eglot-sync-connect nil) ; don't block while connecting to server
   :hook (eglot-managed-mode . (lambda () (put 'eglot-note 'flymake-overlay-control nil)
-                               (put 'eglot-warning 'flymake-overlay-control nil)
-                               (put 'eglot-error 'flymake-overlay-control nil)))
-   :config
-   (setq-default
-    eglot-ignored-server-capabilities
-    '(workspace/didChangeWatchedFiles)
-    eglot-workspace-configuration
-    '(haskell
-      (formattingProvider "fourmolu"))))
+                                (put 'eglot-warning 'flymake-overlay-control nil)
+                                (put 'eglot-error 'flymake-overlay-control nil)))
+  :config
+  (setq-default
+   eglot-ignored-server-capabilities
+   '(workspace/didChangeWatchedFiles)
+   eglot-workspace-configuration
+   '(haskell
+     (formattingProvider "fourmolu"))))
 
 (defun my-eglot-organize-imports ()
   "Organize imports in eglot."
@@ -108,8 +103,7 @@
 
 ;; graphviz
 (use-package graphviz-dot-mode
-  :config (setq graphviz-dot-mode-indent-width 2)
-  :hook (graphviz-dot-mode . company-mode))
+  :config (setq graphviz-dot-mode-indent-width 2))
 
 ;; Haskell
 (load-file (concat user-emacs-directory "mixins/languages/haskell-config.el"))
