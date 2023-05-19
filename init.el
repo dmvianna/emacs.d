@@ -373,6 +373,9 @@
 
 ;; Helper used in the mixins to install system packages
 (use-package system-packages
+  :init
+  (setq system-packages-use-sudo t)
+  (setq system-packages-package-manager 'dnf)
   :custom (async-shell-command-buffer 'new-buffer))
 
 ;; Uncomment these lines or copy from the mixin/ files as you see fit
