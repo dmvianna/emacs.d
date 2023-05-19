@@ -184,6 +184,9 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; smooth scrolling (emacs 29)
+(pixel-scroll-precision-mode)
+
 ;; directory tree view
 (use-package treemacs
   :init
