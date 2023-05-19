@@ -185,7 +185,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; smooth scrolling (emacs 29)
-(pixel-scroll-precision-mode)
+;; (pixel-scroll-precision-mode)
 (customize-set-variable 'frame-resize-pixelwise t)
 (customize-set-variable 'window-resize-pixelwise t)
 
