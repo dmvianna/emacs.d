@@ -191,7 +191,8 @@
 (customize-set-variable 'window-resize-pixelwise t)
 
 ;; directory tree view
-(use-package treemacs)
+(use-package treemacs
+  :config (require 'treemacs-treelib))
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
