@@ -66,12 +66,19 @@
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
 
+;;; Populate elpaca queue with the packages that will process the config.
 ;; Install use-package support
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode)
   ;; Assume :elpaca t unless otherwise specified.
   (setq elpaca-use-package-by-default t))
+
+;; Install system-packages
+(elpaca system-packages
+  (setq system-packages-use-sudo t
+        system-packages-package-manager 'dnf
+        async-shell-command-buffer 'new-buffer))
 
 ;; Block until current queue processed.
 (elpaca-wait)

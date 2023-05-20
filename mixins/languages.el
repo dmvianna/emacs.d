@@ -154,7 +154,7 @@
   (slime-repl-mode . rainbow-delimiters-mode)
   ;; follow further instructions for installing quicklisp (package manager)
   ;; at https://github.com/susam/emacs4cl#get-started
-  :ensure-system-package (dnf . "sbcl"))
+  :ensure-system-package (slime . sbcl))
 
 (use-package parinfer-rust-mode
   :custom
