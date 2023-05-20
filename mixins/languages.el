@@ -152,9 +152,9 @@
         slime-contribs '(slime-fancy))
   :hook
   (slime-repl-mode . rainbow-delimiters-mode))
-  ;; follow further instructions for installing quicklisp (package manager)
-  ;; at https://github.com/susam/emacs4cl#get-started
-  ;; :init (system-packages-ensure "sbcl")
+;; follow further instructions for installing quicklisp (package manager)
+;; at https://github.com/susam/emacs4cl#get-started
+;; :init (system-packages-ensure "sbcl")
 
 
 (use-package parinfer-rust-mode
@@ -184,7 +184,7 @@
 
 ;; nix
 (use-package nix-mode
-  :after magit
+  :no-require magit
   :init
   (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
   (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
