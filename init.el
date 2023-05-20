@@ -29,14 +29,15 @@
 ;; We have started, bring gc threshold back down
 (setq doom-gc-cons-threshold (* 16 1024 1024)) ;; 16 MB
 (add-hook 'emacs-startup-hook
-          #'(lambda ()
-              (setq gc-cons-threshold doom-gc-cons-threshold
-                    gc-cons-percentage 0.1)))
+          (lambda ()
+            (setq gc-cons-threshold doom-gc-cons-threshold
+                  gc-cons-percentage 0.1)))
 
 ;; It may also be wise to raise gc-cons-threshold while the minibuffer is active, so the GC
 ;; doesn’t slow down expensive commands (or completion frameworks, like helm and ivy). Here
 ;; is how Doom does it:
 (defun doom-defer-garbage-collection-h ()
+  "Don't do garbage collection during startup."
   (setq gc-cons-threshold most-positive-fixnum))
 
 (defun doom-restore-garbage-collection-h ()
@@ -199,10 +200,10 @@
 
 ;; we can redisplay now, boot is over
 (add-hook 'window-setup-hook
-          #'(lambda ()
-              (setq-default inhibit-redisplay nil
-                            inhibit-message nil)
-              (default-frame-layout-hook (selected-frame))))
+          (lambda ()
+            (setq-default inhibit-redisplay nil
+                          inhibit-message nil)
+            (default-frame-layout-hook (selected-frame))))
 
 ;;; focus on emacs frame when it is started
 (add-hook 'server-switch-hook #'raise-frame)
