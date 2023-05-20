@@ -185,14 +185,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; smooth scrolling (emacs 29)
-;; (pixel-scroll-precision-mode)
+(if (version< emacs-version "29") (pixel-scroll-precision-mode 1) (pixel-scroll-mode 1))
 (customize-set-variable 'frame-resize-pixelwise t)
 (customize-set-variable 'window-resize-pixelwise t)
 
 ;; directory tree view
-(use-package treemacs
-  :init
-  (require 'treemacs-treelib))
+(use-package treemacs-treelib
+  :before magit)
+(use-package treemacs)
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
