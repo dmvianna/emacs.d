@@ -117,13 +117,12 @@
 
 ;; file search
 (use-package rg
-  ;; :init (system-packages-ensure "ripgrep")
-  )
+  :ensure-system-package (dnf . "ripgrep"))
+
 
 ;; fallback cross file definition lookup
 (use-package dumb-jump
-  ;; :init (system-packages-ensure "ripgrep")
-  )
+  :ensure-system-package (dnf . "ripgrep"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -175,8 +174,7 @@
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
   :custom (org-download-method 'attach)
-  ;; :init (system-packages-ensure "wl-clipboard")
-  )
+  :ensure-system-package (dnf . "wl-clipboard"))
 
 ;; term
 (use-package multi-term)

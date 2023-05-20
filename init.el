@@ -371,6 +371,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Helper used in the mixins to install system packages
+;;; use use-package
+(use-package use-package-ensure-system-package)
 (use-package system-packages
   :init
   (setq system-packages-use-sudo t)
