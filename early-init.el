@@ -80,6 +80,32 @@
         system-packages-package-manager 'dnf
         async-shell-command-buffer 'new-buffer))
 
+;; git shell ?! :-DDDD
+
+;; nix-mode depends on a package that comes with magit, so we fetch magit
+;; before moving forward. Below we tell elpaca to not continue until the
+;; current download queue is empty.
+
+(use-package magit
+  :init
+  ;; status is expensive in big repos, only refresh if
+  ;; it is the current buffer
+  ;; (setq magit-refresh-status-buffer nil)
+  ;; it is always git, so no need to display it
+  ;; https://emacs.stackexchange.com/a/10957/3895
+  (defadvice vc-mode-line (after strip-backend () activate)
+    (when (stringp vc-mode)
+      (let ((noback (replace-regexp-in-string
+                     (format "^ %s" (vc-backend buffer-file-name))
+                     " " vc-mode)))
+        (setq vc-mode noback))))
+  (setq vc-display-status nil) ;; don't display branch name in mode line
+  (if (not (boundp 'project-switch-commands))
+      (setq project-switch-commands nil))
+  :bind (:map
+         magit-mode-map
+         ("C-x g" . magit-status)))
+
 ;; Block until current queue processed.
 (elpaca-wait)
 
