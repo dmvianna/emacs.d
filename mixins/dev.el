@@ -116,14 +116,14 @@
 (add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))
 
 ;; file search
-(use-package rg
+(use-package rg)
   ;; :init (system-packages-ensure "ripgrep")
-  )
+
 
 ;; fallback cross file definition lookup
-(use-package dumb-jump
+(use-package dumb-jump)
   ;; :init (system-packages-ensure "ripgrep")
-  )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -174,9 +174,9 @@
   (:map org-mode-map
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
-  :custom (org-download-method 'attach)
+  :custom (org-download-method 'attach))
   ;; :init (system-packages-ensure "wl-clipboard")
-  )
+
 
 ;; term
 (use-package multi-term)
@@ -192,26 +192,6 @@
                    "eshell-up.el"
                    "exec-path-from-shell.el")))
 
-;; git shell ?! :-DDDD
-(use-package magit
-  :init
-  ;; status is expensive in big repos, only refresh if
-  ;; it is the current buffer
-  ;; (setq magit-refresh-status-buffer nil)
-  ;; it is always git, so no need to display it
-  ;; https://emacs.stackexchange.com/a/10957/3895
-  (defadvice vc-mode-line (after strip-backend () activate)
-   (when (stringp vc-mode)
-     (let ((noback (replace-regexp-in-string
-                    (format "^ %s" (vc-backend buffer-file-name))
-                    " " vc-mode)))
-       (setq vc-mode noback))))
-  (setq vc-display-status nil) ;; don't display branch name in mode line
-  (if (not (boundp 'project-switch-commands))
-      (setq project-switch-commands nil))
-  :bind (:map
-         magit-mode-map
-         ("C-x g" . magit-status)))
 
 (use-package abridge-diff
   :after magit)
