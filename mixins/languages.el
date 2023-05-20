@@ -183,14 +183,15 @@
 
 ;; nix
 (use-package nix-mode
-  :no-require magit
+  :requires magit
   :init
   (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
-  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
-                    :major-modes '(nix-mode)
-                    :server-id 'nix))
+  (if (featurep 'lsp-mode)
+      (progn  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+              (lsp-register-client
+               (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+                                :major-modes '(nix-mode)
+                                :server-id 'nix))))
   :hook (nix-mode . eglot-ensure)
   :mode "\\.nix\\'")
 

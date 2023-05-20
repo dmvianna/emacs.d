@@ -185,13 +185,21 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; go to windows by number
+(use-package winum
+  :config (winum-mode))
+
 ;; smooth scrolling (emacs 29)
 (if (version< emacs-version "29") (pixel-scroll-mode 1) (pixel-scroll-precision-mode 1))
 (customize-set-variable 'frame-resize-pixelwise t)
 (customize-set-variable 'window-resize-pixelwise t)
 
 ;; directory tree view
-(use-package treemacs)
+(use-package treemacs
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  )
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -230,7 +238,7 @@
 (add-hook 'maximized-frame-hook
           #'(lambda ()
               (split-window-horizontally)
-              (treemacs)
+              (if (featurep 'treemacs)(treemacs))
               (setq treemacs-width-is-initially-locked nil)))
 
 ;;; that's what emacs-daemon uses

@@ -173,8 +173,18 @@
   (:map org-mode-map
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
+<<<<<<< HEAD
   :custom (org-download-method 'attach)
   :ensure-system-package (dnf . "wl-clipboard"))
+||||||| 98d6aca
+  :custom (org-download-method 'attach)
+  ;; :init (system-packages-ensure "wl-clipboard")
+  )
+=======
+  :custom (org-download-method 'attach))
+  ;; :init (system-packages-ensure "wl-clipboard")
+
+>>>>>>> 6b48b0396f906b2cb63516fcee5d3bce00c95bde
 
 ;; term
 (use-package multi-term)
@@ -190,26 +200,6 @@
                    "eshell-up.el"
                    "exec-path-from-shell.el")))
 
-;; git shell ?! :-DDDD
-(use-package magit
-  :init
-  ;; status is expensive in big repos, only refresh if
-  ;; it is the current buffer
-  ;; (setq magit-refresh-status-buffer nil)
-  ;; it is always git, so no need to display it
-  ;; https://emacs.stackexchange.com/a/10957/3895
-  (defadvice vc-mode-line (after strip-backend () activate)
-   (when (stringp vc-mode)
-     (let ((noback (replace-regexp-in-string
-                    (format "^ %s" (vc-backend buffer-file-name))
-                    " " vc-mode)))
-       (setq vc-mode noback))))
-  (setq vc-display-status nil) ;; don't display branch name in mode line
-  (if (not (boundp 'project-switch-commands))
-      (setq project-switch-commands nil))
-  :bind (:map
-         magit-mode-map
-         ("C-x g" . magit-status)))
 
 (use-package abridge-diff
   :after magit)
