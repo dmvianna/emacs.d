@@ -116,14 +116,13 @@
 (add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))
 
 ;; file search
-(use-package rg)
-  ;; :init (system-packages-ensure "ripgrep")
+(use-package rg
+  :ensure-system-package (dnf . "ripgrep"))
 
 
 ;; fallback cross file definition lookup
-(use-package dumb-jump)
-  ;; :init (system-packages-ensure "ripgrep")
-
+(use-package dumb-jump
+  :ensure-system-package (dnf . "ripgrep"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -174,9 +173,8 @@
   (:map org-mode-map
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
-  :custom (org-download-method 'attach))
-  ;; :init (system-packages-ensure "wl-clipboard")
-
+  :custom (org-download-method 'attach)
+  :ensure-system-package (dnf . "wl-clipboard"))
 
 ;; term
 (use-package multi-term)

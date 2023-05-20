@@ -151,11 +151,10 @@
   (setq inferior-lisp-program "sbcl"
         slime-contribs '(slime-fancy))
   :hook
-  (slime-repl-mode . rainbow-delimiters-mode))
-;; follow further instructions for installing quicklisp (package manager)
-;; at https://github.com/susam/emacs4cl#get-started
-;; :init (system-packages-ensure "sbcl")
-
+  (slime-repl-mode . rainbow-delimiters-mode)
+  ;; follow further instructions for installing quicklisp (package manager)
+  ;; at https://github.com/susam/emacs4cl#get-started
+  :ensure-system-package (dnf . "sbcl"))
 
 (use-package parinfer-rust-mode
   :custom
