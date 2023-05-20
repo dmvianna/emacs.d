@@ -27,7 +27,6 @@
 
 ;; git shell ?! :-DDDD
 (use-package magit
-  :elpaca nil
   :init
   ;; status is expensive in big repos, only refresh if
   ;; it is the current buffer
