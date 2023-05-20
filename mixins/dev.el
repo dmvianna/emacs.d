@@ -173,18 +173,8 @@
   (:map org-mode-map
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
-<<<<<<< HEAD
   :custom (org-download-method 'attach)
   :ensure-system-package (dnf . "wl-clipboard"))
-||||||| 98d6aca
-  :custom (org-download-method 'attach)
-  ;; :init (system-packages-ensure "wl-clipboard")
-  )
-=======
-  :custom (org-download-method 'attach))
-  ;; :init (system-packages-ensure "wl-clipboard")
-
->>>>>>> 6b48b0396f906b2cb63516fcee5d3bce00c95bde
 
 ;; term
 (use-package multi-term)
