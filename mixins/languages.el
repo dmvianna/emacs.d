@@ -199,8 +199,7 @@
                                 :major-modes '(nix-mode)
                                 :server-id 'nix))))
   :hook (nix-mode . eglot-ensure)
-  :mode "\\.nix\\'"
-  :ensure-system-package (nix-mode . "nix-env -i rnix-lsp"))
+  :mode "\\.nix\\'")
 
 ;; Racket
 (use-package racket-mode
