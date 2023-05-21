@@ -18,8 +18,7 @@
   :init
   (setq-default eglot-workspace-configuration
                 '(haskell
-                  (formattingProvider "fourmolu")))
-  :ensure-system-package (haskell . fourmolu))
+                  (formattingProvider "fourmolu"))))
 
 (use-package haskell-cabal
   :elpaca nil
