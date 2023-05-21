@@ -14,7 +14,12 @@
   (lsp-haskell-brittany nil)
   (lsp-haskell-floskell nil)
   (lsp-haskell-ormolu nil)
-  (lsp-haskell-stylish-haskell nil))
+  (lsp-haskell-stylish-haskell nil)
+  :init
+  (setq-default eglot-workspace-configuration
+                '(haskell
+                  (formattingProvider "fourmolu")))
+  :ensure-system-package (haskell . fourmolu))
 
 (use-package haskell-cabal
   :elpaca nil
@@ -30,4 +35,4 @@
   :hook (haskell-mode . eglot-ensure))
 
 (provide 'haskell-config)
-;;; haskell-config.el ends here
+;;; haskell-config.el ends here.

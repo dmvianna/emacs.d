@@ -63,7 +63,13 @@
    '(workspace/didChangeWatchedFiles)
    eglot-workspace-configuration
    '(haskell
-     (formattingProvider "fourmolu"))))
+     (formattingProvider "fourmolu")))
+  (defun my-eglot-organize-imports ()
+    "Organize imports in eglot."
+    (interactive)
+    (eglot-code-actions nil nil "source.organizeImports" t))
+  (add-hook 'before-save-hook 'my-eglot-organize-imports nil t)
+  (add-hook 'before-save-hook 'eglot-format-buffer nil t))
 
 (defun my-eglot-organize-imports ()
   "Organize imports in eglot."
@@ -184,7 +190,7 @@
 ;; nix
 (use-package nix-mode
   :requires magit-section
-  :init
+  :config
   (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
   (if (featurep 'lsp-mode)
       (progn  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
@@ -193,7 +199,8 @@
                                 :major-modes '(nix-mode)
                                 :server-id 'nix))))
   :hook (nix-mode . eglot-ensure)
-  :mode "\\.nix\\'")
+  :mode "\\.nix\\'"
+  :ensure-system-package (nix-mode . "nix-env -i rnix-lsp"))
 
 ;; Racket
 (use-package racket-mode
@@ -224,10 +231,11 @@
 (use-package yaml-mode)
 
 (use-package terraform-mode
-  :init
+  :config
   (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-lsp")))
   :hook
-  (terraform-mode . eglot-ensure))
+  (terraform-mode . eglot-ensure)
+  :ensure-system-package (terraform-mode . terraform-ls))
 
 (use-package udev-mode)
 
