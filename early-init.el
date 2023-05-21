@@ -68,6 +68,7 @@
 
 ;;; Populate elpaca queue with the packages that will process the config.
 ;; Install use-package support
+(if (not (featurep 'use-package)) (elpaca use-package))
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode)
@@ -81,6 +82,10 @@
         async-shell-command-buffer 'new-buffer))
 
 ;; Block until current queue processed.
+(elpaca-wait)
+
+;; load the extension before continuing
+(use-package use-package-ensure-system-package)
 (elpaca-wait)
 
 ;; add modules within this directory to the scope
