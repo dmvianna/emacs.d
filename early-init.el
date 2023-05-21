@@ -81,6 +81,12 @@
         system-packages-package-manager 'dnf
         async-shell-command-buffer 'new-buffer))
 
+(elpaca-wait)
+
+;; load the extension before continuing
+(use-package use-package-ensure-system-package)
+(elpaca-wait)
+
 ;; git shell ?! :-DDDD
 
 ;; nix-mode depends on a package that comes with magit, so we fetch magit
@@ -103,15 +109,12 @@
   (setq vc-display-status nil) ;; don't display branch name in mode line
   (if (not (boundp 'project-switch-commands))
       (setq project-switch-commands nil))
+  :ensure-system-package (magit . git)
   :bind (:map
          magit-mode-map
          ("C-x g" . magit-status)))
 
 ;; Block until current queue processed.
-(elpaca-wait)
-
-;; load the extension before continuing
-(use-package use-package-ensure-system-package)
 (elpaca-wait)
 
 ;; add modules within this directory to the scope
