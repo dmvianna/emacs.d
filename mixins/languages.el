@@ -183,7 +183,7 @@
 
 ;; nix
 (use-package nix-mode
-  :requires magit
+  :requires magit-section
   :init
   (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
   (if (featurep 'lsp-mode)
