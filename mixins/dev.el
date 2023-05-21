@@ -176,6 +176,13 @@
   :custom (org-download-method 'attach)
   :ensure-system-package (org-download . wl-clipboard))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   CLI
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 ;; term
 (use-package multi-term)
 
@@ -190,9 +197,11 @@
                    "eshell-up.el"
                    "exec-path-from-shell.el")))
 
-
-(use-package abridge-diff
-  :after magit)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Version control
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; the current transient release (magit dependency)
 ;; is broken (v0.3.7), so we use this
@@ -200,6 +209,31 @@
   :elpaca (transient
            :host github
            :repo "magit/transient"))
+
+(use-package magit
+  :elpaca nil
+  :config
+  ;; status is expensive in big repos, only refresh if
+  ;; it is the current buffer
+  ;; (setq magit-refresh-status-buffer nil)
+  ;; it is always git, so no need to display it
+  ;; https://emacs.stackexchange.com/a/10957/3895
+  (defadvice vc-mode-line (after strip-backend () activate)
+    (when (stringp vc-mode)
+      (let ((noback (replace-regexp-in-string
+                     (format "^ %s" (vc-backend buffer-file-name))
+                     " " vc-mode)))
+        (setq vc-mode noback))))
+  (setq vc-display-status nil) ;; don't display branch name in mode line
+  (if (not (boundp 'project-switch-commands))
+      (setq project-switch-commands nil))
+  :bind (:map
+         magit-mode-map
+         ("C-x g" . magit-status)))
+
+
+(use-package abridge-diff
+  :after magit)
 
 (use-package ediff
   :elpaca nil
