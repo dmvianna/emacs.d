@@ -357,9 +357,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
-;;    Org mode
+;;    Parent packages
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; These packages must be fetched first if not present in the system, and then
+;; loaded first so the child packages could depend on them.
+
+(load-file (concat user-emacs-directory "mixins/parents.el"))
 
 ;; org is loaded by other packages, so it must be loaded first lest we load
 ;; conflicting versions

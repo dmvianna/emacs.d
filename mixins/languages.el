@@ -5,31 +5,6 @@
 
 ;;; LSP
 
-(use-package lsp-mode
-  ;; lsp does not define this variable by
-  ;; default, so we have to set it here
-  :custom
-  (lsp-enable-snippet nil)
-  :init
-  (setq
-   ;; easier than debugging right now https://emacs-lsp.github.io/lsp-mode/page/file-watchers/
-   lsp-enable-file-watchers nil
-   ;; give lsp enough memory
-   read-process-output-max (* 1024 1024) ;; 1mb)
-   ;; Probably overkill, but doesn't hurt.
-   ;; LSP should use better deserialisation.
-   ;; https://emacs-lsp.github.io/lsp-mode/page/performance/#use-plists-for-deserialization
-   lsp-use-plists t
-   ;; Yes, I want to restart
-   lsp-restart 'auto-restart
-   lsp-enable-folding nil
-   lsp-enable-snippet nil)
-  :hook
-  (before-save . lsp-format-buffer)
-  (before-save . lsp-organize-imports)
-  :commands (lsp lsp-deferred)
-  :bind-keymap ("s-l" . lsp-command-map))
-
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom

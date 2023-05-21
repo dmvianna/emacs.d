@@ -87,36 +87,6 @@
 (use-package use-package-ensure-system-package)
 (elpaca-wait)
 
-;; git shell ?! :-DDDD
-
-;; nix-mode depends on a package that comes with magit, so we fetch magit
-;; before moving forward. Below we tell elpaca to not continue until the
-;; current download queue is empty.
-
-(use-package magit
-  :init
-  ;; status is expensive in big repos, only refresh if
-  ;; it is the current buffer
-  ;; (setq magit-refresh-status-buffer nil)
-  ;; it is always git, so no need to display it
-  ;; https://emacs.stackexchange.com/a/10957/3895
-  (defadvice vc-mode-line (after strip-backend () activate)
-    (when (stringp vc-mode)
-      (let ((noback (replace-regexp-in-string
-                     (format "^ %s" (vc-backend buffer-file-name))
-                     " " vc-mode)))
-        (setq vc-mode noback))))
-  (setq vc-display-status nil) ;; don't display branch name in mode line
-  (if (not (boundp 'project-switch-commands))
-      (setq project-switch-commands nil))
-  :ensure-system-package (magit . git)
-  :bind (:map
-         magit-mode-map
-         ("C-x g" . magit-status)))
-
-;; Block until current queue processed.
-(elpaca-wait)
-
 ;; add modules within this directory to the scope
 (add-to-list 'load-path
              (expand-file-name "local-packages" user-emacs-directory))
