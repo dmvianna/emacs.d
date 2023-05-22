@@ -142,10 +142,6 @@
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
-;; ssh-add
-(use-package keychain-environment
-  :init (keychain-refresh-environment))
-
 ;; rest
 (use-package verb)
 
