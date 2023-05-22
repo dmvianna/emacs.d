@@ -283,6 +283,8 @@
 ;; we can redisplay now, boot is over
 (add-hook 'window-setup-hook
           (lambda ()
+            ;; leave this inhibit-redisplay alone! We're setting it
+            ;; back to its original value.
             (setq-default inhibit-redisplay nil
                           inhibit-message nil)
             (default-frame-layout-hook (selected-frame))))
@@ -314,7 +316,11 @@
 (add-hook 'maximized-frame-hook
           #'(lambda ()
               (split-window-horizontally)
-              (if (featurep 'treemacs)(treemacs))
+              (if (and (featurep 'treemacs)
+                       (not (eq (treemacs-current-visibility)
+                                'visible)))
+                  (treemacs))
+              (scroll-bar-mode -1)
               (setq treemacs-width-is-initially-locked nil)))
 
 ;;; that's what emacs-daemon uses
