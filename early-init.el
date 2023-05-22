@@ -76,7 +76,7 @@
 
 ;; Install system-packages
 (elpaca system-packages
-  (setq system-packages-use-sudo t
+  (setq system-packages-use-sudo nil ;; change to t if installing, else avoid it.
         system-packages-package-manager 'dnf
         async-shell-command-buffer 'new-buffer))
 
