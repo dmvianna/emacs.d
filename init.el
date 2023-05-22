@@ -272,9 +272,13 @@
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
 
-
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; make resize seamless in Wayland
+(setq frame-resize-pixelwise t
+      x-frame-normalize-before-maximize t)
+(setcdr initial-frame-alist '((fullscreen . maximized)
+                              (frame-resize-pixelwise t)))
+(setcdr default-frame-alist '((fullscreen . maximized)
+                              (frame-resize-pixelwise t)))
 
 ;; we can redisplay now, boot is over
 (add-hook 'window-setup-hook
@@ -294,7 +298,7 @@
 (defun default-frame-layout-hook (frame)
   "Select the FRAME and apply the default layout."
   (set-default-hook frame)
-  (select-frame frame)
+  (select-frame-set-input-focus frame)
   (raise-frame)
   (when (display-graphic-p frame)
     (my-maximized-frame-layout frame))
