@@ -353,14 +353,14 @@
 
 (use-package prog-mode
   :elpaca nil
-  :config
-  ;; open pairs with extra newline in between, and autoindent
-  (electric-pair-local-mode nil)
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode))
   ;; Display line numbers
   :hook
-  (prog-mode . display-line-numbers-mode))
+  (prog-mode . display-line-numbers-mode)
+  (prog-mode . auto-fill-mode)
+  ;; open pairs with extra newline in between, and autoindent
+  (prog-mode . electric-indent-mode))
 
 ;; Use shift-arrow to move between windows
 (require 'windmove)

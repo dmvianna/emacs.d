@@ -180,6 +180,7 @@
 (use-package markdown-mode
   :hook
   (markdown-mode . display-line-numbers-mode)
+  (markdown-mode . auto-fill-mode)
   :mode "\\.md$"
   :interpreter "markdown-mode"
   :hook flyspell)
