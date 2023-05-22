@@ -126,7 +126,7 @@
       `((".*" ,emacs-tmp-dir t)))
 
 ;; Keep customisations out of my config
-(setq custom-file (concat user-emacs-directory "custom.el"))
+(setq custom-file (concat user-emacs-directory "custom.el.gpg"))
 (load custom-file)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -198,8 +198,8 @@
 (use-package treemacs
   :init
   (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  )
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
+
 
 (add-to-list 'initial-frame-alist '(fullscreen . maximized))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
