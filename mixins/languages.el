@@ -71,16 +71,6 @@
   (add-hook 'before-save-hook 'my-eglot-organize-imports nil t)
   (add-hook 'before-save-hook 'eglot-format-buffer nil t))
 
-(defun my-eglot-organize-imports ()
-  "Organize imports in eglot."
-  (interactive)
-  (eglot-code-actions nil nil "source.organizeImports" t))
-(add-hook 'before-save-hook 'my-eglot-organize-imports nil t)
-(add-hook 'before-save-hook 'eglot-format-buffer)
-
-;; Posframe is a pop-up tool that must be manually installed for dap-mode
-(use-package posframe)
-
 ;;; languages
 
 (use-package avro-mode
