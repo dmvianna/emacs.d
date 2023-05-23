@@ -122,6 +122,7 @@
 
 ;; fallback cross file definition lookup
 (use-package dumb-jump
+  :hook (xref-backend-functions . dumb-jump-xref-activate)
   :ensure-system-package (dumb-jump . ripgrep))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
