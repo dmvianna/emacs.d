@@ -24,11 +24,11 @@
    lsp-restart 'auto-restart
    lsp-enable-folding nil
    lsp-enable-snippet nil)
-  :hook
-  (before-save . lsp-format-buffer)
-  (before-save . lsp-organize-imports)
   :commands (lsp lsp-deferred)
   :bind-keymap ("s-l" . lsp-command-map))
+
+;; (add-hook 'before-save-hook 'lsp-format-buffer nil 'local)
+;; (add-hook 'before-save-hook 'lsp-organize-imports nil 'local)
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -39,11 +39,11 @@
   :config
   (progn
     (define-key lsp-ui-mode-map
-      [remap haskell-mode-jump-to-def-or-tag] #'lsp-ui-peek-find-definitions)
+                [remap haskell-mode-jump-to-def-or-tag] #'lsp-ui-peek-find-definitions)
     (define-key lsp-ui-mode-map
-      [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+                [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
     (define-key lsp-ui-mode-map
-      [remap xref-find-references] #'lsp-ui-peek-find-references))
+                [remap xref-find-references] #'lsp-ui-peek-find-references))
   :commands lsp-ui-mode)
 
 ;; eglot
@@ -56,20 +56,25 @@
   (eglot-sync-connect nil) ; don't block while connecting to server
   :hook (eglot-managed-mode . (lambda () (put 'eglot-note 'flymake-overlay-control nil)
                                 (put 'eglot-warning 'flymake-overlay-control nil)
-                                (put 'eglot-error 'flymake-overlay-control nil)))
-  :config
+                                (put 'eglot-error
+                                     'flymake-overlay-control nil)
+                                (add-hook 'before-save-hook
+                                          'my/eglot-organize-imports
+                                          nil t)
+                                (add-hook 'before-save-hook
+                                          'eglot-format-buffer nil t)
+                                ))
+  :init
   (setq-default
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)
    eglot-workspace-configuration
    '(haskell
      (formattingProvider "fourmolu")))
-  (defun my-eglot-organize-imports ()
+  (defun my/eglot-organize-imports ()
     "Organize imports in eglot."
     (interactive)
-    (eglot-code-actions nil nil "source.organizeImports" t))
-  (add-hook 'before-save-hook 'my-eglot-organize-imports nil t)
-  (add-hook 'before-save-hook 'eglot-format-buffer nil t))
+    (eglot-code-actions nil nil "source.organizeImports" t)))
 
 ;;; languages
 
