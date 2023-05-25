@@ -14,11 +14,7 @@
   (lsp-haskell-brittany nil)
   (lsp-haskell-floskell nil)
   (lsp-haskell-ormolu nil)
-  (lsp-haskell-stylish-haskell nil)
-  :init
-  (setq-default eglot-workspace-configuration
-                '(haskell
-                  (formattingProvider "fourmolu"))))
+  (lsp-haskell-stylish-haskell nil))
 
 (use-package haskell-cabal
   :elpaca nil
@@ -31,7 +27,12 @@
   :elpaca nil
   :delight "λ"
   :after haskell-font-lock
-  :hook (haskell-mode . eglot-ensure))
+  :hook
+  (haskell-mode . eglot-ensure)
+  :init
+  (setq-local eglot-workspace-configuration
+              '((haskell (formattingProvider "fourmolu"))))
+  :ensure-system-package (haskell-mode . fourmolu))
 
 (provide 'haskell-config)
 ;;; haskell-config.el ends here.

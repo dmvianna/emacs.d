@@ -69,12 +69,7 @@
   :init
   (setq-default
    eglot-ignored-server-capabilities
-   '(workspace/didChangeWatchedFiles)
-   eglot-workspace-configuration
-   '(haskell
-     (formattingProvider "fourmolu")
-     scala
-     (formattingProvider "scalafmt"))))
+   '(workspace/didChangeWatchedFiles)))
 
 ;;; languages
 
