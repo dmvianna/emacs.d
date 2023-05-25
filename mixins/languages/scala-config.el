@@ -9,7 +9,12 @@
   :mode "\\.sc\\'\\|\\.scala\\'"
   :hook
   (scala-mode . envrc-mode)
-  (scala-mode . eglot-ensure))
+  (scala-mode . eglot-ensure)
+  ;; :init
+  ;; (setq-local eglot-workspace-configuration
+  ;;             '((metals (scalafmt-config-path (".scalafmt.conf"))))
+  ;;             )
+  )
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
