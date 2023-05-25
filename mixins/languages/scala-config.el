@@ -33,7 +33,6 @@
   :hook (sbt-mode . fix-sbt-movement))
 
 (use-package lsp-metals
-  :init (envrc-mode)
   :custom
   ;; Metals claims to support range formatting by default but it supports range
   ;; formatting of multiline strings only. You might want to disable it so that
