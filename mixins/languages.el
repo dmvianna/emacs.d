@@ -25,10 +25,12 @@
    lsp-enable-folding nil
    lsp-enable-snippet nil)
   :commands (lsp lsp-deferred)
-  :bind-keymap ("s-l" . lsp-command-map))
-
-;; (add-hook 'before-save-hook 'lsp-format-buffer nil 'local)
-;; (add-hook 'before-save-hook 'lsp-organize-imports nil 'local)
+  :bind-keymap ("s-l" . lsp-command-map)
+  :hook (lsp-managed-mode . (lambda ()
+                              (add-hook 'before-save-hook
+                                        'lsp-format-buffer nil t)
+                              (add-hook 'before-save-hook 'lsp-organize-imports nil t)
+                              )))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -47,6 +49,7 @@
   :commands lsp-ui-mode)
 
 ;; eglot
+
 (use-package jsonrpc) ;; hopefully this doesn't leak memory
 (use-package eglot
   :after jsonrpc
@@ -54,27 +57,23 @@
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
   (eglot-sync-connect nil) ; don't block while connecting to server
-  :hook (eglot-managed-mode . (lambda () (put 'eglot-note 'flymake-overlay-control nil)
+  :hook (eglot-managed-mode . (lambda ()
+                                (put 'eglot-note 'flymake-overlay-control nil)
                                 (put 'eglot-warning 'flymake-overlay-control nil)
                                 (put 'eglot-error
                                      'flymake-overlay-control nil)
                                 (add-hook 'before-save-hook
-                                          'my/eglot-organize-imports
-                                          nil t)
-                                (add-hook 'before-save-hook
                                           'eglot-format-buffer nil t)
-                                ))
+                                (add-hook 'before-save-hook
+                                          'eglot-code-action-organize-imports
+                                          nil t))))
   :init
   (setq-default
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)
    eglot-workspace-configuration
    '(haskell
-     (formattingProvider "fourmolu")))
-  (defun my/eglot-organize-imports ()
-    "Organize imports in eglot."
-    (interactive)
-    (eglot-code-actions nil nil "source.organizeImports" t)))
+     (formattingProvider "fourmolu"))))
 
 ;;; languages
 
