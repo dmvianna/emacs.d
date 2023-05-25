@@ -27,8 +27,7 @@
   :commands (lsp lsp-deferred)
   :bind-keymap ("s-l" . lsp-command-map)
   :hook (lsp-managed-mode . (lambda ()
-                              (add-hook 'before-save-hook
-                                        'lsp-format-buffer nil t)
+                              (add-hook 'before-save-hook 'lsp-format-buffer nil t)
                               (add-hook 'before-save-hook 'lsp-organize-imports nil t))))
 
 (use-package lsp-ui
@@ -63,7 +62,10 @@
                                 (add-hook 'before-save-hook
                                           'eglot-format-buffer nil t)
                                 (add-hook 'before-save-hook
-                                          'eglot-code-action-organize-imports nil t)))
+                                          #'(lambda ()
+                                              (eglot-code-action-organize-imports
+                                               nil nil))
+                                          nil t)))
   :init
   (setq-default
    eglot-ignored-server-capabilities
