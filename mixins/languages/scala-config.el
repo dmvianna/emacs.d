@@ -6,8 +6,10 @@
 ;; Enable scala-mode for highlighting, indentation and motion commands
 (use-package scala-mode
   :interpreter ("scala" . scala-mode)
-  :hook (scala-mode . envrc-mode)
-  :hook (scala-mode . eglot-ensure))
+  :mode "\\.sc\\'\\|\\.scala\\'"
+  :hook
+  (scala-mode . envrc-mode)
+  (scala-mode . eglot-ensure))
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode

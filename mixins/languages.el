@@ -29,8 +29,7 @@
   :hook (lsp-managed-mode . (lambda ()
                               (add-hook 'before-save-hook
                                         'lsp-format-buffer nil t)
-                              (add-hook 'before-save-hook 'lsp-organize-imports nil t)
-                              )))
+                              (add-hook 'before-save-hook 'lsp-organize-imports nil t))))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
@@ -73,7 +72,9 @@
    '(workspace/didChangeWatchedFiles)
    eglot-workspace-configuration
    '(haskell
-     (formattingProvider "fourmolu"))))
+     (formattingProvider "fourmolu")
+     scala
+     (formattingProvider "scalafmt"))))
 
 ;;; languages
 
