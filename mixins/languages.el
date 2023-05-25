@@ -66,7 +66,7 @@
                                           'eglot-format-buffer nil t)
                                 (add-hook 'before-save-hook
                                           'eglot-code-action-organize-imports
-                                          nil t))))
+                                          nil t)))
   :init
   (setq-default
    eglot-ignored-server-capabilities
