@@ -60,13 +60,13 @@
                                 (put 'eglot-warning 'flymake-overlay-control nil)
                                 (put 'eglot-error 'flymake-overlay-control nil)
                                 (add-hook 'before-save-hook
-                                          'eglot-format-buffer nil t)
-                                ;; (add-hook 'before-save-hook
-                                ;;           #'(lambda ()
-                                ;;               (eglot-code-action-organize-imports
-                                ;;                nil nil))
-                                ;; nil t)
-                                ))
+                                          'eglot-format-buffer nil t)))
+  ;; (add-hook 'before-save-hook
+  ;;           #'(lambda ()
+  ;;               (eglot-code-action-organize-imports
+  ;;                nil nil))
+  ;; nil t)
+
   :init
   (setq-default
    eglot-ignored-server-capabilities
@@ -229,6 +229,15 @@
   :ensure-system-package (terraform-mode . terraform-ls))
 
 (use-package udev-mode)
+
+(use-package hoon-mode
+  :elpaca (hoon-mode
+           :host github
+           :protocol ssh
+           :repo "urbit/hoon-mode.el")
+  :init
+  (add-to-list 'eglot-server-programs
+               '(hoon-mode . ("hoon-language-server"))))
 
 (provide 'languages)
 ;;; languages.el ends here
