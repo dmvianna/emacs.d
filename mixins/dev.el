@@ -40,10 +40,11 @@
 (use-package origami
   :bind (:map origami-mode-map ("TAB" . origami-toggle-node)))
 
-;; use tab and let lisp figure out the closing parens...
-(use-package smartparens
+;; respect pairs when killing, and add paredit-like navigation to
+;; all prog modes
+(use-package puni
   :delight
-  :config (smartparens-global-mode t))
+  :init (puni-global-mode))
 
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
