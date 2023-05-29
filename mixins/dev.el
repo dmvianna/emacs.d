@@ -44,7 +44,11 @@
 ;; all prog modes
 (use-package puni
   :delight
-  :init (puni-global-mode))
+  :hook (prog-mode . puni-mode)
+  :bind (:map puni-mode-map (("C-)" . puni-slurp-forward)
+                             ("C-(" . puni-slurp-backward)
+                             ("C-}" . puni-barf-forward)
+                             ("C-{" . puni-barf-backward))))
 
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
