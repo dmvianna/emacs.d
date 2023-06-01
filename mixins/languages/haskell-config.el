@@ -29,10 +29,7 @@
   :after haskell-font-lock
   :hook
   (haskell-mode . eglot-ensure)
-  :init
-  (setq-local eglot-workspace-configuration
-              '((haskell (formattingProvider "fourmolu"))))
-  :ensure-system-package (haskell-mode . fourmolu))
+  :ensure-system-package (fourmolu . "stack install fourmolu"))
 
 (provide 'haskell-config)
 ;;; haskell-config.el ends here.

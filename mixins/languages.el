@@ -151,7 +151,7 @@
   (slime-repl-mode . rainbow-delimiters-mode)
   ;; follow further instructions for installing quicklisp (package manager)
   ;; at https://github.com/susam/emacs4cl#get-started
-  :ensure-system-package (slime . sbcl))
+  :ensure-system-package sbcl) ;; non-trivial installation
 
 (use-package parinfer-rust-mode
   :custom
@@ -226,7 +226,7 @@
   (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-lsp")))
   :hook
   (terraform-mode . eglot-ensure)
-  :ensure-system-package (terraform-mode . terraform-ls))
+  :ensure-system-package terraform-ls)
 
 (use-package udev-mode)
 

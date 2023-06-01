@@ -70,6 +70,9 @@
   ;; Assume :elpaca t unless otherwise specified.
   (setq elpaca-use-package-by-default t))
 
+;; activate use-package extensions
+(use-package use-package-ensure-system-package)
+
 ;; Install system-packages
 (elpaca system-packages
   (setq system-packages-use-sudo t ;; change to t if installing, else avoid it.

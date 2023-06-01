@@ -128,7 +128,7 @@
 ;; fallback cross file definition lookup
 (use-package dumb-jump
   :hook (xref-backend-functions . dumb-jump-xref-activate)
-  :ensure-system-package (dumb-jump . ripgrep))
+  :ensure-system-package (rg . ripgrep))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
@@ -174,7 +174,7 @@
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-yank)))
   :custom (org-download-method 'attach)
-  :ensure-system-package (org-download . wl-clipboard))
+  :ensure-system-package wl-clipboard)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
