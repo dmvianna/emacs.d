@@ -44,11 +44,16 @@
 ;; all prog modes
 (use-package puni
   :delight
+  :config (defun puni-delete-one
+              (from to &optional strict-sexp kill fail-action return-region)
+            (puni-soft-delete
+             from to strict-sexp 'delete-one kill fail-action return-region))
   :hook (prog-mode . puni-mode)
   :bind (:map puni-mode-map (("C-)" . puni-slurp-forward)
                              ("C-(" . puni-slurp-backward)
                              ("C-}" . puni-barf-forward)
-                             ("C-{" . puni-barf-backward))))
+                             ("C-{" . puni-barf-backward)
+                             ("C-k" . puni-delete-one)))
 
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
