@@ -53,7 +53,7 @@
                              ("C-(" . puni-slurp-backward)
                              ("C-}" . puni-barf-forward)
                              ("C-{" . puni-barf-backward)
-                             ("C-k" . puni-delete-one)))
+                             ("C-k" . puni-delete-one))))
 
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
