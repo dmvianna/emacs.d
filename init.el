@@ -275,11 +275,6 @@
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
 
-(use-package treemacs-all-the-icons
-  :after treemacs
-  :config
-  (treemacs-load-theme "all-the-icons"))
-
 ;; make resize seamless in Wayland
 (setq frame-resize-pixelwise t
       x-frame-normalize-before-maximize t)
