@@ -13,9 +13,14 @@
   :hook
   (after-init . immortal-scratch-mode))
 
-(use-package which-key
-  :config
-  (which-key-mode))
+(use-package info-colors
+  :hook
+  (Info-selection . info-colors-fontify-node)
+  (Info-selection . rainbow-delimiters-mode))
+
+  (use-package which-key
+    :config
+    (which-key-mode))
 
 (use-package delight
   :init
