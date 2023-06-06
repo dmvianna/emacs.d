@@ -46,6 +46,8 @@
                 [remap xref-find-references] #'lsp-ui-peek-find-references))
   :commands lsp-ui-mode)
 
+(use-package lsp-treemacs)
+
 ;; eglot
 
 (use-package jsonrpc) ;; hopefully this doesn't leak memory
