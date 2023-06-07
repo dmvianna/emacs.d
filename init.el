@@ -373,7 +373,8 @@
   (prog-mode . display-line-numbers-mode)
   (prog-mode . auto-fill-mode)
   ;; open pairs with extra newline in between, and autoindent
-  (prog-mode . electric-indent-mode))
+  (prog-mode . electric-indent-local-mode)
+  (prog-mode . electric-pair-local-mode))
 
 ;; Use shift-arrow to move between windows
 (require 'windmove)
