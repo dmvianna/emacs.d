@@ -9,12 +9,12 @@
   :mode "\\.sc\\'\\|\\.scala\\'"
   :hook
   (scala-mode . envrc-mode)
-  (scala-mode . eglot-ensure)
-  ;; :init
-  ;; (setq-local eglot-workspace-configuration
-  ;;             '((metals (scalafmt-config-path (".scalafmt.conf"))))
-  ;;             )
-  )
+  (scala-mode . eglot-ensure))
+;; :init
+;; (setq-local eglot-workspace-configuration
+;;             '((metals (scalafmt-config-path (".scalafmt.conf"))))
+;;             )
+
 
 ;; Enable sbt mode for executing sbt commands
 (use-package sbt-mode
@@ -34,7 +34,8 @@
           "-J-XX:+UseParallelGC" ; improve GC performance by leveraging multiple processors
           "-J-Xmx2g" ; maximum size of the memory allocation pool
           "-J-Xms100m" ; minimum and initial size of the heap
-          "-J-Xss4m")) ; thread stack size
+          "-J-Xss4m" ; thread stack size
+          "-Dmetals.client=emacs")) ; configure metals for emacs
   :hook (sbt-mode . fix-sbt-movement))
 
 (use-package lsp-metals
@@ -42,7 +43,9 @@
   ;; Metals claims to support range formatting by default but it supports range
   ;; formatting of multiline strings only. You might want to disable it so that
   ;; emacs can use indentation provided by scala-mode.
-  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off")))
+  (lsp-metals-server-args
+   '("-J-Dmetals.allow-multiline-string-formatting=off"
+     "-Dmetals.client=emacs")))
 
 (provide 'scala-config)
 ;;; scala-config.el ends here
