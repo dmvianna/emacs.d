@@ -38,7 +38,7 @@
   (corfu-auto t)
   (corfu-separator ?\s)
   (corfu-scroll-margin 5)
-  :config
+  :init
   (global-corfu-mode))
 
 (use-package cape
