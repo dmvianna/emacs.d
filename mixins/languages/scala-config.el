@@ -49,7 +49,9 @@
   ;; emacs can use indentation provided by scala-mode.
   (lsp-metals-server-args
    '("-J-Dmetals.allow-multiline-string-formatting=off"
-     "-Dmetals.client=emacs")))
+     "-Dmetals.client=emacs"
+     "-XX:+UseG1GC"
+     "-XX:+UseStringDeduplication")))
 
 (provide 'scala-config)
 ;;; scala-config.el ends here
