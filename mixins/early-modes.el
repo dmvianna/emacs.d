@@ -35,8 +35,7 @@
   :init (envrc-global-mode))
 
 (use-package project
-  :init
-  (setq project-vc-extra-root-markers '(".envrc")))
+  :custom (project-vc-extra-root-markers (".envrc")))
 
 (provide 'early-modes)
 ;;; early-modes.el ends here

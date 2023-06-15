@@ -7,6 +7,10 @@
 (use-package scala-mode
   :interpreter ("scala" . scala-mode)
   :mode "\\.sc\\'\\|\\.scala\\'"
+  ;; We need to tell project.el in which directory to run in order for
+  ;; eglot to be able to trigger metals and be able to find
+  ;; definitions and all the good stuff.
+  :init (add-to-list 'project-vc-extra-root-markers "build.sbt")
   :hook
   (scala-mode . envrc-mode)
   (scala-mode . eglot-ensure))
