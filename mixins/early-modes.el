@@ -35,7 +35,8 @@
   :init (envrc-global-mode))
 
 (use-package project
-  :custom (project-vc-extra-root-markers (".envrc")))
+  :elpaca nil
+  :custom (project-vc-extra-root-markers '(".envrc")))
 
 (provide 'early-modes)
 ;;; early-modes.el ends here
