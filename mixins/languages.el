@@ -157,6 +157,8 @@
 
 (use-package parinfer-rust-mode
   :custom
+  (parinfer-rust-troublesome-modes ;; removed electric-pair-mode from list
+   '(hungry-delete-mode global-hungry-delete-mode))
   (parinfer-rust-auto-download t)
   (electric-pair-local-mode -1)
   (parinfer-rust-preferred-mode 'paren)
