@@ -152,9 +152,6 @@
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
-;; rest
-(use-package verb)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   CLI

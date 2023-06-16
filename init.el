@@ -442,23 +442,6 @@
   :hook (dired-mode . all-the-icons-dired-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;
-;;    Org mode
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; org is loaded by other packages, so it must be loaded first lest we load
-;; conflicting versions
-(use-package org
-  :mode ("\\.org\\'" . org-mode)
-  :bind
-  (:map org-mode-map
-        ("C-c l" . org-store-link)
-        ("C-c a" . org-agenda)
-        ("C-c c" . org-capture))
-  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   Optional mixins
 ;;;

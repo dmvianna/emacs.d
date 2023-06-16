@@ -4,14 +4,35 @@
 ;;;
 ;;; Code:
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;    Org mode
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; org is loaded by other packages, so it must be loaded first lest we load
+;; conflicting versions
+(use-package org
+  :elpaca nil
+  :mode ("\\.org\\'" . org-mode)
+  :bind
+  (:map org-mode-map
+        ("C-c l" . org-store-link)
+        ("C-c a" . org-agenda)
+        ("C-c c" . org-capture))
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
 (use-package org-pandoc-import
+  :after org
   :elpaca (:host github
                  :repo "tecosaur/org-pandoc-import"
                  :files ("*.el" "filters" "preprocessors")))
 
-(use-package org-roam)
+(use-package org-roam
+  :after org)
 
 (use-package org-journal
+  :after org
   :bind
   ("C-c n j" . org-journal-new-entry)
   :custom
@@ -30,11 +51,19 @@
   :ensure-system-package wl-clipboard)
 
 ;;; execute scripts from org
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (shell . t)
-   (python . t)))
+(use-package org-babel
+  :elpaca nil
+  :after org
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (python . t))))
+
+;; rest
+(use-package verb
+  :after org)
 
 (provide 'org-config.el)
 ;;; org-config.el ends here.
