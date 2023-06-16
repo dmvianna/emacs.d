@@ -38,5 +38,5 @@
   :elpaca nil
   :custom (project-vc-extra-root-markers '(".envrc")))
 
-(provide 'early-modes)
+(provide 'early-modes.el)
 ;;; early-modes.el ends here
