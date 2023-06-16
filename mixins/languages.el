@@ -243,5 +243,20 @@
   (add-to-list 'eglot-server-programs
                '(hoon-mode . ("hoon-language-server"))))
 
+(use-package sql-indent
+  :elpaca (sql-indent
+           :host github
+           :repo "alex-hhh/emacs-sql-indent"
+           :branch "master"))
+
+(use-package bigquery-mode
+  :elpaca (bigquery-mode
+           :host github
+           :repo "dmvianna/bigquery-mode"
+           :branch "quote"
+           :files ("bigquery-mode.el" "bqm-names.el")
+           )
+  :ensure-system-package (gcloud . google-cloud-cli))
+
 (provide 'languages)
-;;; languages.el ends here
+;;; languages.el ends here.
