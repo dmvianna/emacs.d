@@ -13,7 +13,7 @@
 ;; org is loaded by other packages, so it must be loaded first lest we load
 ;; conflicting versions
 (use-package org
-  :elpaca nil
+  :elpaca (:host github :repo "bzg/org-mode")
   :mode ("\\.org\\'" . org-mode)
   :bind
   (:map org-mode-map
