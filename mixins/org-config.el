@@ -52,7 +52,7 @@
 
 ;;; execute scripts from org
 (use-package org-babel
-  :elpaca nil
+  :elpaca (:host github :repo "taruti/org-babel")
   :after org
   :config
   (org-babel-do-load-languages
