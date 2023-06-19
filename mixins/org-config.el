@@ -13,7 +13,8 @@
 ;; org is loaded by other packages, so it must be loaded first lest we load
 ;; conflicting versions
 (use-package org
-  :elpaca (:host github :repo "bzg/org-mode")
+  :demand t
+  :elpaca (org :host github :repo "bzg/org-mode")
   :mode ("\\.org\\'" . org-mode)
   :bind
   (:map org-mode-map
@@ -24,9 +25,9 @@
 
 (use-package org-pandoc-import
   :after org
-  :elpaca (:host github
-                 :repo "tecosaur/org-pandoc-import"
-                 :files ("*.el" "filters" "preprocessors")))
+  :elpaca (org-pandoc-import :host github
+                             :repo "tecosaur/org-pandoc-import"
+                             :files ("*.el" "filters" "preprocessors")))
 
 (use-package org-roam
   :after org)
@@ -52,9 +53,18 @@
 
 ;;; execute scripts from org
 (use-package org-babel
-  :elpaca nil
+  :demand t
+  :elpaca (org-babel :host github
+                     :repo "bzg/org-mode"
+                     :files ("ob.el"
+                             "ob-haskell.el"
+                             "ob-lisp.el"
+                             "ob-shell.el"
+                             "ob-emacs-lisp.el"
+                             "ob-sql.el"
+                             "ob-pythonl.el"))
   :after org
-  :config
+  :init
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
