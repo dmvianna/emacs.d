@@ -239,9 +239,21 @@
            :host github
            :protocol ssh
            :repo "urbit/hoon-mode.el")
+  :custom
+  (hoon-lsp-enable t)
+  (hoon-lsp-code "lidlut-tabwed-pillex-ridrup")
+  (hoon-lsp-planet "zod")
+  (hoon-lsp-port "8080")
+  :bind (:map hoon-mode-map
+              ("C-c r" . hoon-eval-region-in-herb)
+              ("C-c b" . hoon-eval-buffer-in-herb))
   :init
-  (add-to-list 'eglot-server-programs
-               '(hoon-mode . ("hoon-language-server"))))
+  (add-to-list 'lsp-language-id-configuration '(hoon-mode . "hoon"))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection "hoon-language-server")
+    :activation-fn (lsp-activate-on "hoon")
+    :server-id 'hoon-language-server)))
 
 (use-package sql-indent
   :elpaca (sql-indent
@@ -254,8 +266,8 @@
            :host github
            :repo "dmvianna/bigquery-mode"
            :branch "quote"
-           :files ("bigquery-mode.el" "bqm-names.el")
-           )
+           :files ("bigquery-mode.el" "bqm-names.el"))
+
   :ensure-system-package (gcloud . google-cloud-cli))
 
 (provide 'languages)
