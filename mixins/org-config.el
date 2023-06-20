@@ -14,8 +14,17 @@
 ;; conflicting versions
 (use-package org
   :demand t
-  :elpaca (org :host github :repo "bzg/org-mode")
+  :elpaca (org
+           :host github
+           :repo "bzg/org-mode"
+           :files (:defaults "lisp/*"))
   :mode ("\\.org\\'" . org-mode)
+  :init
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (shell . t)
+     (python . t)))
   :bind
   (:map org-mode-map
         ("C-c l" . org-store-link)
@@ -50,26 +59,6 @@
          ("s-y" . org-download-yank)))
   :custom (org-download-method 'attach)
   :ensure-system-package wl-clipboard)
-
-;;; execute scripts from org
-(use-package org-babel
-  :demand t
-  :elpaca (org-babel :host github
-                     :repo "bzg/org-mode"
-                     :files ("ob.el"
-                             "ob-haskell.el"
-                             "ob-lisp.el"
-                             "ob-shell.el"
-                             "ob-emacs-lisp.el"
-                             "ob-sql.el"
-                             "ob-pythonl.el"))
-  :after org
-  :init
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (shell . t)
-     (python . t))))
 
 ;; rest
 (use-package verb
