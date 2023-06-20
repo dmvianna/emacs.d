@@ -234,6 +234,12 @@
 
 (use-package udev-mode)
 
+;;; To use the hoon lsp server, build it from
+;;; https://github.com/bct/hoon-language-server/tree/fix-issue-30
+;;; and install it via [nvm](https://github.com/nvm-sh/nvm).
+
+;;; Point to your planet with the right credentials, of course.
+
 (use-package hoon-mode
   :elpaca (hoon-mode
            :host github
