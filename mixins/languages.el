@@ -254,12 +254,24 @@
               ("C-c r" . hoon-eval-region-in-herb)
               ("C-c b" . hoon-eval-buffer-in-herb))
   :init
-  (add-to-list 'lsp-language-id-configuration '(hoon-mode . "hoon"))
+  (push '(hoon-mode . "hoon") lsp-language-id-configuration)
   (lsp-register-client
    (make-lsp-client
     :new-connection (lsp-stdio-connection "hoon-language-server")
     :activation-fn (lsp-activate-on "hoon")
-    :server-id 'hoon-language-server)))
+    :server-id 'hoon-language-server))
+  (push
+   '(hoon-mode .
+               ("hoon-language-server"
+                "-p"
+                "8080"
+                "-u"
+                "http://localhost"
+                "-s"
+                "zod"
+                "-c"
+                "lidlut-tabwed-pillex-ridrup"))
+   eglot-server-programs))
 
 (use-package sql-indent
   :elpaca (sql-indent
