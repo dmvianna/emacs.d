@@ -240,13 +240,21 @@
 
 ;;; Point to your planet with the right credentials, of course.
 
+;; (use-package hoon-assist
+;;   :elpaca (hoon-assist
+;;            :host github
+;;            :protocol ssh
+;;            :repo "dmvianna/hoon-assist-emacs"
+;;            :branch "improve-style"
+;;            :files ("hoon-assist.el" "hoon-dictionary.json")))
+
 (use-package hoon-mode
   :elpaca (hoon-mode
            :host github
            :protocol ssh
            :repo "urbit/hoon-mode.el")
   :custom
-  (hoon-lsp-enable t)
+  (hoon-lsp-enable nil)
   (hoon-lsp-code "lidlut-tabwed-pillex-ridrup")
   (hoon-lsp-planet "zod")
   (hoon-lsp-port "8080")
@@ -254,12 +262,14 @@
               ("C-c r" . hoon-eval-region-in-herb)
               ("C-c b" . hoon-eval-buffer-in-herb))
   :init
+  ;; lsp-mode
   (push '(hoon-mode . "hoon") lsp-language-id-configuration)
   (lsp-register-client
    (make-lsp-client
     :new-connection (lsp-stdio-connection "hoon-language-server")
     :activation-fn (lsp-activate-on "hoon")
     :server-id 'hoon-language-server))
+  ;; eglot
   (push
    '(hoon-mode .
                ("hoon-language-server"
