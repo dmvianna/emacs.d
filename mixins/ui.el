@@ -18,9 +18,9 @@
   (Info-selection . info-colors-fontify-node)
   (Info-selection . rainbow-delimiters-mode))
 
-  (use-package which-key
-    :config
-    (which-key-mode))
+(use-package which-key
+  :config
+  (which-key-mode))
 
 (use-package delight
   :init
@@ -90,18 +90,21 @@
              ("M-<down>" . drag-stuff-down)))
 
 
-;; (use-package smart-mode-line
-;;   :init
-;;   (progn
-;;      (setq sml/theme nil
-;;            sml/shorten-directory t
-;;            sml/name-width 32
-;;            sml/shorten-modes t)
-;;            ;; sml/use-projectile-p 'before-prefixes
-;;            ;; sml/projectile-replacement-format "%s/"
+(use-package smart-mode-line
+  :init
+  (progn
+    (setq sml/theme nil
+          sml/shorten-directory t
+          sml/name-width 32
+          sml/shorten-modes t)
+    ;; sml/use-projectile-p 'before-prefixes
+    ;; sml/projectile-replacement-format "%s/"
 
-;;      (sml/setup)))
+    (sml/setup)))
 
+;; dired but nice
+(use-package dirvish
+  :config (dirvish-override-dired-mode))
 
 (provide 'ui)
 ;;; ui.el ends here.
