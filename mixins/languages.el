@@ -240,19 +240,12 @@
 
 ;;; Point to your planet with the right credentials, of course.
 
-;; (use-package hoon-assist
-;;   :elpaca (hoon-assist
-;;            :host github
-;;            :protocol ssh
-;;            :repo "dmvianna/hoon-assist-emacs"
-;;            :branch "improve-style"
-;;            :files ("hoon-assist.el" "hoon-dictionary.json")))
-
 (use-package hoon-mode
   :elpaca (hoon-mode
            :host github
            :protocol ssh
-           :repo "urbit/hoon-mode.el")
+           :repo "dmvianna/hoon-mode.el"
+           :branch "eldoc")
   :custom
   (hoon-lsp-enable nil)
   (hoon-lsp-code "lidlut-tabwed-pillex-ridrup")
