@@ -245,7 +245,8 @@
            :host github
            :protocol ssh
            :repo "dmvianna/hoon-mode.el"
-           :branch "eldoc")
+           :branch "dev"
+           :files (:defaults "*.json"))
   :custom
   (hoon-lsp-enable nil)
   (hoon-lsp-code "lidlut-tabwed-pillex-ridrup")
