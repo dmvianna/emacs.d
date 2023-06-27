@@ -389,6 +389,9 @@
   (setq dired-x-hands-off-my-keys nil)
   (require 'dired-x))
 
+;;; keep lots of undo history
+(setq undo-limit 160000000)  ;; 1000 x more than default
+
 ;; ;; Display sane file names
 ;; (require 'uniquify)
 ;; (setq uniquify-buffer-name-style 'forward)
