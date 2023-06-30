@@ -3,6 +3,9 @@
 ;;; Cross language functionality.
 ;;; Code:
 
+;; narrowing is life
+(put 'narrow-to-region 'disabled nil)
+
 ;; rainbow-delimiters -- excellent for any language,
 ;; critical for lisps
 (use-package rainbow-delimiters
@@ -212,6 +215,18 @@
 
 (use-package abridge-diff
   :after magit)
+
+(use-package consult-gh
+  :elpaca (consult-gh :host github :repo "armindarvish/consult-gh")
+  :config
+  (add-to-list 'consult-gh-default-orgs-list "dmvianna")
+  (setq consult-gh-default-orgs-list
+        (append
+         consult-gh-default-orgs-list
+         (remove "" (split-string
+                     (consult-gh--command-to-string "org" "list")
+                     "\n"))))
+  (setq consult-gh-default-clone-directory "~/src/vendor/"))
 
 (use-package ediff
   :elpaca nil
