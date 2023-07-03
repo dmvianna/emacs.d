@@ -390,7 +390,7 @@
   (require 'dired-x))
 
 (setopt undo-limit 160000000)  ;; 1000 x more than default
-
+(setopt undo-strong-limit 2400000000)  ;; 1000 x more than default
 ;; ;; Display sane file names
 ;; (require 'uniquify)
 ;; (setq uniquify-buffer-name-style 'forward)
