@@ -244,8 +244,8 @@
   :elpaca (hoon-mode
            :host github
            :protocol ssh
-           :repo "dmvianna/hoon-mode.el"
-           :branch "dev"
+           :repo "urbit/hoon-mode.el"
+           :branch "master"
            :files (:defaults "*.json"))
   :custom
   (hoon-lsp-enable nil)
