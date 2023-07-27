@@ -217,6 +217,7 @@
   :after magit)
 
 (use-package consult-gh
+  :after consult
   :elpaca (consult-gh :host github :repo "armindarvish/consult-gh")
   :config
   (add-to-list 'consult-gh-default-orgs-list "dmvianna")
