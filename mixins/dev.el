@@ -216,6 +216,7 @@
 (use-package abridge-diff
   :after magit)
 
+;;; Install github cli tool from https://cli.github.com/manual/installation
 (use-package consult-gh
   :after consult
   :elpaca (consult-gh :host github :repo "armindarvish/consult-gh")
