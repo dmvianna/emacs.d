@@ -338,7 +338,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Switch windows easily
-(global-set-key (kbd "M-o") 'other-window)
+(bind-key* "M-o" 'other-window)
 
 ;; Mode line information
 (setq line-number-mode t)                         ; Show current line in modeline
