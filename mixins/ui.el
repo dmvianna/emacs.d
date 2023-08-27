@@ -6,6 +6,12 @@
 ;;
 ;; Re-spawn scratch buffer when killed
 ;;
+
+;; Don't duplicate eldoc output in minibuffer if
+;; I'm using the eldoc-doc-buffer.
+
+(setq eldoc-echo-area-prefer-doc-buffer t)
+
 (use-package immortal-scratch
   :init
   (setq initial-scratch-message "")
