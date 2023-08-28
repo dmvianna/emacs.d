@@ -244,8 +244,8 @@
   :elpaca (hoon-mode
            :host github
            :protocol ssh
-           :repo "urbit/hoon-mode.el"
-           :branch "master"
+           :repo "dmvianna/hoon-mode.el"
+           :branch "dev"
            :files (:defaults "*.json"))
   :custom
   (hoon-lsp-enable nil)
@@ -278,6 +278,7 @@
    eglot-server-programs))
 
 (use-package hoon-ts-mode
+  :disabled
   :elpaca (hoon-ts-mode
            :host github
            :repo "urbit-pilled/hoon-ts-mode"))
