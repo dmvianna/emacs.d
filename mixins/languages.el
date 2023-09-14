@@ -278,7 +278,6 @@
    eglot-server-programs))
 
 (use-package hoon-ts-mode
-  :disabled
   :elpaca (hoon-ts-mode
            :host github
            :repo "urbit-pilled/hoon-ts-mode"))
