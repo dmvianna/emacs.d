@@ -112,5 +112,7 @@
 (use-package dirvish
   :config (dirvish-override-dired-mode))
 
+(use-package eldoc-box)
+
 (provide 'ui)
 ;;; ui.el ends here.
