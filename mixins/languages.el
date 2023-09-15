@@ -282,63 +282,7 @@
            :host github
            :repo "urbit-pilled/hoon-ts-mode")
   :custom
-  (treesit-font-lock-level 4)
-  (treesit-font-lock-rules
-   :feature 'comment
-   :language 'hoon
-   '((Gap) @font-lock-comment-face)
-
-   :feature 'string
-   :language 'hoon
-   '((string) @font-lock-string-face)
-
-   :feature 'aura
-   :language 'hoon
-   '((aura) @font-lock-builtin-face)
-
-   :feature 'shadow
-   :language 'hoon
-   '((wrapFace (name) @font-lock-variable-name-face));;TODO: labels
-
-   :feature 'rune
-   :language 'hoon
-   '((rune) @font-lock-operator-face)
-
-   :feature 'typecast
-   :language 'hoon
-   '((typecast) @font-lock-type-face)
-
-   :feature 'name
-   :language 'hoon
-   '((name) @font-lock-variable-name-face)
-
-   :feature 'lusNames
-   :language 'hoon
-   '((luslusTall (name) @font-lock-function-name-face)
-     (lusbucTall (name) @font-lock-function-name-face))
-
-   :feature 'term
-   :language 'hoon
-   '((gateCall) @font-lock-function-call-face)
-
-   :feature 'term
-   :language 'hoon
-   '((term) @font-lock-type-face)
-
-   :feature 'constants
-   :language 'hoon
-   '((mold) @font-lock-constant-face
-     (lark) @font-lock-constant-face
-     (date) @font-lock-constant-face
-     (term) @font-lock-constant-face
-     (number) @font-lock-constant-face))
-  (treesit-font-lock-feature-list
-   '((comment string aura)
-     (rune)
-     (constants lusNames shadow)
-     (term)
-     ))
-  )
+  (treesit-font-lock-level 4))
 
 (use-package sql-indent
   :elpaca (sql-indent
