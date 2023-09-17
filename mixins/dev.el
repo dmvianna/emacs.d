@@ -58,6 +58,10 @@
                              ("C-{" . puni-barf-backward)
                              ("C-k" . nil))))
 
+;; source editing and movement using treesitter when available
+(use-package combobulate
+  :elpaca (combobulate :host github :repo "dmvianna/combobulate"))
+
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
 ;;; memory management: https://www.dr-qubit.org/Lost_undo-tree_history.html
