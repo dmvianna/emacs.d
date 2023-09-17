@@ -278,11 +278,15 @@
    eglot-server-programs))
 
 (use-package hoon-ts-mode
+  :after combobulate
   :elpaca (hoon-ts-mode
            :host github
            :repo "urbit-pilled/hoon-ts-mode")
   :custom
-  (treesit-font-lock-level 4))
+  (treesit-font-lock-level 4)
+  :init
+  (add-to-list 'combobulate-setup-functions-alist
+               '(hoon . combobulate-hoon-setup)))
 
 (use-package sql-indent
   :elpaca (sql-indent
