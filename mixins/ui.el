@@ -15,7 +15,7 @@
 (use-package immortal-scratch
   :init
   (setq initial-scratch-message "")
-  (setq initial-major-mode 'text-mode)
+  (setq initial-major-mode 'emacs-lisp-mode)
   :hook
   (after-init . immortal-scratch-mode))
 

@@ -166,9 +166,6 @@
 ;; My favourite font. Do as you please.
 (add-to-list 'default-frame-alist '(font . "Inconsolata-16"))
 
-;; default mode for the *scratch* buffer
-(setq initial-major-mode 'emacs-lisp-mode)
-
 ;; No electric indent
 (electric-indent-mode -1)
 
