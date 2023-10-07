@@ -176,7 +176,7 @@
   :hook
   (markdown-mode . display-line-numbers-mode)
   (markdown-mode . auto-fill-mode)
-  :mode "\\.md$"
+  :mode "\\.md$\\|\\.markdown\\|\\.udon$"
   :interpreter "markdown-mode"
   :hook flyspell)
 
