@@ -275,7 +275,8 @@
                 "zod"
                 "-c"
                 "lidlut-tabwed-pillex-ridrup"))
-   eglot-server-programs))
+   eglot-server-programs)
+  :hook (hoon-mode . eldoc-box-hover-mode))
 
 (use-package hoon-ts-mode
   :after combobulate

@@ -112,7 +112,8 @@
 (use-package dirvish
   :config (dirvish-override-dired-mode))
 
-(use-package eldoc-box)
+(use-package eldoc-box
+  :hook (eglot-managed-mode . eldoc-box-hover-mode))
 
 (provide 'ui)
 ;;; ui.el ends here.
