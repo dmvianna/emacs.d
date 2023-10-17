@@ -263,9 +263,6 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-(setq frame-inhibit-implied-resize t)
-
 ;; go to windows by number
 (use-package winum
   :config (winum-mode))
@@ -283,11 +280,10 @@
 
 ;; make resize seamless in Wayland
 (setq frame-resize-pixelwise t
-      x-frame-normalize-before-maximize t)
-(setcdr initial-frame-alist '((fullscreen . maximized)
-                              (frame-resize-pixelwise t)))
-(setcdr default-frame-alist '((fullscreen . maximized)
-                              (frame-resize-pixelwise t)))
+      x-frame-normalize-before-maximize t
+      frame-inhibit-implied-resize t)
+(push '(fullscreen . maximized) initial-frame-alist)
+(push '(fullscreen . maximized) default-frame-alist)
 
 ;; we can redisplay now, boot is over
 (add-hook 'window-setup-hook
@@ -300,7 +296,6 @@
 
 ;;; focus on emacs frame when it is started
 (add-hook 'server-switch-hook #'raise-frame)
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
 ;;; create a hook for maximized
 (defvar maximized-frame-hook nil "Hook for when we activate 'my-maximized-frame-layout'.")
