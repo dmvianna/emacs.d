@@ -99,6 +99,9 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Redefining things in Lisp shouldn't be a surprise
+(setq ad-redefinition-action 'accept)
+
 ;; Startup speed, annoyance suppression
 ;;
 ;; We have started, bring gc threshold back down
@@ -197,6 +200,9 @@
 (setq auto-save-file-name-transforms
       `((".*" ,emacs-tmp-dir t)))
 
+;;; I want to work on the file, not the backup
+(setq backup-by-copying t)
+
 ;; Keep customisations out of my config
 (setq custom-file (concat user-emacs-directory "custom.el.gpg"))
 (load custom-file)
@@ -256,6 +262,9 @@
 ;;;   My preferred default interface
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(setq frame-inhibit-implied-resize t)
 
 ;; go to windows by number
 (use-package winum
