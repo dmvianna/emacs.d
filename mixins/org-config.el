@@ -22,6 +22,7 @@
   :custom
   (org-todo-keywords
    '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  (org-tag-alist '(("@work" . ?w) ("@emacs" . ?e) ("urbit" . ?u)))
   :init
   (org-babel-do-load-languages
    'org-babel-load-languages
