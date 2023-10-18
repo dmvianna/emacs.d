@@ -379,7 +379,7 @@
 
 ;; Use shift-arrow to move between windows
 (require 'windmove)
-(windmove-default-keybindings 'shift)
+(windmove-default-keybindings nil)
 
 ;;; change capitalisation
 (put 'upcase-region 'disabled nil)
