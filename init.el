@@ -377,7 +377,7 @@
   (prog-mode . electric-indent-local-mode)
   (prog-mode . electric-pair-local-mode))
 
-;; Use shift-arrow to move between windows
+;; Do not use shift-arrow to move between windows
 (require 'windmove)
 (windmove-default-keybindings nil)
 
