@@ -19,6 +19,9 @@
            :repo "bzg/org-mode"
            :files (:defaults "lisp/*"))
   :mode ("\\.org\\'" . org-mode)
+  :custom
+  (org-todo-keywords
+   '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
   :init
   (org-babel-do-load-languages
    'org-babel-load-languages
