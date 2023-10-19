@@ -295,7 +295,8 @@
             ;; back to its original value.
             (setq-default inhibit-redisplay nil
                           inhibit-message nil)
-            (default-frame-layout-hook (selected-frame))))
+            (default-frame-layout-hook (selected-frame))
+            (maximize-window)))
 
 ;;; focus on emacs frame when it is started
 (add-hook 'server-switch-hook #'raise-frame)
