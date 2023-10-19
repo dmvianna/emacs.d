@@ -302,7 +302,7 @@
 (add-hook 'server-switch-hook #'raise-frame)
 
 ;;; create a hook for maximized
-(defvar maximized-frame-hook nil "Hook for when we activate 'my-maximized-frame-layout'.")
+(defvar maximized-frame-hook nil "Hook for when we activate `'my-maximized-frame-layout'.")
 
 ;;; make a frame hook function
 (defun default-frame-layout-hook (frame)
