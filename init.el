@@ -263,6 +263,9 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(custom-set-variables
+ '(use-file-dialog nil nil nil "'use-file-dialog' hangs emacs 29 in pgtk."))
+
 ;; go to windows by number
 (use-package winum
   :config (winum-mode))
