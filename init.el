@@ -371,8 +371,9 @@
   (prog-mode . electric-pair-local-mode))
 
 ;; Do not use shift-arrow to move between windows
+;; as it conflicts with org-mode keybindings.
 (require 'windmove)
-(windmove-default-keybindings nil)
+(windmove-default-keybindings 'control)
 
 ;;; change capitalisation
 (put 'upcase-region 'disabled nil)
