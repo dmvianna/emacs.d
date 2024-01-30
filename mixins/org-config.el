@@ -21,7 +21,7 @@
   :mode ("\\.org\\'" . org-mode)
   :custom
   (org-todo-keywords
-   '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+   '((sequence "TODO" "IN-PROGRESS" "WONT-DO" "DONE")))
   (org-tag-alist '(("@work" . ?w) ("@emacs" . ?e) ("urbit" . ?u)))
   :init
   (org-babel-do-load-languages
