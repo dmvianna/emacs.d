@@ -244,6 +244,11 @@
 ;; major mode for viewing logs
 (use-package logview)
 
+(define-minor-mode ansi-color-mode
+  "Apply colour escape codes to buffer."
+  nil nil nil
+  (ansi-color-apply-on-region 1 (buffer-size)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   web browser
