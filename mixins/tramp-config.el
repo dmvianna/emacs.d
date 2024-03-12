@@ -10,8 +10,8 @@
 (add-to-list
  'tramp-methods
  '("gcssh"
-   (tramp-login-program "gcloud compute ssh")
-   (tramp-login-args (("%h")))
+   (tramp-login-program "gcloud")
+   (tramp-login-args (("compute" "ssh" "%h")))
    (tramp-async-args (("-q")))
    (tramp-remote-shell "/bin/sh")
    (tramp-remote-shell-args ("-c"))
@@ -23,8 +23,8 @@
 (add-to-list
  'tramp-methods
  '("gcsroot"
-   (tramp-login-program "gcloud compute ssh")
-   (tramp-login-args (("%h" "--" "sudo" "su")))
+   (tramp-login-program "gcloud")
+   (tramp-login-args (("compute" "ssh" "%h" "--" "sudo" "su")))
    (tramp-async-args (("-q")))
    (tramp-remote-shell "/bin/sh")
    (tramp-remote-shell-args ("-c"))
