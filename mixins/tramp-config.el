@@ -1,4 +1,4 @@
-;;; communication.el.gpg --- Summary  -*- lexical-binding: t; -*-
+;;; tramp-config.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Email, internet messaging, etc.
 ;;; Code:
