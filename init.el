@@ -470,6 +470,9 @@
 ;; Orgmode
 (load (concat user-emacs-directory "mixins/org-config.el"))
 
+;; Tramp
+(load (concat user-emacs-directory "mixins/tramp-config.el"))
+
 ;; Modes that must be loaded early
 (load-file (concat user-emacs-directory "mixins/early-modes.el"))
 
