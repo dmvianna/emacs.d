@@ -1,6 +1,6 @@
 ;;; tramp-config.el --- Summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
-;;; Email, internet messaging, etc.
+;;; More methods for tramping around the cloud.
 ;;; Code:
 
 ;; make sure you've set your default project with:
