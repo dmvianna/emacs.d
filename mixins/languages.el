@@ -74,6 +74,14 @@
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)))
 
+(use-package eglot-booster
+  :elpaca (eglot-booster
+           :host github
+           :repo "jdtsmith/eglot-booster")
+  :after eglot
+  :config (eglot-booster-mode)
+  :ensure-system-package emacs-lsp-booster)
+
 ;;; languages
 
 (use-package avro-mode
