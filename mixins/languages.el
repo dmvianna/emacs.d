@@ -102,6 +102,10 @@
 
 ;; go
 (use-package go-mode
+  :hook (before-save .
+                     (lambda ()
+                       (call-interactively
+                        eglot-code-action-organize-imports)))
   :ensure-system-package golang-x-tools-gopls)
 
 ;; graphviz
