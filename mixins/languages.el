@@ -100,6 +100,9 @@
 (use-package elm-mode
   :hook (elm-mode . eglot-ensure))
 
+;; go
+(use-package go-mode)
+
 ;; graphviz
 (use-package graphviz-dot-mode
   :config (setq graphviz-dot-mode-indent-width 2))
