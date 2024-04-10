@@ -101,7 +101,8 @@
   :hook (elm-mode . eglot-ensure))
 
 ;; go
-(use-package go-mode)
+(use-package go-mode
+  :ensure-system-package golang-x-tools-gopls)
 
 ;; graphviz
 (use-package graphviz-dot-mode
