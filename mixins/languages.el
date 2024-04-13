@@ -109,6 +109,9 @@
 (use-package graphviz-dot-mode
   :config (setq graphviz-dot-mode-indent-width 2))
 
+;; handlebars
+(use-package handlebars-mode)
+
 ;; Haskell
 (load-file (concat user-emacs-directory "mixins/languages/haskell-config.el"))
 
