@@ -210,6 +210,13 @@
   :mode "\\.rkt\\'"
   :interpreter "racket-mode")
 
+;; Rust
+(use-package rust-ts-mode
+  :elpaca nil
+  :mode "\\.rs\\'"
+  :ensure-system-package
+  (rust-analyzer . "rustup component add rust-analyzer"))
+
 ;; scala
 (load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
 
