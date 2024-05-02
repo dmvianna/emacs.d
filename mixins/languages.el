@@ -214,6 +214,13 @@
 (use-package rust-ts-mode
   :elpaca nil
   :mode "\\.rs\\'"
+  :config
+  (add-to-list
+   'eglot-server-programs
+   '((rust-ts-mode rust-mode)
+     . ("rust-analyzer"
+        :initializationOptions
+        (:check (:command "clippy")))))
   :ensure-system-package
   (rust-analyzer . "rustup component add rust-analyzer"))
 
