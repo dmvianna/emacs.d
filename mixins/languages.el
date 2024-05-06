@@ -215,6 +215,7 @@
   :elpaca nil
   :mode "\\.rs\\'"
   :config
+  (setq rustic-lsp-client 'eglot)
   (add-to-list
    'eglot-server-programs
    '((rust-ts-mode rust-mode)
@@ -223,6 +224,27 @@
         (:check (:command "clippy")))))
   :ensure-system-package
   (rust-analyzer . "rustup component add rust-analyzer"))
+
+(use-package rustic
+  :ensure
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
+
+  ;; comment to disable rustfmt on save
+  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+  (setq rustic-format-on-save t))
 
 ;; scala
 (load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
