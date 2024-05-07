@@ -102,8 +102,16 @@
 
 ;; go
 (use-package go-mode
-  :hook (go-mode . eglot-ensure)
+  :hook
+  (go-mode . eglot-ensure)
+  (go-mode . go-flymake)
   :ensure-system-package golang-x-tools-gopls)
+
+(use-package go-flymake
+  :elpaca (go-flymake
+           :host github
+           :repo "dougm/goflymake"
+           :files ("go-flymake.el")))
 
 ;; graphviz
 (use-package graphviz-dot-mode
