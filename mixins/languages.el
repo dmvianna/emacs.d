@@ -74,6 +74,9 @@
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)))
 
+;; ein
+(use-package ein)
+
 ;;; languages
 
 (use-package avro-mode
