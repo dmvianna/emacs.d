@@ -76,6 +76,13 @@
 
 ;; ein
 (use-package ein)
+;; jupyter installation (with Rust repl)
+;;
+;; python -m venv .venv
+;; source .venv/bin/activate
+;; pip install jupyterlab
+;; cargo install evcxr_jupyter
+;; evcxr_jupyter --install
 
 ;;; languages
 
