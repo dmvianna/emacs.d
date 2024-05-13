@@ -68,5 +68,8 @@
 (use-package verb
   :after org)
 
+;; jupyter
+(use-package jupyter)
+
 (provide 'org-config.el)
 ;;; org-config.el ends here.
