@@ -77,6 +77,13 @@
 (use-package eldoc
   :after elpaca)
 
+(use-package consult-eglot
+  :after (track-changes eglot)
+  :ensure (consult-eglot
+           :host github
+           :repo "mohkale/consult-eglot"
+           :branch "v0.2.0"))
+
 ;; ein
 (use-package ein)
 ;; jupyter installation (with Rust repl)
