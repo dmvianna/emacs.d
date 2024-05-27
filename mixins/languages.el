@@ -336,19 +336,6 @@
     :new-connection (lsp-stdio-connection "hoon-language-server")
     :activation-fn (lsp-activate-on "hoon")
     :server-id 'hoon-language-server))
-  ;; eglot
-  (push
-   '(hoon-mode .
-               ("hoon-language-server"
-                "-p"
-                "8080"
-                "-u"
-                "http://localhost"
-                "-s"
-                "zod"
-                "-c"
-                "lidlut-tabwed-pillex-ridrup"))
-   eglot-server-programs)
   :hook
   (hoon-mode . eldoc-box-hover-mode)
   (before-save . (lambda ()
