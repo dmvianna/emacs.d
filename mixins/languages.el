@@ -52,6 +52,7 @@
 
 (use-package jsonrpc) ;; hopefully this doesn't leak memory
 (use-package eglot
+  :ensure nil
   :after (jsonrpc track-changes eldoc)
   :custom
   (eglot-autoshutdown t)
@@ -77,12 +78,6 @@
 (use-package eldoc
   :after elpaca)
 
-(use-package consult-eglot
-  :after (track-changes eglot)
-  :ensure (consult-eglot
-           :host github
-           :repo "mohkale/consult-eglot"
-           :branch "v0.2.0"))
 
 ;; ein
 (use-package ein)
