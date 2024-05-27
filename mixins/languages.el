@@ -119,6 +119,8 @@
   :ensure-system-package golang-x-tools-gopls)
 
 (use-package go-flymake
+  :init
+  (setq flymake-allowed-file-name-masks nil)
   :ensure (go-flymake
            :host github
            :repo "dougm/goflymake"
