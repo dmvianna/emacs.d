@@ -75,10 +75,6 @@
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)))
 
-(use-package eldoc
-  :after elpaca)
-
-
 ;; ein
 (use-package ein)
 ;; jupyter installation (with Rust repl)
