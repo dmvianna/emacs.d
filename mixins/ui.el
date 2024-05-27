@@ -39,7 +39,7 @@
 (use-package visual-regexp)
 
 (use-package visual-regexp-steroids
-  :elpaca (visual-regexp-steroids
+  :ensure (visual-regexp-steroids
            :repo "benma/visual-regexp-steroids.el"
            :files ("visual-regexp-steroids.el" "regexp.py"))
   :requires visual-regexp
@@ -62,7 +62,7 @@
 
 ;; ibuffer
 (use-package ibuffer
-  :elpaca nil
+  :ensure nil
   :config (global-set-key [remap list-buffers] 'ibuffer))
 
 (use-package ibuffer-vc

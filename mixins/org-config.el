@@ -14,7 +14,7 @@
 ;; conflicting versions
 (use-package org
   :demand t
-  :elpaca (org
+  :ensure (org
            :host github
            :repo "bzg/org-mode"
            :files (:defaults "lisp/*"))
@@ -38,7 +38,7 @@
 
 (use-package org-pandoc-import
   :after org
-  :elpaca (org-pandoc-import :host github
+  :ensure (org-pandoc-import :host github
                              :repo "tecosaur/org-pandoc-import"
                              :files ("*.el" "filters" "preprocessors")))
 

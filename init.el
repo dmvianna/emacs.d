@@ -25,7 +25,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; bootstrap elpaca
-(defvar elpaca-installer-version 0.5)
+(setq elpaca-core-date '(20240223)) ;; This version of Emacs was built on 2024-01-01
+(defvar elpaca-installer-version 0.7)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -67,8 +68,8 @@
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword.
   (elpaca-use-package-mode)
-  ;; Assume :elpaca t unless otherwise specified.
-  (setq elpaca-use-package-by-default t))
+  ;; Assume :ensure t unless otherwise specified.
+  (setq use-package-always-ensure t))
 
 ;; activate use-package extensions
 (use-package use-package-ensure-system-package)
@@ -359,7 +360,7 @@
 (global-set-key (kbd "<end>") 'end-of-buffer)
 
 (use-package prog-mode
-  :elpaca nil
+  :ensure nil
   :init
   (add-to-list 'auto-mode-alist '("\\.list$" . prog-mode))
   ;; Display line numbers

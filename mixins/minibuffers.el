@@ -32,7 +32,7 @@
 
 ;; Popup completion-at-point
 (use-package corfu
-  :elpaca (:host github :repo "minad/corfu")
+  :ensure (:host github :repo "minad/corfu")
   :custom
   (corfu-cycle t)
   (corfu-auto t)
@@ -55,7 +55,7 @@
 ;; Extensions
 (use-package corfu-popupinfo
   :after corfu
-  :elpaca (:host github
+  :ensure (:host github
                  :repo "minad/corfu"
                  :files ("extensions/corfu-popupinfo.el"))
   :config (corfu-popupinfo-mode 1)
@@ -63,7 +63,7 @@
 
 (use-package corfu-history
   :after corfu
-  :elpaca (:host github
+  :ensure (:host github
                  :repo "minad/corfu"
                  :files ("extensions/corfu-history.el"))
   :config

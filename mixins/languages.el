@@ -87,14 +87,14 @@
 ;;; languages
 
 (use-package avro-mode
-  :elpaca nil
+  :ensure nil
   :custom
   (tab-width 4)
   :mode "\\.avdl$")
 
 ;; ini files
 (use-package conf-mode
-  :elpaca nil
+  :ensure nil
   :mode "\\.ini\\'\\|\\.lock\\'\\|\\.service\\'\\|\\.desktop\\'")
 
 ;; csv files
@@ -118,7 +118,7 @@
   :ensure-system-package golang-x-tools-gopls)
 
 (use-package go-flymake
-  :elpaca (go-flymake
+  :ensure (go-flymake
            :host github
            :repo "dougm/goflymake"
            :files ("go-flymake.el")))
@@ -153,14 +153,14 @@
 
 ;; Lisp
 (use-package emacs-lisp-mode
-  :elpaca nil
+  :ensure nil
   :mode "\\.el\\'"
   :hook
   (emacs-lisp-mode . flymake-mode)
   (emacs-lisp-mode . aggressive-indent-mode))
 
 (use-package lisp-mode
-  :elpaca nil
+  :ensure nil
   :mode "\\.cl\\|\\.lisp\\'"
   :hook
   (lisp-mode . rainbow-delimiters-mode)
@@ -230,7 +230,7 @@
 
 ;; Rust
 (use-package rust-ts-mode
-  :elpaca nil
+  :ensure nil
   :mode "\\.rs\\'"
   :config
   (setq rustic-lsp-client 'eglot)
@@ -268,7 +268,7 @@
 (load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
 
 (use-package sh-script
-  :elpaca nil
+  :ensure nil
   :mode (("\\.zsh\\'" . sh-mode)
          ("\\.sh\\'" . sh-mode)
          ("zshrc\\'" . sh-mode)
@@ -278,7 +278,7 @@
   :custom (sh-basic-offset 2))
 
 (use-package theta-mode
-  :elpaca (theta-mode
+  :ensure (theta-mode
            :host github
            :repo "target/theta-idl"
            :branch "stage"
@@ -306,7 +306,7 @@
 ;;; Point to your planet with the right credentials, of course.
 
 (use-package hoon-mode
-  :elpaca (hoon-mode
+  :ensure (hoon-mode
            :host github
            :protocol ssh
            :repo "dmvianna/hoon-mode.el"
@@ -349,7 +349,7 @@
 
 (use-package hoon-ts-mode
   :after combobulate
-  :elpaca (hoon-ts-mode
+  :ensure (hoon-ts-mode
            :host github
            :repo "urbit-pilled/hoon-ts-mode")
   :custom
@@ -359,13 +359,13 @@
                '(hoon . combobulate-hoon-setup)))
 
 (use-package sql-indent
-  :elpaca (sql-indent
+  :ensure (sql-indent
            :host github
            :repo "alex-hhh/emacs-sql-indent"
            :branch "master"))
 
 (use-package bigquery-mode
-  :elpaca (bigquery-mode
+  :ensure (bigquery-mode
            :host github
            :repo "dmvianna/bigquery-mode"
            :branch "quote"

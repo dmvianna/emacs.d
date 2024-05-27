@@ -60,7 +60,7 @@
 
 ;; source editing and movement using treesitter when available
 (use-package combobulate
-  :elpaca (combobulate :host github :repo "dmvianna/combobulate"))
+  :ensure (combobulate :host github :repo "dmvianna/combobulate"))
 
 ;;; save lots of undo history
 ;;; manual: https://www.dr-qubit.org/undo-tree/undo-tree.txt
@@ -79,7 +79,7 @@
 
 (use-package undo-hl
   :delight
-  :elpaca (undo-hl :host github :repo "casouri/undo-hl")
+  :ensure (undo-hl :host github :repo "casouri/undo-hl")
   :hook ((text-mode . undo-hl-mode)
          (prog-mode . undo-hl-mode))
   :custom-face
@@ -88,7 +88,7 @@
 
 (use-package vundo
   :after undo-hl
-  :elpaca (vundo :host github :repo "casouri/vundo")
+  :ensure (vundo :host github :repo "casouri/vundo")
   :config
   ;; this is all so that undo-hl works with vundo. It mostly does.
   (setq undo-hl-undo-commands
@@ -171,7 +171,7 @@
 
 ;; elisp term
 (use-package aweshell
-  :elpaca (aweshell
+  :ensure (aweshell
            :host github
            :repo "manateelazycat/aweshell"
            :files ("aweshell.el"
@@ -189,12 +189,12 @@
 ;; the current transient release (magit dependency)
 ;; is broken (v0.3.7), so we use this
 (use-package transient
-  :elpaca (transient
+  :ensure (transient
            :host github
            :repo "magit/transient"))
 
 (use-package magit
-  :elpaca nil
+  :ensure nil
   :hook
   (git-commit-setup . (lambda () (electric-indent-local-mode -1)))
   :config
@@ -223,7 +223,7 @@
 ;;; Install github cli tool from https://cli.github.com/manual/installation
 (use-package consult-gh
   :after consult
-  :elpaca (consult-gh :host github :repo "armindarvish/consult-gh")
+  :ensure (consult-gh :host github :repo "armindarvish/consult-gh")
   :config
   (add-to-list 'consult-gh-default-orgs-list "dmvianna")
   (setq consult-gh-default-orgs-list
@@ -235,7 +235,7 @@
   (setq consult-gh-default-clone-directory "~/src/vendor/"))
 
 (use-package ediff
-  :elpaca nil
+  :ensure nil
   :config
   (setq ediff-window-setup-function 'ediff-setup-windows-plain
         ediff-split-window-function 'split-window-horizontally
