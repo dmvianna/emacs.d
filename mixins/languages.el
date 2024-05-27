@@ -52,7 +52,7 @@
 
 (use-package jsonrpc) ;; hopefully this doesn't leak memory
 (use-package eglot
-  :after jsonrpc
+  :after (jsonrpc track-changes eldoc)
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
@@ -73,6 +73,13 @@
   (setq-default
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)))
+
+(use-package eldoc)
+
+(use-package track-changes
+  :ensure (track-changes
+           :host github
+           :repo "emacs-straight/track-changes"))
 
 ;; ein
 (use-package ein)
