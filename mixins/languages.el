@@ -77,11 +77,6 @@
 (use-package eldoc
   :after elpaca)
 
-(use-package track-changes
-  :ensure (track-changes
-           :host github
-           :repo "emacs-straight/track-changes"))
-
 ;; ein
 (use-package ein)
 ;; jupyter installation (with Rust repl)
