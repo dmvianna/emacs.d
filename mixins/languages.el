@@ -74,7 +74,8 @@
    eglot-ignored-server-capabilities
    '(workspace/didChangeWatchedFiles)))
 
-(use-package eldoc)
+(use-package eldoc
+  :after elpaca)
 
 (use-package track-changes
   :ensure (track-changes
