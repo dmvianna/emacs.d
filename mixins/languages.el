@@ -53,7 +53,7 @@
 (use-package jsonrpc) ;; hopefully this doesn't leak memory
 (use-package eglot
   :ensure nil
-  :after (jsonrpc track-changes eldoc)
+  :after (jsonrpc eldoc)
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
