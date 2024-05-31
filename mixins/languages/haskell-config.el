@@ -29,6 +29,11 @@
   :after haskell-font-lock
   :hook
   (haskell-mode . eglot-ensure)
+  :custom (haskell-mode-stylish-haskell-path "fourmolu")
+  :bind (:map haskell-mode-map
+              ("C-c h" . hoogle)
+              ("C-c s" . haskell-mode-stylish-buffer)
+              ("C-c C-c" . haskell-compile))
   :ensure-system-package (fourmolu . "stack install fourmolu"))
 
 (provide 'haskell-config)
