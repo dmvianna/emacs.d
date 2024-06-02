@@ -18,6 +18,7 @@
 ;; we need to upgrade the inbuilt flymake version so
 ;; that packages that require it don't fail
 (use-package flymake
+  :ensure (:wait t)
   :bind (:map flymake-mode-map (("M-n" . flymake-goto-next-error)
                                 ("M-p" . flymake-goto-prev-error))))
 
@@ -186,12 +187,12 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; the current transient release (magit dependency)
-;; is broken (v0.3.7), so we use this
-(use-package transient
-  :ensure (transient
-           :host github
-           :repo "magit/transient"))
+;; ;; the current transient release (magit dependency)
+;; ;; is broken (v0.3.7), so we use this
+;; (use-package transient
+;;   :ensure (transient
+;;            :host github
+;;            :repo "magit/transient"))
 
 (use-package magit
   :ensure nil
