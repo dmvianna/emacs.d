@@ -115,7 +115,7 @@
   :hook
   (go-mode . eglot-ensure)
   (go-mode . go-flymake)
-  :ensure-system-package golang-x-tools-gopls)
+  :ensure-system-package ("/usr/bin/gopls" . golang-x-tools-gopls))
 
 (use-package go-flymake
   :init
