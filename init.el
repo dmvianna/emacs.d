@@ -476,6 +476,9 @@
 ;; Tramp
 (load (concat user-emacs-directory "mixins/tramp-config.el"))
 
+;; Safe
+(load (concat user-emacs-directory "mixins/safe.el.gpg"))
+
 ;; Modes that must be loaded early
 (load-file (concat user-emacs-directory "mixins/early-modes.el"))
 
