@@ -260,6 +260,22 @@
 (global-set-key [mouse-4] 'next-line)
 (global-set-key [mouse-5] 'previous-line)
 
+;; really fast scrolling with PGTK
+
+(defun up-single () "Up single." (interactive) (scroll-up 1))
+(defun up-double () "Up double." (interactive) (scroll-up 2))
+(defun up-triple () "Up triple." (interactive) (scroll-up 3))
+(defun down-single () "Down single." (interactive) (scroll-down 1))
+(defun down-double () "Down double." (interactive) (scroll-down 2))
+(defun down-triple () "Down triple." (interactive) (scroll-down 3))
+
+(global-set-key [wheel-down] 'up-single)
+(global-set-key [double-wheel-down] 'up-double)
+(global-set-key [triple-wheel-down] 'up-triple)
+(global-set-key [wheel-up] 'down-single)
+(global-set-key [double-wheel-up] 'down-double)
+(global-set-key [triple-wheel-up] 'down-triple)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   My preferred default interface
