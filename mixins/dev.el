@@ -188,12 +188,11 @@
 
 ;; the current transient release (magit dependency)
 ;; is broken (v0.3.7), so we use this
-(use-package transient
-  :after magit
-  :ensure (transient
-           :host github
-           :repo "magit/transient"
-           :tag "0.6.0"))
+;; (use-package transient
+;;   :after magit
+;;   :ensure (transient
+;;            :host github
+;;            :repo "magit/transient"))
 
 (use-package magit
   :ensure nil
