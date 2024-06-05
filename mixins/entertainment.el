@@ -10,7 +10,7 @@
   (require 'emms-setup)
   (emms-all)
   (emms-default-players)
-  (setq emms-source-file-default-directory "~/Music/")
+  (setq emms-source-file-default-directory "~/music/")
   (setq emms-playlist-buffer-name "*Music*")
   (setq emms-info-asynchronously t)
   (require 'emms-info-libtag) ;;; load functions that will talk to emms-print-metadata which in turn talks to libtag and gets metadata
