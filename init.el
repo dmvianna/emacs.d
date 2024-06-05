@@ -82,13 +82,6 @@
         system-packages-package-manager 'dnf
         async-shell-command-buffer 'new-buffer))
 
-;; git shell ?! :-DDDD
-
-;; nix-mode depends on a package that comes with magit, so we fetch magit
-;; before moving forward. Below we tell elpaca to not continue until the
-;; current download queue is empty.
-(elpaca magit)
-
 ;; Block until current queue processed.
 (elpaca-wait)
 

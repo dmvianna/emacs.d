@@ -214,6 +214,7 @@
 
 ;; nix
 (use-package nix-mode
+  :after magit
   :requires magit-section
   :config
   (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
