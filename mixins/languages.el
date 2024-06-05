@@ -62,10 +62,10 @@
                                 (put 'eglot-warning 'flymake-overlay-control nil)
                                 (put 'eglot-error 'flymake-overlay-control nil)
                                 (add-hook 'before-save-hook
-                                          'eglot-format-buffer nil t)
+                                          'eglot-format-buffer nil 'local)
                                 (add-hook 'before-save-hook
                                           'eglot-code-action-organize-imports
-                                          nil t)))
+                                          nil 'local)))
   :init
   (setq-default
    eglot-ignored-server-capabilities
@@ -332,9 +332,10 @@
     :server-id 'hoon-language-server))
   :hook
   (hoon-mode . eldoc-box-hover-mode)
-  (before-save . (lambda ()
-                   (call-interactively
-                    eglot-code-action-organize-imports))))
+  (hoon-mode . (lambda ()
+                 (add-hook 'before-save-hook
+                           'eglot-code-action-organize-imports
+                           nil 'local))))
 
 (use-package hoon-ts-mode
   :after combobulate
