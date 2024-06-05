@@ -62,13 +62,10 @@
                                 (put 'eglot-warning 'flymake-overlay-control nil)
                                 (put 'eglot-error 'flymake-overlay-control nil)
                                 (add-hook 'before-save-hook
-                                          'eglot-format-buffer nil t)))
-  ;; (add-hook 'before-save-hook
-  ;;           #'(lambda ()
-  ;;               (eglot-code-action-organize-imports
-  ;;                nil nil))
-  ;; nil t)
-
+                                          'eglot-format-buffer nil t)
+                                (add-hook 'before-save-hook
+                                          'eglot-code-action-organize-imports
+                                          nil t)))
   :init
   (setq-default
    eglot-ignored-server-capabilities
