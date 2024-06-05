@@ -57,15 +57,16 @@
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
   (eglot-sync-connect nil) ; don't block while connecting to server
-  :hook (eglot-managed-mode . (lambda ()
-                                (put 'eglot-note 'flymake-overlay-control nil)
-                                (put 'eglot-warning 'flymake-overlay-control nil)
-                                (put 'eglot-error 'flymake-overlay-control nil)
-                                (add-hook 'before-save-hook
-                                          'eglot-format-buffer nil 'local)
-                                (add-hook 'before-save-hook
-                                          'eglot-code-action-organize-imports
-                                          nil 'local)))
+  :hook (eglot-managed-mode
+         . (lambda ()
+             (put 'eglot-note 'flymake-overlay-control nil)
+             (put 'eglot-warning 'flymake-overlay-control nil)
+             (put 'eglot-error 'flymake-overlay-control nil)
+             (add-hook 'before-save-hook
+                       'eglot-format-buffer nil 'local)
+             (add-hook 'before-save-hook
+                       (apply-partially '#eglot-code-action-organize-imports 0)
+                       nil 'local)))
   :init
   (setq-default
    eglot-ignored-server-capabilities
@@ -334,7 +335,7 @@
   (hoon-mode . eldoc-box-hover-mode)
   (hoon-mode . (lambda ()
                  (add-hook 'before-save-hook
-                           'eglot-code-action-organize-imports
+                           (apply-partially '#eglot-code-action-organize-imports 0)
                            nil 'local))))
 
 (use-package hoon-ts-mode
