@@ -12,7 +12,6 @@
   (emms-info-asynchronously t)
   ;;; make sure libtag is the only thing delivering metadata
   (emms-info-functions '(emms-info-libtag))
-  (buffer-save-without-query t)
   :config
   (require 'emms-setup)
   ;;; load functions that will talk to emms-print-metadata
