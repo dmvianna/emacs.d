@@ -186,16 +186,15 @@
 ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; the current transient release (magit dependency)
-;; is broken (v0.3.7), so we use this
-;; (use-package transient
-;;   :after magit
-;;   :ensure (transient
-;;            :host github
-;;            :repo "magit/transient"))
+(use-package transient
+  :pin gnu)
+(use-package git-commit
+  :pin gnu)
 
 (use-package magit
-  :ensure nil
+  :requires (transient git-commit)
+  :pin gnu
+  :after transient
   :hook
   (git-commit-setup . (lambda () (electric-indent-local-mode -1)))
   :config
@@ -216,7 +215,6 @@
   :bind (:map
          magit-mode-map
          ("C-x g" . magit-status)))
-
 
 (use-package abridge-diff
   :after magit)
