@@ -184,22 +184,22 @@
   ;; at https://github.com/susam/emacs4cl#get-started
   :ensure-system-package sbcl) ;; non-trivial installation
 
-;; ;; elpaca can't build track-changes, which is a dependency
-;; (use-package parinfer-rust-mode
-;;   :custom
-;;   (parinfer-rust-troublesome-modes ;; removed electric-pair-mode from list
-;;    '(hungry-delete-mode global-hungry-delete-mode))
-;;   (parinfer-rust-auto-download t)
-;;   (electric-pair-local-mode -1)
-;;   (parinfer-rust-preferred-mode 'paren)
-;;   :hook
-;;   (emacs-lisp-mode
-;;    ielm-mode
-;;    lisp-mode
-;;    slime-repl-mode
-;;    lisp-interaction-mode
-;;    racket-mode)
-;;   (before-save . delete-trailing-whitespace))
+;; elpaca can't build track-changes, which is a dependency
+(use-package parinfer-rust-mode
+  :custom
+  (parinfer-rust-troublesome-modes ;; removed electric-pair-mode from list
+   '(hungry-delete-mode global-hungry-delete-mode))
+  (parinfer-rust-auto-download t)
+  (electric-pair-local-mode -1)
+  (parinfer-rust-preferred-mode 'paren)
+  :hook
+  (emacs-lisp-mode
+   ielm-mode
+   lisp-mode
+   slime-repl-mode
+   lisp-interaction-mode
+   racket-mode)
+  (before-save . delete-trailing-whitespace))
 
 ;; Markdown
 (use-package markdown-mode
