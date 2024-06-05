@@ -64,9 +64,12 @@
              (put 'eglot-error 'flymake-overlay-control nil)
              (add-hook 'before-save-hook
                        'eglot-format-buffer nil 'local)
-             (add-hook 'before-save-hook
-                       (apply-partially '#eglot-code-action-organize-imports 0)
-                       nil 'local)))
+             ;;; This won't work, eglot-code-action-organize-imports must know
+             ;;; where the import lines are (they're not at line 1)
+             ;; (add-hook 'before-save-hook
+             ;;           (apply-partially #'eglot-code-action-organize-imports 1)
+             ;;           nil 'local))
+         )
   :init
   (setq-default
    eglot-ignored-server-capabilities
@@ -333,10 +336,13 @@
     :server-id 'hoon-language-server))
   :hook
   (hoon-mode . eldoc-box-hover-mode)
-  (hoon-mode . (lambda ()
-                 (add-hook 'before-save-hook
-                           (apply-partially '#eglot-code-action-organize-imports 0)
-                           nil 'local))))
+  ;;; This won't work, eglot-code-action-organize-imports must know
+  ;;; where the import lines are (they're not at line 1)
+  ;; (hoon-mode . (lambda ()
+  ;;                (add-hook 'before-save-hook
+  ;;                          (apply-partially #'eglot-code-action-organize-imports 1)
+  ;;                          nil 'local)))
+  )
 
 (use-package hoon-ts-mode
   :after combobulate
