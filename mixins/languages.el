@@ -159,9 +159,10 @@
   :mode "\\.el\\'"
   :hook
   (emacs-lisp-mode . flymake-mode)
-  (emacs-lisp-mode . aggressive-indent-mode))
+  (lisp-mode . aggressive-indent-mode))
 
 (use-package lisp-mode
+  :after rainbow-delimiters-mode
   :ensure nil
   :mode "\\.cl\\|\\.lisp\\'"
   :hook
