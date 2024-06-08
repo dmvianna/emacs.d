@@ -192,7 +192,7 @@
    '(hungry-delete-mode global-hungry-delete-mode))
   (parinfer-rust-auto-download t)
   (electric-pair-local-mode -1)
-  (parinfer-rust-preferred-mode 'paren)
+  (parinfer-rust-preferred-mode "paren")
   :hook
   (emacs-lisp-mode
    ielm-mode
