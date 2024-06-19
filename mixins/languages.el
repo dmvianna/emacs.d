@@ -138,7 +138,7 @@
 
 ;; JSON
 (use-package json-mode
-  :mode "\\.json\\'\\|\\.jshintrc\\'"
+  :mode "\\.lock\\|\\.json\\|\\.jshintrc\\'"
   :interpreter "json-mode"
   :hook (json-mode . eglot-ensure))
 
