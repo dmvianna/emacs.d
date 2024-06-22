@@ -291,10 +291,13 @@
            :files ("emacs/theta-mode.el"))
   :mode ("\\.theta\\'" . theta-mode))
 
+(use-package yaml-pro
+  :after yaml-mode)
 (use-package yaml-mode
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'" . yaml-mode)
-         ("user-data\\'" . yaml-mode)))
+         ("user-data\\'" . yaml-mode))
+  :hook (yaml-mode . yaml-pro-mode))
 
 (use-package terraform-mode
   :config
