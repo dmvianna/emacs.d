@@ -99,7 +99,7 @@
 (use-package smart-mode-line
   :init
   (progn
-    (setq sml/theme 'automatic
+    (setq sml/theme 'respectful
           sml/shorten-directory t
           sml/name-width 32
           sml/shorten-modes t
