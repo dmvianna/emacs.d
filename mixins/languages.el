@@ -220,14 +220,14 @@
   :after magit
   :requires magit-section
   :config
-  (add-to-list 'eglot-server-programs '(nix-mode . ("nixd")))
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nil")))
   (if (featurep 'lsp-mode)
-      (progn  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
+      (progn  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nil"))
               (lsp-register-client
-               (make-lsp-client :new-connection (lsp-stdio-connection '("nixd"))
+               (make-lsp-client :new-connection (lsp-stdio-connection '("nil"))
                                 :major-modes '(nix-mode)
                                 :server-id 'nix))))
-  :ensure-system-package (nixd . "nix-env -i nixd")
+  :ensure-system-package (nil . "nix-env -i nil")
   :hook
   (nix-mode . eglot-ensure)
   :mode "\\.nix\\'")
