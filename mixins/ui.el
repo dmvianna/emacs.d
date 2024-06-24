@@ -103,7 +103,7 @@
           sml/shorten-directory t
           sml/name-width 32
           sml/shorten-modes t
-          sml/extra-filler -5)
+          sml/extra-filler 0)
     ;; sml/use-projectile-p 'before-prefixes
     ;; sml/projectile-replacement-format "%s/"
 
