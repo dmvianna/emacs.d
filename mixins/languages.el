@@ -219,14 +219,16 @@
   :after magit
   :requires magit-section
   :config
-  (add-to-list 'eglot-server-programs '(nix-mode . ("rnix-lsp")))
+  (add-to-list 'eglot-server-programs '(nix-mode . ("nixd")))
   (if (featurep 'lsp-mode)
       (progn  (add-to-list 'lsp-language-id-configuration '(nix-mode . "nix"))
               (lsp-register-client
-               (make-lsp-client :new-connection (lsp-stdio-connection '("rnix-lsp"))
+               (make-lsp-client :new-connection (lsp-stdio-connection '("nixd"))
                                 :major-modes '(nix-mode)
                                 :server-id 'nix))))
-  :hook (nix-mode . eglot-ensure)
+  :ensure-system-package (nixd . "nix-env -i nixd")
+  :hook
+  (nix-mode . eglot-ensure)
   :mode "\\.nix\\'")
 
 ;; Racket
