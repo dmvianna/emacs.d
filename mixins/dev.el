@@ -15,11 +15,12 @@
 (use-package highlight-indent-guides
   :custom (highlight-indent-guides-method 'character))
 
-;; ;; we need to upgrade the inbuilt flymake version so
-;; ;; that packages that require it don't fail
-;; (use-package flymake
-;;   :bind (:map flymake-mode-map (("M-n" . flymake-goto-next-error)
-;;                                 ("M-p" . flymake-goto-prev-error))))
+;; we need to upgrade the inbuilt flymake version so
+;; that packages that require it don't fail
+(use-package flymake
+  :ensure nil
+  :bind (:map flymake-mode-map (("M-n" . flymake-goto-next-error)
+                                ("M-p" . flymake-goto-prev-error))))
 
 ;; Syntax checking and everything else related to it
 (use-package flycheck
