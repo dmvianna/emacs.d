@@ -187,6 +187,7 @@
 
 ;; elpaca can't build track-changes, which is a dependency
 (use-package parinfer-rust-mode
+  :delight
   :custom
   (parinfer-rust-troublesome-modes ;; removed electric-pair-mode from list
    '(hungry-delete-mode global-hungry-delete-mode))
