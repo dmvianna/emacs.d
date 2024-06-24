@@ -250,7 +250,7 @@
   (ansi-color-apply-on-region 1 (buffer-size)))
 
 ;; smerge is always on anyway
-(use-package smerge
+(use-package smerge-mode
   :ensure nil
   :delight)
 
