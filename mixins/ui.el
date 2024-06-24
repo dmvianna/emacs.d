@@ -99,10 +99,11 @@
 (use-package smart-mode-line
   :init
   (progn
-    (setq sml/theme nil
+    (setq sml/theme 'automatic
           sml/shorten-directory t
           sml/name-width 32
-          sml/shorten-modes t)
+          sml/shorten-modes t
+          sml/extra-filler -5)
     ;; sml/use-projectile-p 'before-prefixes
     ;; sml/projectile-replacement-format "%s/"
 
