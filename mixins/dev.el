@@ -248,6 +248,11 @@
   nil nil nil
   (ansi-color-apply-on-region 1 (buffer-size)))
 
+;; smerge is always on anyway
+(use-package smerge
+  :ensure nil
+  :delight)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   web browser
