@@ -116,5 +116,12 @@
 (use-package eldoc-box
   :hook (eglot-managed-mode . eldoc-box-hover-mode))
 
+(use-package kbd-mode
+  :ensure (:host github :repo "kmonad/kbd-mode")
+  :custom
+  (kbd-mode-kill-kmonad "pkill -9 kmonad")
+  (kbd-mode-start-kmonad
+   "kmonad ~/.config/dotfiles/config.kbd"))
+
 (provide 'ui)
 ;;; ui.el ends here.
