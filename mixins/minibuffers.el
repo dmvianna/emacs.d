@@ -54,7 +54,7 @@
          ("C-c p s" . cape-elisp-symbol)
          ("C-c p e" . cape-elisp-block)
          ("C-c p a" . cape-abbrev)
-         ("C-c p l" . cape-line)
+         ;; ("C-c p l" . cape-line)
          ("C-c p w" . cape-dict)
          ("C-c p :" . cape-emoji)
          ("C-c p \\" . cape-tex)
