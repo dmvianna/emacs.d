@@ -77,10 +77,8 @@
   (add-hook 'completion-at-point-functions #'cape-rfc1345)
   (add-hook 'completion-at-point-functions #'cape-abbrev)
   (add-hook 'completion-at-point-functions #'cape-dict)
-  (add-hook 'completion-at-point-functions #'cape-elisp-symbol)
+  (add-hook 'completion-at-point-functions #'cape-elisp-symbol))
   ;; (add-hook 'completion-at-point-functions #'cape-line)
-  )
-
 
 ;; Extensions
 (use-package corfu-popupinfo
