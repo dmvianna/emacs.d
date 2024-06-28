@@ -121,7 +121,9 @@
   :custom
   (kbd-mode-kill-kmonad "pkill -9 kmonad")
   (kbd-mode-start-kmonad
-   "kmonad ~/.config/dotfiles/config.kbd"))
+   "kmonad ~/.config/dotfiles/config.kbd")
+  :hook
+  (kbd-mode . (lambda () (flymake-mode -1))))
 
 (provide 'ui)
 ;;; ui.el ends here.
