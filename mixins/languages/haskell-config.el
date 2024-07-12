@@ -33,7 +33,16 @@
   :bind (:map haskell-mode-map
               ("C-c h" . hoogle)
               ("C-c s" . haskell-mode-stylish-buffer)
-              ("C-c C-c" . haskell-compile))
+              ("C-c C-c" . haskell-compile)
+              ("C-c t" . (lambda ()
+                           (interactive)
+                           (save-some-buffers t)
+                           (setq-local
+                            haskell-compile-cabal-build-command
+                            "cabal test"
+                            haskell-compile-stack-build-command
+                            "stack test")
+                           (haskell-compile))))
   :ensure-system-package (fourmolu . "stack install fourmolu"))
 
 (provide 'haskell-config)
