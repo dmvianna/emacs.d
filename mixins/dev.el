@@ -277,5 +277,23 @@
 
 (use-package sudo-edit)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   emacs introspection
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;
+;;; build and install sources, so emacs could use its introspection features:
+;;;
+;;; dnf download --source emacs
+;;; sudo dnf builddep emacs
+;;; rpm -ivh emacs-29.4-9.fc40.src.rpm
+;;; rpmbuild -bp rpmbuild/SPECS/emacs.spec
+;;;
+
+(setq find-function-C-source-directory
+      (concat "~/rpmbuild/BUILD/emacs-" emacs-version "/src"))
+
 (provide 'dev)
 ;;; dev.el ends here
