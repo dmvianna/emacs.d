@@ -7,13 +7,26 @@
 ;; gcloud config set project <project-name>
 
 (require 'tramp)
+
+(setq
+ tramp-remote-path
+ '("/run/current-system/sw/bin"
+   "/bin"
+   "/usr/bin"
+   "/sbin"
+   "/usr/sbin"
+   "/usr/local/bin"
+   "/usr/local/sbin"
+   "/opt/bin"
+   "/opt/sbin"))
+
 (add-to-list
  'tramp-methods
  '("gcssh"
    (tramp-login-program "gcloud")
    (tramp-login-args (("compute" "ssh" "%h")))
    (tramp-async-args (("-q")))
-   (tramp-remote-shell "/bin/bash")
+   (tramp-remote-shell "bash")
    (tramp-remote-shell-args ("-c"))
    (tramp-gw-args (("-o" "GlobalKnownHostsFile=/dev/null")
                    ("-o" "UserKnownHostsFile=/dev/null")
@@ -26,7 +39,7 @@
    (tramp-login-program "gcloud")
    (tramp-login-args (("compute" "ssh" "%h" "--" "sudo" "su")))
    (tramp-async-args (("-q")))
-   (tramp-remote-shell "/bin/bash")
+   (tramp-remote-shell "bash")
    (tramp-remote-shell-args ("-c"))
    (tramp-gw-args (("-o" "GlobalKnownHostsFile=/dev/null")
                    ("-o" "UserKnownHostsFile=/dev/null")
