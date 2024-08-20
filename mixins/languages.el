@@ -307,7 +307,8 @@
 (use-package yaml-mode
   :mode (("\\.yaml\\'" . yaml-mode)
          ("\\.yml\\'" . yaml-mode)
-         ("user-data\\'" . yaml-mode))
+         ("user-data\\'" . yaml-mode)
+         ("\\.kubeconfig\\'" . yaml-mode))
   :hook (yaml-mode . yaml-pro-mode))
 
 (use-package terraform-mode
