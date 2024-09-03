@@ -277,6 +277,8 @@
 
 (use-package sudo-edit)
 
+(use-package kubernetes)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   emacs introspection
