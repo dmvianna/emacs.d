@@ -279,6 +279,11 @@
 
 (use-package kubernetes)
 
+(use-package kele
+  :config
+  (kele-mode 1)
+  (bind-key (kbd "s-k") kele-command-map kele-mode-map))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;   emacs introspection
