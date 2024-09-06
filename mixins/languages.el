@@ -309,7 +309,16 @@
          ("\\.yml\\'" . yaml-mode)
          ("user-data\\'" . yaml-mode)
          ("\\.kubeconfig\\'" . yaml-mode))
-  :hook (yaml-mode . yaml-pro-mode))
+  :hook
+  (yaml-mode . yaml-pro-mode)
+  (helm-mode . eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs '(helm-mode "helm_ls" "serve"))
+  :ensure-system-package (helm_ls . "nix-env -i helm-ls"))
+
+(define-derived-mode helm-mode yaml-mode "helm"
+  "Major mode for editing kubernetes helm templates.")
+
 
 (use-package terraform-mode
   :config
