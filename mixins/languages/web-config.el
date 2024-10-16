@@ -36,7 +36,7 @@
   :custom
   (prettier-target-mode "js-mode")
   (prettier-js-args
-   '("--trailing-comma" "all" "--single-quote" "--no-semi" "--arrow-parens" "always"))
+   '("--trailing-comma" "es5" "--no-semi" "--arrow-parens" "always"))
   :hook ((js-mode . prettier-js-mode)
          (typescript-mode . prettier-js-mode)
          (web-mode . prettier-js-mode)))
