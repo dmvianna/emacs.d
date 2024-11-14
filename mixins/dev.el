@@ -189,8 +189,6 @@
 
 (use-package transient
   :pin gnu)
-(use-package git-commit
-  :pin gnu)
 
 (use-package magit
   :requires (transient git-commit)

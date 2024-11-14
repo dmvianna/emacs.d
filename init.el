@@ -25,7 +25,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;; bootstrap elpaca
-(defvar elpaca-installer-version 0.7)
+(defvar elpaca-installer-version 0.8)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -71,9 +71,6 @@
   (elpaca-use-package-mode)
   ;; Assume :ensure t unless otherwise specified.
   (setq use-package-always-ensure t))
-
-;; activate use-package extensions
-(use-package use-package-ensure-system-package)
 
 ;; Install system-packages
 (elpaca system-packages
