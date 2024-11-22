@@ -14,7 +14,7 @@
   :config
   ;; Set custom formatting commands
   (dolist (formatter-cmd
-           '((shfmt . ("shfmt" "-i" "4" "-ci" "-kp" "-sr"))
+           '((shfmt . ("shfmt" "-i" "2" "-ci" "-sr"))
              (prettier . ("prettier" (or (buffer-file-name) (buffer-name))))))
 
     (add-to-list #'apheleia-formatters formatter-cmd))
@@ -25,7 +25,8 @@
                             (typescript-mode . prettier)
                             (typescript-ts-mode . prettier)))
 
-    (add-to-list #'apheleia-mode-alist formatter-mode)))
+    (add-to-list #'apheleia-mode-alist formatter-mode))
+  :ensure-system-package (shfmt))
 
 ;;; LSP
 
