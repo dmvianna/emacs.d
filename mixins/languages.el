@@ -3,6 +3,28 @@
 ;;; Programming language support -- LSP and individual languages.
 ;;; Code:
 
+;;; formatter
+
+(use-package apheleia
+  :defer t
+  :bind ("C-c t a" . apheleia-mode)
+  :init (apheleia-global-mode)
+  :config
+  ;; Set custom formatting commands
+  (dolist (formatter-cmd
+           '((shfmt . ("shfmt" "-i" "4" "-ci" "-kp" "-sr"))
+             (prettier . ("prettier" "--write" (or (buffer-file-name) (buffer-name))))))
+
+    (add-to-list #'apheleia-formatters formatter-cmd))
+
+  ;; Set custom formatters for modes
+  (dolist (formatter-mode '((emacs-lisp-mode . lisp-indent)
+                            (tsx-ts-mode . prettier)
+                            (typescript-mode . prettier)
+                            (typescript-ts-mode . prettier)))
+
+    (add-to-list #'apheleia-mode-alist formatter-mode)))
+
 ;;; LSP
 
 (use-package lsp-mode
@@ -68,20 +90,20 @@
   (eglot-managed-mode . #'my/eglot-capf)
              ;;; This won't work, eglot-code-action-organize-imports must know
              ;;; where the import lines are (they're not at line 1)
-             ;; (add-hook 'before-save-hook
-             ;;           (apply-partially #'eglot-code-action-organize-imports 1)
-             ;;           nil 'local)
+  ;; (add-hook 'before-save-hook
+  ;;           (apply-partially #'eglot-code-action-organize-imports 1)
+  ;;           nil 'local)
 
   :init
   (defun my/eglot-capf ()
-   (setq-local completion-at-point-functions
-               (list (cape-capf-super
-                      #'eglot-completion-at-point
-                      #'tempel-expand
-                      #'cape-file))))
- (setq-default
-  eglot-ignored-server-capabilities
-  '(workspace/didChangeWatchedFiles)))
+    (setq-local completion-at-point-functions
+                (list (cape-capf-super
+                       #'eglot-completion-at-point
+                       #'tempel-expand
+                       #'cape-file))))
+  (setq-default
+   eglot-ignored-server-capabilities
+   '(workspace/didChangeWatchedFiles)))
 
 ;; ein
 (use-package ein)
@@ -362,10 +384,10 @@
   (hoon-mode . eldoc-box-hover-mode))
   ;;; This won't work, eglot-code-action-organize-imports must know
   ;;; where the import lines are (they're not at line 1)
-  ;; (hoon-mode . (lambda ()
-  ;;                (add-hook 'before-save-hook
-  ;;                          (apply-partially #'eglot-code-action-organize-imports 1)
-  ;;                          nil 'local)))
+;; (hoon-mode . (lambda ()
+;;                (add-hook 'before-save-hook
+;;                          (apply-partially #'eglot-code-action-organize-imports 1)
+;;                          nil 'local)))
 
 (use-package hoon-ts-mode
   :after combobulate
