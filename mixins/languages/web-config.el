@@ -31,16 +31,6 @@
                   (tide-setup)))
    (web-mode . lsp)))
 
-;; (use-package prettier-js
-;;   :commands (prettier-js-mode prettier)
-;;   :custom
-;;   (prettier-target-mode "js-mode")
-;;   (prettier-js-args
-;;    '("--trailing-comma" "es5" "--no-semi" "--arrow-parens" "always"))
-;;   :hook ((js-mode . prettier-js-mode)
-;;          ;; (typescript-mode . prettier-js-mode)
-;;          (web-mode . prettier-js-mode)))
-
 (use-package typescript-mode
   :init
   (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
@@ -48,7 +38,6 @@
   (typescript-indent-level 2)
   :hook
   ((typescript-mode . subword-mode)
-   (typescript-mode . lsp)
    (typescript-mode . (lambda ()
                         (require 'tide)
                         (tide-setup))))
