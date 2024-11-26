@@ -173,6 +173,7 @@
 (use-package json-mode
   :mode "\\.lock\\|\\.json\\|\\.jshintrc\\'"
   :interpreter "json-mode"
+  :custom (js-indent-level 2)
   :hook (json-mode . eglot-ensure))
 
 ;; java
