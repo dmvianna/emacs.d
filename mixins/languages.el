@@ -21,9 +21,10 @@
 
   ;; Set custom formatters for modes
   (dolist (formatter-mode '((emacs-lisp-mode . lisp-indent)
-                            (tsx-ts-mode . prettier)
-                            (typescript-mode . prettier)
-                            (typescript-ts-mode . prettier)))
+                            ;; (tsx-ts-mode . prettier)
+                            ;; (typescript-mode . prettier)
+                            ;; (typescript-ts-mode . prettier)
+                            ))
 
     (add-to-list #'apheleia-mode-alist formatter-mode))
   :ensure-system-package (shfmt))
