@@ -27,20 +27,21 @@
   (web-mode-enable-current-element-highlight t)
   :hook
   ((web-mode . (lambda ()
-                  (require 'tide)
-                  (tide-setup)))
-   (web-mode . lsp)))
+                 (require 'tide)
+                 (tide-setup)))
+   (web-mode . eglot)))
 
 (use-package typescript-mode
   :init
   (define-derived-mode typescript-tsx-mode typescript-mode "tsx")
+  (put 'typescript-tsx-mode 'eglot-language-id "typescriptreact")
   :custom
   (typescript-indent-level 2)
   :hook
-  ((typescript-mode . subword-mode)
-   (typescript-mode . (lambda ()
-                        (require 'tide)
-                        (tide-setup))))
+  ((typescript-tsx-mode . subword-mode)
+   (typescript-tsx-mode . (lambda ()
+                            (require 'tide)
+                            (tide-setup))))
   :mode
   ("\\.tsx?\\'" . typescript-tsx-mode))
 
