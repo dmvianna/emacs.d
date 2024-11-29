@@ -125,5 +125,13 @@
   :hook
   (kbd-mode . (lambda () (flymake-mode -1))))
 
+(use-package helpful
+  :bind (("C-h f" . helpful-callable)
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)
+         ("C-h x" . helpful-command)
+         ("C-c C-d" . helpful-at-point)
+         ("C-h F" . helpful-function)))
+
 (provide 'ui)
 ;;; ui.el ends here.
