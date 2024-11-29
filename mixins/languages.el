@@ -8,7 +8,6 @@
 (use-package apheleia
   :defer t
   :bind ("C-c t a" . apheleia-mode)
-  :init (apheleia-global-mode)
   ;; :hook
   ;; (apheleia-mode . (lambda () (indent-tabs-mode -1)))
   :config
@@ -20,11 +19,11 @@
     (add-to-list #'apheleia-formatters formatter-cmd))
 
   ;; Set custom formatters for modes
-  (dolist (formatter-mode '((emacs-lisp-mode . lisp-indent)
-                            ;; (tsx-ts-mode . prettier)
-                            ;; (typescript-mode . prettier)
-                            ;; (typescript-ts-mode . prettier)
-                            ))
+  (dolist (formatter-mode '((emacs-lisp-mode . lisp-indent)))
+    ;; (tsx-ts-mode . prettier)
+    ;; (typescript-mode . prettier)
+    ;; (typescript-ts-mode . prettier)
+
 
     (add-to-list #'apheleia-mode-alist formatter-mode))
   :ensure-system-package (shfmt))
