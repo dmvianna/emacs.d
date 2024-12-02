@@ -83,6 +83,7 @@
   (eglot-confirm-server-initiated-edits t)
   (eglot-sync-connect nil) ; don't block while connecting to server
   :hook
+  (eglot-managed-mode . capf-mode)
   (eglot-managed-mode
    . (lambda ()
        (put 'eglot-note 'flymake-overlay-control nil)
