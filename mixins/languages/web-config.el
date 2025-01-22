@@ -3,8 +3,9 @@
 ;;; All things web
 ;;; Code:
 
-(use-package js-mode
+(use-package js-ts-mode
   :ensure nil
+  :mode (("\\.js\\'" . js-ts-mode))
   :hook
   ((js-mode . lsp)
    (js-mode . (lambda ()
@@ -13,13 +14,13 @@
 
 (use-package js-jsx-mode
   :ensure nil
+  :mode (("\\.jsx\\'" . js-jsx-mode))
   :hook (js-jsx-mode . (lambda ()
                          (require 'tide)
                          (tide-setup))))
 
 (use-package web-mode
   :mode (("\\.html?\\'" . web-mode)
-         ;; ("\\.tsx\\'" . web-mode)
          ("\\.jsx\\'" . web-mode))
   :custom
   (web-mode-markup-indent-offset 2)
@@ -30,12 +31,7 @@
   (web-mode-enable-css-colorization t)
   (web-mode-enable-auto-pairing t)
   (web-mode-enable-comment-keywords t)
-  (web-mode-enable-current-element-highlight t)
-  :hook
-  ((web-mode . (lambda ()
-                 (require 'tide)
-                 (tide-setup)))
-   (web-mode . lsp)))
+  (web-mode-enable-current-element-highlight t))
 
 (use-package typescript-mode
   :init
