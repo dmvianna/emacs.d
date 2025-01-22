@@ -11,6 +11,12 @@
                 (require 'tide)
                 (tide-setup)))))
 
+(use-package js-jsx-mode
+  :ensure nil
+  :hook (js-jsx-mode . (lambda ()
+                         (require 'tide)
+                         (tide-setup))))
+
 (use-package web-mode
   :mode (("\\.html?\\'" . web-mode)
          ;; ("\\.tsx\\'" . web-mode)
