@@ -1,4 +1,4 @@
-;;; init.el --- Summary  -*- lexical-binding: t; -*-
+;; init.el --- Summary -*- lexical-binding: t; no-byte-compile: t; -*-
 ;;; Commentary:
 ;;;
 ;;; Reload this config with M-: (load user-init-file)
@@ -84,6 +84,46 @@
 ;; add modules within this directory to the scope
 (add-to-list 'load-path
              (expand-file-name "local-packages" user-emacs-directory))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;
+;;;   Byte-compile and native-compile everything
+;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Ensure Emacs loads the most recent byte-compiled files.
+(setq load-prefer-newer t)
+
+;; Ensure JIT compilation is enabled for improved performance by
+;; native-compiling loaded .elc files asynchronously
+(setq native-comp-jit-compilation t)
+(setq native-comp-deferred-compilation t) ; Deprecated in Emacs > 29.1
+
+(use-package compile-angel
+  :demand t
+  :config
+  ;; Set `compile-angel-verbose' to nil to silence compile-angel.
+  (setq compile-angel-verbose t)
+
+  (compile-angel-on-load-mode)
+  (add-hook 'emacs-lisp-mode-hook #'compile-angel-on-save-local-mode))
+
+;; Ensure that quitting only occurs once Emacs finishes native compiling,
+;; preventing incomplete or leftover compilation files in `/tmp`.
+(setq native-comp-async-query-on-exit t)
+(setq confirm-kill-processes t)
+
+;; ;; Show buffer when there is a warning.
+;; ;; (NOT RECOMMENDED, except during development).
+;; (setq compile-angel-verbose t)
+;; (setq warning-minimum-level :warning)
+;; (setq byte-compile-verbose t)
+;; (setq byte-compile-warnings t)
+;; (setq native-comp-async-report-warnings-errors t)
+;; (setq native-comp-warning-on-missing-source t)
+
+;; Non-nil means to native compile packages as part of their installation.
+(setq package-native-compile t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;

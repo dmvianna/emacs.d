@@ -1,4 +1,4 @@
-;;; Package --- Summary  -*- lexical-binding: t; -*-
+;;; Package --- Summary  -*- lexical-binding: t; no-byte-compile: t; -*-
 ;;; Commentary:
 ;;; early init file
 ;;; Code:
