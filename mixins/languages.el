@@ -14,7 +14,8 @@
   ;; Set custom formatting commands
   (dolist (formatter-cmd
            '((shfmt . ("shfmt" "-i" "2" "-ci" "-sr"))
-             (prettier . ("prettier" (or (buffer-file-name) (buffer-name))))))
+             (prettier . ("prettier" (or (buffer-file-name) (buffer-name))))
+             (npm . ("npm" "run" "format" (or (buffer-file-name) (buffer-name))))))
 
     (add-to-list #'apheleia-formatters formatter-cmd))
 
