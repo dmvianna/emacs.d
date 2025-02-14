@@ -5,4 +5,4 @@
 !early-init.el
 !init.el
 !mixins/
-!mixins/*.el
+!mixins/**/.el

@@ -141,16 +141,6 @@
 
 (use-package dockerfile-mode)
 
-(use-package sql
-  :ensure nil
-  :custom (sql-product 'postgres))
-
-(use-package dbt-mode
-  :init (require 'sql)
-  :ensure (:type git :host github :repo "CyberShadow/dbt-mode")
-  ;; Customize `sql-product' to set the flavor of the SQL syntax.
-  :custom (sql-product 'postgres))
-
 ;; elm
 (use-package elm-mode
   :hook (elm-mode . eglot-ensure))
@@ -415,20 +405,9 @@
   (add-to-list 'combobulate-setup-functions-alist
                '(hoon . combobulate-hoon-setup)))
 
-(use-package sql-indent
-  :ensure (sql-indent
-           :host github
-           :repo "alex-hhh/emacs-sql-indent"
-           :branch "master"))
+;;; SQL
+(load-file (concat user-emacs-directory "mixins/languages/sql-config.el"))
 
-;; (use-package bigquery-mode
-;;   :ensure (bigquery-mode
-;;            :host github
-;;            :repo "dmvianna/bigquery-mode"
-;;            :branch "quote"
-;;            :files ("bigquery-mode.el" "bqm-names.el"))
-
-;;   :ensure-system-package (gcloud . google-cloud-cli))
 
 (provide 'languages)
 ;;; languages.el ends here.
