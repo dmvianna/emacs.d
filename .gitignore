@@ -1,8 +1,12 @@
 *
-!**/*.gpg
 !.gitignore
 !README.md
 !early-init.el
 !init.el
 !mixins/
-!mixins/**/.el
+!mixins/**
+mixins/*.elc
+mixins/languages/*.elc
+mixins/minibuffers/*.elc
+**/#*#
+!**/*.gpg
