@@ -24,7 +24,6 @@
   (format-all-mode . format-all-ensure-formatter))
 
 (use-package haskell-mode
-  :ensure nil
   :delight "λ"
   :after haskell-font-lock
   :hook
