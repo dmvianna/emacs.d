@@ -223,13 +223,6 @@
   :after consult
   :ensure (consult-gh :host github :repo "armindarvish/consult-gh")
   :config
-  (add-to-list 'consult-gh-default-orgs-list "dmvianna")
-  (setq consult-gh-default-orgs-list
-        (append
-         consult-gh-default-orgs-list
-         (remove "" (split-string
-                     (consult-gh--command-to-string "org" "list")
-                     "\n"))))
   (setq consult-gh-default-clone-directory "~/src/vendor/"))
 
 (use-package ediff
