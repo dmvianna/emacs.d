@@ -100,7 +100,7 @@
 (setq native-comp-deferred-compilation t) ; Deprecated in Emacs > 29.1
 
 (use-package compile-angel
-  :demand t
+  :delight
   :config
   ;; Set `compile-angel-verbose' to nil to silence compile-angel.
   (setq compile-angel-verbose t)
