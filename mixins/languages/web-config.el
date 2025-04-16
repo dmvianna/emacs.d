@@ -5,7 +5,7 @@
 
 (use-package js-ts-mode
   :ensure nil
-  :mode (("\\.js\\'" . js-ts-mode))
+  :mode (("\\.c?js\\'" . js-ts-mode))
   :hook
   ((js-mode . lsp)
    (js-mode . (lambda ()
@@ -50,7 +50,8 @@
                         (require 'tide)
                         (tide-setup))))
   :mode
-  ("\\.tsx?\\'" . typescript-tsx-mode))
+  ("\\.tsx\\'" . typescript-tsx-mode)
+  ("\\.m?ts\\'" . typescript-mode))
 
 (use-package tree-sitter
   :hook
