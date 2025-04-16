@@ -29,6 +29,8 @@
   (which-key-mode))
 
 (use-package delight
+  :ensure (:wait t)
+  :defer t
   :init
   (delight '((which-key-mode nil t)
              (visual-line-mode nil t)
