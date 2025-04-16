@@ -100,7 +100,9 @@
 (setq native-comp-deferred-compilation t) ; Deprecated in Emacs > 29.1
 
 (use-package compile-angel
-  :delight
+  :delight compile-angel-on-load-mode
+  :delight compile-angel-on-save-mode
+  :delight compile-angel-on-save-local-mode
   :config
   ;; Set `compile-angel-verbose' to nil to silence compile-angel.
   (setq compile-angel-verbose t)
@@ -222,7 +224,7 @@
 
 ;;; Save all tempfiles in $TMPDIR/emacs-$UID/
 (defconst emacs-tmp-dir
-   (format "%s/%s%s/" temporary-file-directory "emacs-" (user-uid)))
+  (format "%s/%s%s/" temporary-file-directory "emacs-" (user-uid)))
 (unless (file-directory-p emacs-tmp-dir)
   (make-directory emacs-tmp-dir))
 (setq backup-directory-alist
