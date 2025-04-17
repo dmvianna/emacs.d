@@ -81,33 +81,7 @@
   :custom
   (eglot-autoshutdown t)
   (eglot-confirm-server-initiated-edits t)
-  (eglot-sync-connect nil) ; don't block while connecting to server
-  :hook
-  (eglot-managed-mode . capf-mode)
-  (eglot-managed-mode
-   . (lambda ()
-       (put 'eglot-note 'flymake-overlay-control nil)
-       (put 'eglot-warning 'flymake-overlay-control nil)
-       (put 'eglot-error 'flymake-overlay-control nil)
-       (add-hook 'before-save-hook
-                 'eglot-format-buffer nil 'local)))
-  (eglot-managed-mode . #'my/eglot-capf)
-             ;;; This won't work, eglot-code-action-organize-imports must know
-             ;;; where the import lines are (they're not at line 1)
-  ;; (add-hook 'before-save-hook
-  ;;           (apply-partially #'eglot-code-action-organize-imports 1)
-  ;;           nil 'local)
-
-  :init
-  (defun my/eglot-capf ()
-    (setq-local completion-at-point-functions
-                (list (cape-capf-super
-                       #'eglot-completion-at-point
-                       #'tempel-expand
-                       #'cape-file))))
-  (setq-default
-   eglot-ignored-server-capabilities
-   '(workspace/didChangeWatchedFiles)))
+  (eglot-sync-connect nil)) ; don't block while connecting to server
 
 ;; ein
 (use-package ein)
