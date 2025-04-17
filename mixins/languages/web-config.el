@@ -55,7 +55,7 @@
 
 (use-package tree-sitter
   :hook
-  ((typescript-mode . tree-sitter-hl-mode)
+  ((js-ts-mode . tree-sitter-hl-mode)
    (typescript-tsx-mode . tree-sitter-hl-mode)))
 
 (use-package tree-sitter-langs
