@@ -83,6 +83,14 @@
   (eglot-confirm-server-initiated-edits t)
   (eglot-sync-connect nil)) ; don't block while connecting to server
 
+(use-package eglot-booster
+  :ensure (eglot-booster :host github :repo "jdtsmith/eglot-booster")
+  :after eglot
+  :config
+  (eglot-booster-mode)
+  :ensure-system-package
+  (emacs-lsp-booster . "cargo install emacs-lsp-booster"))
+
 ;; ein
 (use-package ein)
 ;; jupyter installation (with Rust repl)
