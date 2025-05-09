@@ -18,6 +18,14 @@
   (eglot-managed-mode . python-isort-on-save-mode)
   :ensure-system-package (isort . python3-isort))
 
+(use-package ruff-format
+  :ensure (ruff-format
+           :type git
+           :host github
+           :repo "JoshHayes/emacs-ruff-format")
+  :hook (eglot-managed-mode . ruff-format-on-save-mode)
+  :ensure-system-package (ruff))
+
 (use-package lazy-ruff
   :after python
   :bind (("C-c f" . lazy-ruff-lint-format-dwim))
@@ -28,7 +36,6 @@
            :type git
            :host github
            :repo "erickgnavar/flymake-ruff")
-  ;; :hook (eglot-managed-mode . flymake-ruff-load)
   :ensure-system-package (ruff))
 
 (use-package python-ts-mode
