@@ -7,6 +7,7 @@
   :ensure-system-package (poetry))
 
 (use-package uv-mode
+  :delight " UV"
   :hook (python-mode . uv-mode-auto-activate-hook)
   :ensure-system-package (uv))
 
