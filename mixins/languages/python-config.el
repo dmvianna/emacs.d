@@ -35,8 +35,7 @@
     ]
   }")
   :hook
-  (python-mode . eglot-ensure)
-  (python-mode . ruff-format-on-save-mode)
+  (python-ts-mode . eglot-ensure)
   :ensure-system-package (pyright-langserver . "uv tool install pyright"))
 
 (provide 'python-config)
