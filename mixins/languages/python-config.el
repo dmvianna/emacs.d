@@ -25,6 +25,14 @@
   :ensure nil
   :config
   (add-to-list 'eglot-server-programs '((python-mode . "pyright")))
+  (eglot-workspace-configuration . "{
+    \"python.analysis.typeChecking\" : true,
+    \"python.analysis.typeCheckingMode\" : \"strict\",
+    \"python.analysis.autoImportCompletions\" : true,
+    \"python.analysis.extraPaths\": [
+      \"/path/to/your/project/src\"
+    ]
+  }")
   :hook (python-mode . eglot-ensure)
   :ensure-system-package (pyright-langserver . "uv tool install pyright"))
 
