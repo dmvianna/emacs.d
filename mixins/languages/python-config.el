@@ -26,11 +26,6 @@
   :hook (eglot-managed-mode . ruff-format-on-save-mode)
   :ensure-system-package (ruff))
 
-(use-package lazy-ruff
-  :after python
-  :bind (("C-c f" . lazy-ruff-lint-format-dwim))
-  :ensure-system-package (ruff))
-
 (use-package flymake-ruff
   :ensure (flymake-ruff
            :type git
