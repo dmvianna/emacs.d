@@ -28,7 +28,7 @@
            :type git
            :host github
            :repo "erickgnavar/flymake-ruff")
-  :hook (eglot-managed-mode . flymake-ruff-load)
+  ;; :hook (eglot-managed-mode . flymake-ruff-load)
   :ensure-system-package (ruff))
 
 (use-package python-ts-mode
