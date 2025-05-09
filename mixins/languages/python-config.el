@@ -12,12 +12,12 @@
   :ensure-system-package (uv))
 
 (use-package py-isort
-  :after python-mode
+  :after python
   :hook (before-save . py-isort-before-save)
   :ensure-system-package (isort . python3-isort))
 
 (use-package python-black
-  :after python-mode
+  :after python
   :hook (python-mode . python-black-on-save-mode)
   :ensure-system-package (black))
 
