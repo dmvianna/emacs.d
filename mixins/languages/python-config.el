@@ -3,21 +3,22 @@
 ;;; Python configuration
 ;;; Code:
 
-;; Goes into infinite loop when used with LSP
-;; (use-package poetry
-;;   :hook
-;;   (python-mode . poetry-tracking-mode))
+(use-package poetry
+  :ensure-system-package (poetry))
 
 (use-package uv-mode
-  :hook (python-mode . uv-mode-auto-activate-hook))
+  :hook (python-mode . uv-mode-auto-activate-hook)
+  :ensure-system-package (uv))
 
 (use-package py-isort
   :after python
-  :hook (before-save . py-isort-before-save))
+  :hook (before-save . py-isort-before-save)
+  :ensure-system-package (isort . python3-isort))
 
 (use-package python-black
   :after python
-  :hook (python-ts-mode . python-black-on-save-mode))
+  :hook (python-ts-mode . python-black-on-save-mode)
+  :ensure-system-package (black))
 
 ;; (use-package lsp-jedi
 ;;   :config
