@@ -12,32 +12,21 @@
   :ensure-system-package (uv))
 
 (use-package py-isort
-  :after python
+  :after python-mode
   :hook (before-save . py-isort-before-save)
   :ensure-system-package (isort . python3-isort))
 
 (use-package python-black
-  :after python
-  :hook (python-ts-mode . python-black-on-save-mode)
+  :after python-mode
+  :hook (python-mode . python-black-on-save-mode)
   :ensure-system-package (black))
 
-;; (use-package lsp-jedi
-;;   :config
-;;   (with-eval-after-load "lsp-mode"
-;;     (add-to-list 'lsp-disabled-clients 'pyls))
-;;   ;; (add-to-list 'lsp-enabled-clients 'jedi)
-;;   (require 'lsp-diagnostics)
-;;   (lsp-diagnostics-flycheck-enable)
-;;   :hook (python-mode . (lambda ()
-;;                          (require 'lsp-jedi)
-;;                          (lsp)
-;;                          (poetry-tracking-mode)
-;;                          (flycheck-add-next-checker
-;;                           'lsp
-;;                           'python-pyright)
-;;                          (flycheck-add-next-checker
-;;                           'python-pyright
-;;                           'python-pylint))))
+(use-package python-mode
+  :ensure nil
+  :config
+  (add-to-list 'eglot-server-programs '((python-mode . "pyright")))
+  :hook (python-mode . eglot-ensure)
+  :ensure-system-package (pyright-langserver . "uv tool install pyright"))
 
 (provide 'python-config)
 ;;; python-config.el ends here
