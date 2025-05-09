@@ -21,6 +21,14 @@
   :bind (("C-c f" . lazy-ruff-lint-format-dwim))
   :ensure-system-package (ruff))
 
+(use-package flymake-ruff
+  :ensure (flymake-ruff
+           :type git
+           :host github
+           :repo "erickgnavar/flymake-ruff")
+  :hook (eglot-managed-mode . flymake-ruff-load)
+  :ensure-system-package (ruff))
+
 (use-package python-ts-mode
   :mode ("\\.py\\'" . python-ts-mode)
   :ensure nil
