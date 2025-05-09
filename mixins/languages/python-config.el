@@ -8,7 +8,7 @@
 
 (use-package uv-mode
   :delight " UV"
-  :hook (python-base-mode . uv-mode-auto-activate-hook)
+  :hook (python-ts-mode . uv-mode-auto-activate-hook)
   :ensure-system-package (uv))
 
 (use-package py-isort
@@ -16,12 +16,13 @@
   :hook (before-save . py-isort-before-save)
   :ensure-system-package (isort . python3-isort))
 
-(use-package python-black
+(use-package lazy-ruff
   :after python
-  :hook (python-base-mode . python-black-on-save-mode)
-  :ensure-system-package (black))
+  :bind (("C-c f" . lazy-ruff-lint-format-dwim))
+  :ensure-system-package (ruff))
 
-(use-package python-mode
+(use-package python-ts-mode
+  :mode ("\\.py\\'" . python-ts-mode)
   :ensure nil
   :config
   (add-to-list 'eglot-server-programs '((python-mode . "pyright")))
@@ -33,7 +34,9 @@
       \"/path/to/your/project/src\"
     ]
   }")
-  :hook (python-mode . eglot-ensure)
+  :hook
+  (python-mode . eglot-ensure)
+  (python-mode . ruff-format-on-save-mode)
   :ensure-system-package (pyright-langserver . "uv tool install pyright"))
 
 (provide 'python-config)
