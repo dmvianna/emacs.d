@@ -11,9 +11,11 @@
   :hook (python-ts-mode . uv-mode-auto-activate-hook)
   :ensure-system-package (uv))
 
-(use-package py-isort
+(use-package python-isort
   :after python
-  :hook (before-save . py-isort-before-save)
+  :hook
+  (python . python-isort-on-save-mode)
+  (eglot-managed-mode . python-isort-on-save-mode)
   :ensure-system-package (isort . python3-isort))
 
 (use-package lazy-ruff
