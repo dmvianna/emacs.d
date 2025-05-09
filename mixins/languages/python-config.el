@@ -8,7 +8,7 @@
 
 (use-package uv-mode
   :delight " UV"
-  :hook (python-mode . uv-mode-auto-activate-hook)
+  :hook (python-base-mode . uv-mode-auto-activate-hook)
   :ensure-system-package (uv))
 
 (use-package py-isort
@@ -18,7 +18,7 @@
 
 (use-package python-black
   :after python
-  :hook (python-mode . python-black-on-save-mode)
+  :hook (python-base-mode . python-black-on-save-mode)
   :ensure-system-package (black))
 
 (use-package python-mode
