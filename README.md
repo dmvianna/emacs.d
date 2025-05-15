@@ -39,3 +39,25 @@ system-packages-package-manager nil
 or any other package manager you prefer to use in your operating system.
 
 Have fun!
+
+Troubleshooting
+---------------
+
+I have some files that are encrypted. If you really want to run this
+in your own computer, you will have to comment out the lines in
+`init.el` that reference encrypted files, e.g., the ones with a `.gpg` extension.
+
+```elisp
+;; Safe
+(load (concat user-emacs-directory "mixins/safe.el.gpg"))
+```
+
+Commenting in [Emacs
+Lisp](https://www.gnu.org/software/emacs/manual/html_mono/elisp.html)
+is done by prepending the line with `;;`. That should be enough to get
+things going.
+
+No, I won't give you my **gpg** keys. Yes, I can help you to write
+your own encrypted files using **Linux** if you ask. The documentation
+behind this is a bit scattered, and it took me some effort to figure
+that one out.
