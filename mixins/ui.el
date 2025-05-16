@@ -142,5 +142,8 @@
   :config
   (treemacs-load-theme "nerd-icons"))
 
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+
 (provide 'ui)
 ;;; ui.el ends here.
