@@ -135,5 +135,12 @@
          ("C-c C-d" . helpful-at-point)
          ("C-h F" . helpful-function)))
 
+;; Nicer icons everywhere. Make sure you install them with
+;; M-x nerd-icons-install-fonts
+(use-package nerd-icons)
+(use-package treemacs-nerd-icons
+  :config
+  (treemacs-load-theme "nerd-icons"))
+
 (provide 'ui)
 ;;; ui.el ends here.
