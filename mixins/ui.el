@@ -137,7 +137,10 @@
 
 ;; Nicer icons everywhere. Make sure you install them with
 ;; M-x nerd-icons-install-fonts
-(use-package nerd-icons)
+(use-package nerd-icons
+  :custom
+ (nerd-icons-font-family "Inconsolata Nerd Font Regular"))
+
 (use-package treemacs-nerd-icons
   :config
   (treemacs-load-theme "nerd-icons"))
