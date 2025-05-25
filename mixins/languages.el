@@ -7,6 +7,7 @@
 
 (use-package apheleia
   :defer t
+  :init (setq apheleia-mode-alist nil)
   :bind ("C-c t a" . apheleia-mode)
   ;; :hook
   ;; (apheleia-mode . (lambda () (indent-tabs-mode -1)))
