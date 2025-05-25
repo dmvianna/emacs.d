@@ -6,8 +6,6 @@
 ;;; formatter
 
 (use-package apheleia
-  :defer t
-  :init (setq apheleia-mode-alist nil)
   :bind ("C-c t a" . apheleia-mode)
   ;; :hook
   ;; (apheleia-mode . (lambda () (indent-tabs-mode -1)))
@@ -136,7 +134,7 @@
   :ensure-system-package ("/usr/bin/gopls" . golang-x-tools-gopls))
 
 (use-package go-flymake
-  :after (flymake go-mode)
+  :defer t
   :ensure (go-flymake
            :host github
            :repo "dougm/goflymake"
