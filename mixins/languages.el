@@ -130,15 +130,7 @@
 (use-package go-mode
   :hook
   (go-mode . eglot-ensure)
-  (go-mode . go-flymake)
   :ensure-system-package ("/usr/bin/gopls" . golang-x-tools-gopls))
-
-(use-package go-flymake
-  :defer t
-  :ensure (go-flymake
-           :host github
-           :repo "dougm/goflymake"
-           :files ("go-flymake.el")))
 
 ;; graphviz
 (use-package graphviz-dot-mode
