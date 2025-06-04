@@ -245,40 +245,18 @@
   :interpreter "racket-mode")
 
 ;; Rust
-(use-package rust-ts-mode
-  :ensure nil
-  :mode "\\.rs\\'"
-  :config
-  (setq rustic-lsp-client 'eglot)
-  (add-to-list
-   'eglot-server-programs
-   '((rust-ts-mode rust-mode)
-     . ("rust-analyzer"
-        :initializationOptions
-        (:check (:command "clippy")))))
-  :ensure-system-package
-  (rust-analyzer . "rustup component add rust-analyzer"))
+(use-package rust-mode
+  :ensure t
+  :custom
+  (rust-mode-treesitter-derive t))
 
 (use-package rustic
-  :ensure
-  :bind (:map rustic-mode-map
-              ("M-j" . lsp-ui-imenu)
-              ("M-?" . lsp-find-references)
-              ("C-c C-c l" . flycheck-list-errors)
-              ("C-c C-c a" . lsp-execute-code-action)
-              ("C-c C-c r" . lsp-rename)
-              ("C-c C-c q" . lsp-workspace-restart)
-              ("C-c C-c Q" . lsp-workspace-shutdown)
-              ("C-c C-c s" . lsp-rust-analyzer-status))
+  :after (rust-mode)
   :config
-  ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-signature-auto-activate nil)
-
-  ;; comment to disable rustfmt on save
-  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
-  (setq rustic-format-on-save t))
+  (setq rustic-format-on-save t)
+  :custom
+  (rustic-lsp-client 'eglot)
+  (rustic-cargo-use-last-stored-arguments t))
 
 ;; scala
 (load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
