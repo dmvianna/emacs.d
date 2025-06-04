@@ -256,7 +256,8 @@
   (setq rustic-format-on-save t)
   :custom
   (rustic-lsp-client 'eglot)
-  (rustic-cargo-use-last-stored-arguments t))
+  (rustic-cargo-use-last-stored-arguments t)
+  :ensure-system-package (rustup))
 
 ;; scala
 (load-file (concat user-emacs-directory "mixins/languages/scala-config.el"))
