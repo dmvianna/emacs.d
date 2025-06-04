@@ -15,7 +15,7 @@
            '((shfmt . ("shfmt" "-i" "2" "-ci" "-sr"))
              (npm . ("npm" "run" "format" (or (buffer-file-name) (buffer-name))))))
 
-    (add-to-list #'apheleia-formatters formatter-cmd))
+    (add-to-list apheleia-formatters formatter-cmd))
 
   ;; Set custom formatters for modes
   (dolist (formatter-mode '((emacs-lisp-mode . lisp-indent)))
@@ -24,7 +24,7 @@
     ;; (typescript-ts-mode . prettier)
 
 
-    (add-to-list #'apheleia-mode-alist formatter-mode))
+    (add-to-list apheleia-mode-alist formatter-mode))
   :ensure-system-package (shfmt))
 
 ;;; LSP
