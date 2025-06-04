@@ -12,13 +12,15 @@ to manage and move the configuration across machines with minimal hassle.
 If you want to scale your configuration, you can't go too wrong reading
 their `README.md`s prior to copy-pasting snippets indiscriminately.
 
-version compatibility
+Version Compatibility
 ---------------------
 
-This configuration was tested with **emacs 29**.
+This configuration was tested with **emacs 30**.
 
 OS environment
 --------------
+
+### OS
 
 This configuration is geared towards **Fedora Linux** and **Gnome**
 running on **Wayland**. However nothing here prevents it running on other
@@ -38,10 +40,7 @@ system-packages-package-manager nil
 
 or any other package manager you prefer to use in your operating system.
 
-Have fun!
-
-Troubleshooting
----------------
+### Encripted Files
 
 I have some files that are encrypted. If you really want to run this
 in your own computer, you will have to comment out the lines in
@@ -61,3 +60,12 @@ No, I won't give you my **gpg** keys. Yes, I can help you to write
 your own encrypted files using **Linux** if you ask. The documentation
 behind this is a bit scattered, and it took me some effort to figure
 that one out.
+
+### Nerd Fonts
+
+To have nice icon in **treemacs** and elsewhere, you'll need to
+install the **Inconsolata** Nerd Font. The most convenient way to that
+in **Fedora** is by installing
+[Embellish](https://flathub.org/apps/io.github.getnf.embellish) using
+the **Software** app. I'm sure there are other ways, but for now using
+`M-x nerd-icons-install-fonts` doesn't seem to be enough.
