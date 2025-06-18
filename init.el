@@ -415,7 +415,6 @@
   ;; Display line numbers
   :hook
   (prog-mode . display-line-numbers-mode) ;; linum-mode, but efficient
-  (prog-mode . auto-fill-mode)
   ;; open pairs with extra newline in between, and autoindent
   (prog-mode . electric-indent-local-mode)
   (prog-mode . electric-pair-local-mode))
