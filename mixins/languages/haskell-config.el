@@ -28,7 +28,8 @@
   :after haskell-font-lock
   :hook
   (haskell-mode . eglot-ensure)
-  :custom (haskell-mode-stylish-haskell-path "fourmolu")
+  ;; stack install stylish-haskell
+  :custom (haskell-stylish-on-save nil)
   :bind (:map haskell-mode-map
               ("C-c h" . hoogle)
               ("C-c s" . haskell-mode-stylish-buffer)
