@@ -182,6 +182,7 @@
   (setq inferior-lisp-program "sbcl")
   :hook
   (sly-mode . rainbow-delimiters-mode)
+  (sly-mode . electric-pair-mode)
   :bind (:map sly-prefix-map
          ("M-h" . sly-documentation-lookup))
   :ensure-system-package sbcl)
