@@ -177,20 +177,14 @@
   (lisp-mode . rainbow-delimiters-mode)
   (lisp-interaction-mode . rainbow-delimiters-mode))
 
-(use-package slime
-  :commands slime
-  :custom
-  (slime-kill-without-query-p t)
-  (slime-repl-history-file (concat user-emacs-directory "slime-history.eld"))
-  (slime-startup-animation nil)
+(use-package sly
   :init
-  (setq inferior-lisp-program "sbcl"
-        slime-contribs '(slime-fancy))
+  (setq inferior-lisp-program "sbcl")
   :hook
-  (slime-repl-mode . rainbow-delimiters-mode)
-  ;; follow further instructions for installing quicklisp (package manager)
-  ;; at https://github.com/susam/emacs4cl#get-started
-  :ensure-system-package sbcl) ;; non-trivial installation
+  (sly-mode . rainbow-delimiters-mode)
+  :bind (:map sly-prefix-map
+         ("M-h" . sly-documentation-lookup))
+  :ensure-system-package sbcl)
 
 ;; elpaca can't build track-changes, which is a dependency
 (use-package parinfer-rust-mode
