@@ -326,7 +326,23 @@
 (customize-set-variable 'window-resize-pixelwise t)
 
 ;; directory tree view
+
+(defun ignore-packages (path patterns)
+     "Return non-nil if PATH contain any of the PATTERNS."
+     (let* ((path-parts
+             (split-string
+              (file-name-directory (expand-file-name path)) "/" t))
+            (matches
+             (cl-loop for elt in patterns
+                      collect
+                      (cl-remove-if-not
+                       (lambda (x) (string-equal elt x)) path-parts))))
+       (remove nil matches)))
+
 (use-package treemacs
+  :custom
+  (treemacs-file-follow-ignore-functions
+   '((lambda (path) (ignore-packages path '(".venv" "node_modules" ".metals")))))
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
