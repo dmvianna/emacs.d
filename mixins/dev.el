@@ -277,16 +277,23 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;
-;;; build and install sources, so emacs could use its introspection features:
+;;; Build and install sources, so emacs could use its introspection features:
 ;;;
 ;;; dnf download --source emacs
+;;; sudo dnf install Xaw3d-devel gnutls-devel gtk3-devel ncurses-devel
 ;;; sudo dnf builddep emacs
-;;; rpm -ivh emacs-29.4-9.fc40.src.rpm
+;;; rpm -ivh emacs-*.src.rpm
 ;;; rpmbuild -bp rpmbuild/SPECS/emacs.spec
+;;;
+;;; The directory structure might change between versions, be sure to
+;;; look at the sources in ~/rpmbuild/BUILD/emacs-* before being
+;;; content with the path below.
 ;;;
 
 (setq find-function-C-source-directory
-      (concat "~/rpmbuild/BUILD/emacs-" emacs-version "/src"))
+      (concat "~/rpmbuild/BUILD/emacs-"
+              emacs-version "-build/emacs-"
+              emacs-version "/build-pgtk"))
 
 (provide 'dev)
 ;;; dev.el ends here
