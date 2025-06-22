@@ -342,7 +342,10 @@
 (use-package treemacs
   :custom
   (treemacs-file-follow-ignore-functions
-   '((lambda (path) (ignore-packages path '(".venv" "node_modules" ".metals")))))
+   '((lambda (path)
+       (ignore-packages
+        path
+        '(".venv" "node_modules" ".metals" "elpaca")))))
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
