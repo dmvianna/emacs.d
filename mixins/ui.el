@@ -161,5 +161,10 @@
  :init
  (persp-mode))
 
+;;treemacs-perspective if you use perspective.el vs. persp-mode
+(use-package treemacs-perspective
+  :after (treemacs perspective) ;;or perspective vs. persp-mode
+  :config (treemacs-set-scope-type 'Perspectives))
+
 (provide 'ui)
 ;;; ui.el ends here.
