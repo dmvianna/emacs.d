@@ -94,8 +94,16 @@
    :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
-   consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
+   consult--source-recent-file
+   consult--source-project-recent-file
+   consult--source-bookmark
+   ;;; perspective.el
+   consult--source-buffer :hidden t :default nil
+   ;;;
    :preview-key "M-.")
+
+  ;;; perspective.el
+  (add-to-list 'consult-buffer-sources persp-consult-source)
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
