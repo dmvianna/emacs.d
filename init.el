@@ -341,6 +341,7 @@
 
 (use-package treemacs
   :custom
+  (treemacs-show-hidden-files nil)
   (treemacs-file-follow-ignore-functions
    '((lambda (path)
        (ignore-packages
