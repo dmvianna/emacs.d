@@ -98,7 +98,7 @@
    consult--source-project-recent-file
    consult--source-bookmark
    ;;; perspective.el
-   consult--source-buffer :hidden t :default nil
+   consult--source-buffer :default nil
    ;;;
    :preview-key "M-.")
 
