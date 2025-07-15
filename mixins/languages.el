@@ -207,13 +207,34 @@
 
 ;; Markdown
 (use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
   :hook
   (markdown-mode . display-line-numbers-mode)
   (markdown-mode . auto-fill-mode)
   (markdown-mode . display-line-numbers-mode)
-  :mode "\\.md$\\|\\.markdown\\|\\.udon$"
+  :mode (("\\.md$\\|\\.markdown\\|\\.udon$" . markdown-mode)
+         ("README\\.md\\'" . gfm-mode))
+  :init
+  (setq markdown-command "multimarkdown")
+  :bind (:map markdown-mode-map
+              ("C-c C-e" . markdown-do))
   :interpreter "markdown-mode"
-  :hook flyspell)
+  :hook flyspell
+  :ensure-system-package multimarkdown)
+
+(use-package markdown-xwidget
+  :ensure (markdown-xwidget
+           :host github
+           :repo "cfclrk/markdown-xwidget"
+           :files (:defaults "resources"))
+  :after markdown-mode
+  :config
+  (setq markdown-preview-use-xwidget t))
+
+(use-package mermaid-mode
+  :after markdown-mode
+  :config
+  (add-hook 'markdown-mode-hook 'mermaid-mode))
 
 ;; Python
 (load-file (concat user-emacs-directory "mixins/languages/python-config.el"))
