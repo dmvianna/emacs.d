@@ -13,7 +13,7 @@
   ;; Set custom formatting commands
   (dolist (formatter-cmd
            '((shfmt . ("shfmt" "-i" "2" "-ci" "-sr"))
-             (npm . ("npm" "run" "format" (or (buffer-file-name) (buffer-name))))))
+             (bun . ("bun" "format" (or (buffer-file-name) (buffer-name))))))
 
     (add-to-list apheleia-formatters formatter-cmd))
 
@@ -25,7 +25,7 @@
 
 
     (add-to-list apheleia-mode-alist formatter-mode))
-  :ensure-system-package (shfmt))
+  :ensure-system-package ((shfmt) (bun)))
 
 ;;; LSP
 
