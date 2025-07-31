@@ -102,8 +102,8 @@
    ;;;
    :preview-key "M-.")
 
-  ;;; perspective.el
-  (add-to-list 'consult-buffer-sources persp-consult-source)
+  ;; ;;; perspective.el
+  ;; (add-to-list 'consult-buffer-sources persp-consult-source)
 
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.

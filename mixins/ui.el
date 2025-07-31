@@ -148,23 +148,5 @@
 (use-package doom-modeline
   :init (doom-modeline-mode 1))
 
-(use-package perspective
-  :custom
-  (persp-mode-prefix-key (kbd "C-c M-p"))
-  :bind (("C-x b" . persp-switch-to-buffer*)
-         ("C-x k" . persp-kill-buffer*)
-         ("C-x C-b" . persp-ibuffer))
-  :config
-  (setq switch-to-prev-buffer-skip
-      (lambda (win buff bury-or-kill)
-        (not (persp-is-current-buffer buff))))
- :init
- (persp-mode))
-
-;;treemacs-perspective if you use perspective.el vs. persp-mode
-(use-package treemacs-perspective
-  :after (treemacs perspective) ;;or perspective vs. persp-mode
-  :config (treemacs-set-scope-type 'Perspectives))
-
 (provide 'ui)
 ;;; ui.el ends here.
